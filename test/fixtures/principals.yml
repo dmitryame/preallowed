@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+preallowed_super_password:
+  id: 1
+  subject_id: 3
+  value: preallowed super pasword
+  principal_type_id: 1
+      
+preallowed_admin_password:
+  id: 2
+  subject_id: 3
+  value: preallowed admin password
+  principal_type_id: 1  

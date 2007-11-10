@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+test_user:
+  id: 1
+  name: dmitry
+  client_id: 1
+admin_user:
+  id: 2
+  name: victor
+  client_id:    2
+super_user:
+  id: 3
+  name: adminsuper
+  client_id:    4

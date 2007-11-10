@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+access_granted:
+  id: 1
+  subject_id: 1
+  scope_id: 1
+  resource_id: 1
+  granted:  true
+  notes:    acces granted 
+access_denied:
+  id: 2
+  subject_id: 1
+  scope_id: 2
+  resource_id: 1
+  granted:  false
+  notes:    acces denied 

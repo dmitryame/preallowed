@@ -1,0 +1,18 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+chase:
+  id: 1
+  name: Chase Manhattan 
+
+fleet:
+  id: 2
+  name: Fleet Bank
+
+pentagon:
+  id:   3
+  name: Pentagon
+
+preallowed:
+  id: 4
+  name:   Preallowed.com    
+        
+        

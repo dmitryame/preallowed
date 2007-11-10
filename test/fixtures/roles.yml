@@ -1,0 +1,10 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+preallowed_admin:
+  id: 1
+  name: preallowed admin role
+  client_id: 4
+preallowed_user:
+  id: 2
+  name: preallowed user role
+  client_id: 4
+  

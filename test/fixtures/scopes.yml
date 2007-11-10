@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+chase_banking:
+  id: 1
+  name: Chase banking application scope
+  client_id:    1
+      
+fleet_mortgage:
+  id: 2
+  name: Fleet Bank mortgage application scope
+  client_id: 2
+preallowed_admin_interface:
+  id: 4
+  name: administrators interface for preallowed.com
+  client_id: 4
+  
+      
+
