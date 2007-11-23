@@ -2,8 +2,7 @@ class CreateResourceTypes < ActiveRecord::Migration
   def self.up
     create_table :resource_types do |t|
       t.column :name,         :string
-      t.column :created_at,   :datetime, :null => false
-      t.column :updated_at,   :datetime, :null => false
+      t.timestamps 
     end
     
     # add default resource_types types here
