@@ -1,15 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 access_granted:
-  id: 1
-  subject_id: 1
-  scope_id: 1
-  resource_id: 1
+  subject: test_user
+  scope: chase_banking
+  resource: fleet_admin
   granted:  true
-  notes:    acces granted 
+  notes: acces granted
+   
 access_denied:
-  id: 2
-  subject_id: 1
-  scope_id: 2
-  resource_id: 1
+  subject: test_user
+  scope: fleet_mortgage
+  resource: fleet_admin
   granted:  false
-  notes:    acces denied 
+  notes: acces denied 

@@ -1,7 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 password:
-  id: 1
   name: md5 password
 certificate:
-  id: 2
   name: digital certificate

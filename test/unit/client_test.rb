@@ -21,14 +21,14 @@ class ClientTest < Test::Unit::TestCase
     assert_equal "Fleet Bank", fleetClient.name
     fleetClient.name="Fleet Bank Updated"
     fleetClient.save
-    modifiedFleetClient = Client.find_by_id 2
+    modifiedFleetClient = Client.find_by_id fleetClient.id
     assert_equal modifiedFleetClient.name, fleetClient.name
   end
   
   def test_delete
     preallowedCLient = clients(:preallowed)
     Client.delete preallowedCLient
-    deletedClient = Client.find_by_id 4
+    deletedClient = Client.find_by_id preallowedCLient.id
     assert_nil deletedClient
   end
   

@@ -1,17 +1,14 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 fleet_admin:
-  id: 1 
   name: admin
-  scope_id: 2
-  resource_type_id: 1
+  scope: fleet_mortgage
+  resource_type: url
 fleet_db_admin:
-  id: 2
   name: users
-  scope_id: 2
-  resource_type_id: 2
+  scope: fleet_mortgage
+  resource_type: db_table
 preallowed_super_user:
-  id: 3 
   name: '/admin/index.html'
-  scope_id: 4
-  resource_type_id: 1
+  scope: preallowed_admin_interface
+  resource_type: url
   

@@ -1,7 +1,5 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 url:
-  id: 1
   name: URL resource
 db_table:
-  id: 2
   name: DB table resource
