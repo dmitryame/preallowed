@@ -42,6 +42,11 @@ Rails::Initializer.run do |config|
   # config.active_record.default_timezone = :utc
   
   # See Rails::Configuration for more options
+  config.action_controller.session = { 
+     :session_key => '_prllwd_session', 
+     :secret      => '_VeRy_sEcReT' 
+  } 
+  
 end
 
 # Add new inflection rules using the following format 
