@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "log_records", :force => true do |t|
     t.integer  "subject_id",  :null => false
-    t.integer  "scope_id",    :null => false
     t.integer  "resource_id", :null => false
     t.boolean  "granted"
     t.string   "notes"
@@ -28,7 +27,6 @@ ActiveRecord::Schema.define(:version => 11) do
   end
 
   add_index "log_records", ["subject_id"], :name => "fk_log_records_subject"
-  add_index "log_records", ["scope_id"], :name => "fk_log_records_scope"
   add_index "log_records", ["resource_id"], :name => "fk_log_records_resource"
 
   create_table "principal_types", :force => true do |t|

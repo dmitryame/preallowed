@@ -1,14 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 access_granted:
   subject: test_user
-  scope: chase_banking
   resource: fleet_admin
   granted:  true
   notes: acces granted
    
 access_denied:
   subject: test_user
-  scope: fleet_mortgage
   resource: fleet_admin
   granted:  false
   notes: acces denied 

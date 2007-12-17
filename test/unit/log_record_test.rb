@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class LogRecordTest < Test::Unit::TestCase
-  fixtures :log_records, :subjects, :resources, :scopes
+  fixtures :log_records, :subjects, :resources
 
  
   def test_crud
@@ -9,7 +9,6 @@ class LogRecordTest < Test::Unit::TestCase
     logAccessGranted = LogRecord.new(
                               :subject    => subjects(:super_user),
                               :resource => resources(:preallowed_super_user),
-                              :scope      => scopes(:preallowed_admin_interface),
                               :granted    => true,
                               :notes      => "resources granted in this case" 
                               )
@@ -19,7 +18,6 @@ class LogRecordTest < Test::Unit::TestCase
     logAccessDenied = LogRecord.new(
                               :subject    => subjects(:super_user),
                               :resource => resources(:preallowed_super_user),
-                              :scope      => scopes(:preallowed_admin_interface),
                               :granted    => false,
                               :notes      => "resources denied in this case" 
                               )
