@@ -1,0 +1,24 @@
+<h1>Listing clients</h1>
+
+<table>
+	<tr>
+		<th>Name</th>
+	</tr>
+	
+	<% for client in @clients %>
+		<tr id="<%= dom_id(client) %>">
+			<td><%=h client.name%></td>
+			<td><%= link_to "show", client_path(client)%></td>
+			<td><%= link_to_remote 'destroy', 
+		                    :url => client_path(client), 
+		                    :confirm => 'Are you sure?', 
+		                    :method => :delete %></td>
+		    
+		</tr>	
+	<%end%>
+	
+</table>
+
+<br/>
+
+<%= link_to "New Client", new_client_path %>
