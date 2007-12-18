@@ -1,5 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :clients
+  map.resources :clients do |client|
+    client.resources :scopes do |scope|
+      scope.resources :resource,
+        :has_one => :resource_type
+    end
+    client.resources :roles
+    client.resources :subjects do |subject|
+      subject.resources :principal,
+        :has_one => :principal_type
+    end
+  end
   
   # The priority is based upon order of creation: first created -> highest priority.
   
