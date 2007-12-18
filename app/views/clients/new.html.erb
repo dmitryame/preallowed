@@ -1,0 +1,8 @@
+<h1>New Client</h1>
+
+<% form_for(:client, :url => clients_path) do |f| %>
+	<p><b>Name</b></br>   <%= f.text_field :name %> </p>
+	<p><%=submit_tag "Create"%></p>
+<%end%>
+
+<%= link_to 'back', clients_path%>

@@ -1,0 +1,23 @@
+<h1>Client Details</h1>
+<p><b>Name:</b><%=h @client.name%></p>
+
+
+<%= link_to 'edit', edit_client_path(@client)%> |
+<%= link_to 'back', clients_path%>
+
+
+<%#scopes%>
+<h1>Clients Scopes</h1>
+<% unless @client.scopes.empty? %>
+	<table>
+	<%= render :partial => "/scopes/scope", :collection => @client.scopes %>
+	</table>
+<% end %>
+<%= link_to "Add scope", new_client_scope_url(@client) %>
+
+
+
+<%#roles%>
+<h1>Clients Roles</h1>
+<%#subjects%>
+<h1>Clients Subjects</h1>

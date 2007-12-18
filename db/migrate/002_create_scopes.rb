@@ -7,7 +7,7 @@ class CreateScopes < ActiveRecord::Migration
     end
     
     execute 'ALTER TABLE scopes ADD CONSTRAINT fk_scopes_client 
-                                FOREIGN KEY ( client_id ) REFERENCES clients(id)'
+                                    FOREIGN KEY ( client_id ) REFERENCES clients(id)'
   end
 
   def self.down
