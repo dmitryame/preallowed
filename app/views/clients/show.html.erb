@@ -19,5 +19,20 @@
 
 <%#roles%>
 <h1>Clients Roles</h1>
+<% unless @client.roles.empty? %>
+	<table>
+	<%= render :partial => "/roles/role", :collection => @client.roles %>
+	</table>
+<% end %>
+<%= link_to "Add role", new_client_role_url(@client) %>
+
+
+
 <%#subjects%>
 <h1>Clients Subjects</h1>
+<% unless @client.subjects.empty? %>
+	<table>
+	<%= render :partial => "/subjects/subject", :collection => @client.subject %>
+	</table>
+<% end %>
+<%= link_to "Add subject", new_client_subject_url(@client) %>
