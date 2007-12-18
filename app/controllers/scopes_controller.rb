@@ -28,6 +28,14 @@ class ScopesController < ApplicationController
     end
   end
 
+  def show
+    @scope = @client.scopes.find(params[:id])
+    respond_to do |format|
+      format.html # show.rhtml
+      format.xml {render :xml => @scope.to_xml }
+    end
+  end
+
   def destroy
     @scope = @client.scopes.find(params[:id])
     @client.scopes.destroy(@scope)

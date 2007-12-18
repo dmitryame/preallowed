@@ -1,0 +1,17 @@
+<h1>Scope Details</h1>
+<p><b>Name:</b><%=h @scope.name%></p>
+
+
+<%= link_to 'edit', edit_client_scope_path(@client, @scope)%> |
+<%= link_to 'back', client_path(@client)%>
+
+
+<%#resources%>
+<h1>Scopes Resources</h1>
+<% unless @scope.resources.empty? %>
+	<table>
+		<tr><td>qwe</td></tr>
+	<% #render :partial => "/scopes/scope", :collection => @client.scopes %>
+	</table>
+<% end %>
+<%= link_to "Add Resource", new_client_scope_resource_url(@client, @scope) %>

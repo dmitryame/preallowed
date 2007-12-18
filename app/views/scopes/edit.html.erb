@@ -1,2 +1,10 @@
-<h1>Scopes#edit</h1>
-<p>Find me in app/views/scopes/edit.html.erb</p>
+<h1>Edit Scope</h1>
+
+<% form_for(:scope, :url => client_scope_path(@client, @scope), :html => { :method => :put }) do  |f| %>
+	<p><b>Name</b></br>     <%= f.text_field :name%>
+	
+	<p><%= submit_tag "Update"%></p>
+<% end %>
+
+<%= link_to "show", client_scope_path(@client, @scope)%>
+<%= link_to "back", client_path(@client)%>
