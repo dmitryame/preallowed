@@ -1,2 +1,8 @@
-<h1>Roles#new</h1>
-<p>Find me in app/views/roles/new.html.erb</p>
+<h1>New Role</h1>
+
+<% form_for(:role, :url => client_roles_path) do |f| %>
+	<p><b>Name</b></br>   <%= f.text_field :name %> </p>
+	<p><%=submit_tag "Create"%></p>
+<%end%>
+
+<%= link_to 'back', clients_path%>

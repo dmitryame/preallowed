@@ -1,2 +1,8 @@
-<h1>Subjects#new</h1>
-<p>Find me in app/views/subjects/new.html.erb</p>
+<h1>New Subject</h1>
+
+<% form_for(:subject, :url => client_subjects_path) do |f| %>
+	<p><b>Name</b></br>   <%= f.text_field :name %> </p>
+	<p><%=submit_tag "Create"%></p>
+<%end%>
+
+<%= link_to 'back', clients_path%>

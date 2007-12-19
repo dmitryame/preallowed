@@ -1,2 +1,10 @@
-<h1>Subjects#edit</h1>
-<p>Find me in app/views/subjects/edit.html.erb</p>
+<h1>Edit Subject</h1>
+
+<% form_for(:subject, :url => client_subject_path(@client, @subject), :html => { :method => :put }) do  |f| %>
+	<p><b>Name</b></br>     <%= f.text_field :name%>
+	
+	<p><%= submit_tag "Update"%></p>
+<% end %>
+
+<%= link_to "show", client_subject_path(@client, @subject)%>
+<%= link_to "back", client_path(@client)%>

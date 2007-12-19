@@ -32,7 +32,7 @@
 <h1>Clients Subjects</h1>
 <% unless @client.subjects.empty? %>
 	<table>
-	<%= render :partial => "/subjects/subject", :collection => @client.subject %>
+	<%= render :partial => "/subjects/subject", :collection => @client.subjects %>
 	</table>
 <% end %>
 <%= link_to "Add subject", new_client_subject_url(@client) %>

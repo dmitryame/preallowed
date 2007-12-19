@@ -1,2 +1,10 @@
-<h1>Roles#edit</h1>
-<p>Find me in app/views/roles/edit.html.erb</p>
+<h1>Edit Role</h1>
+
+<% form_for(:role, :url => client_role_path(@client, @role), :html => { :method => :put }) do  |f| %>
+	<p><b>Name</b></br>     <%= f.text_field :name%>
+	
+	<p><%= submit_tag "Update"%></p>
+<% end %>
+
+<%= link_to "show", client_role_path(@client, @role)%>
+<%= link_to "back", client_path(@client)%>

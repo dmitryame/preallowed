@@ -1,0 +1,18 @@
+<h1>Subject Details</h1>
+<p><b>Name:</b><%=h @subject.name%></p>
+
+
+<%= link_to 'edit', edit_client_subject_path(@client, @subject)%> |
+<%= link_to 'back', client_path(@client)%>
+
+
+<%#principals%>
+<h1>Subjects Principals</h1>
+<% unless @subject.principals.empty? %>
+	<table>
+		<tr><td>qwe</td></tr>
+	<% #render :partial => "/scopes/scope", :collection => @client.scopes %>
+	</table>
+<% end %>
+
+add principlas here
