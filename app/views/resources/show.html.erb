@@ -1,0 +1,8 @@
+<h1>Resource Details</h1>
+<p><b>Name:</b><%=h @resource.name%>
+   <b>Type:</b><%=h @resource.resource_type.name%></p>
+
+
+<%= link_to 'edit', edit_client_scope_resource_path(@client, @scope, @resource)%> |
+<%= link_to 'back', client_scope_path(@client, @scope)%>
+

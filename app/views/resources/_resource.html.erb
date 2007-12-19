@@ -1,5 +1,6 @@
 <tr id="<%= dom_id(resource) %>">
 	<td><%=h resource.name%></td>
+	<td><%=h resource.resource_type.name%></td>
 	<td><%= link_to "show", client_scope_resource_path(@client, @scope, resource)%></td>
 	<td><%= link_to_remote 'destroy', 
                     :url => client_scope_resource_path(@client, @scope, resource), 

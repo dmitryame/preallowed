@@ -10,8 +10,7 @@
 <h1>Scopes Resources</h1>
 <% unless @scope.resources.empty? %>
 	<table>
-		<tr><td>qwe</td></tr>
-	<% #render :partial => "/scopes/scope", :collection => @client.scopes %>
+		<%= render :partial => "/resources/resource", :collection => @scope.resources %>
 	</table>
 <% end %>
 <%= link_to "Add Resource", new_client_scope_resource_url(@client, @scope) %>
