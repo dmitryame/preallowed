@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :clients do |client|
     client.resources :scopes do |scope|
-      scope.resources :resource,
+      scope.resources :resources,
         :has_one => :resource_type
     end
     client.resources :roles
     client.resources :subjects do |subject|
-      subject.resources :principal,
+      subject.resources :principals,
         :has_one => :principal_type
     end
   end
