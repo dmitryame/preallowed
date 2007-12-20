@@ -1,2 +1,22 @@
-<h1>Principals#new</h1>
-<p>Find me in app/views/principals/new.html.erb</p>
+<h1>New Principal</h1>
+
+<% form_for(:principal, :url => client_subject_principals_path) do |f| %>
+	<table>
+		<tr>
+			<td>
+				<p><b>Value</b><%= f.text_field :value %></p>
+			</td>
+			<td>
+				<b>Type</b>
+				<%= f.select :principal_type_id, PrincipalType.find(:all).map{ |rt| [rt.name, rt.id] } %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<p><%=submit_tag "Create"%></p>
+			</td>
+		</tr>
+	</table>
+<%end%>
+
+<%= link_to "back", client_subject_path(@client, @subject)%>

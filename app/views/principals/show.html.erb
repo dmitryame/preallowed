@@ -1,0 +1,8 @@
+<h1>Principal Details</h1>
+<p><b>Name:</b><%=h @principal.value%>
+   <b>Type:</b><%=h @principal.principal_type.name%></p>
+
+
+<%= link_to 'edit', edit_client_subject_principal_path(@client, @subject, @principal)%> |
+<%= link_to 'back', client_subject_path(@client, @subject)%>
+
