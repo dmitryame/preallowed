@@ -6,3 +6,21 @@
 <%= link_to 'edit', edit_client_scope_resource_path(@client, @scope, @resource)%> |
 <%= link_to 'back', client_scope_path(@client, @scope)%>
 
+<%#resources%>
+<h1>Resources Roles</h1>
+	<table>
+		<tr>
+			<td valign="top">
+				<h2>resources roles</h2>
+				<table>					
+					<%= render :partial => "/roles/role", :collection => @resource.roles %>
+				</table>					
+			</td>
+			<td valign="top">
+				<h2>all roles</h2>
+				<table>
+					<%= render :partial => "/roles/role", :collection => @client.roles %>
+				</table>									
+			</td>
+		</tr>
+	</table>
