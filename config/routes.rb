@@ -2,7 +2,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :clients do |client|
     client.resources :scopes do |scope|
       scope.resources :resources,
-        :has_one => :resource_type
+        :has_one => :resource_type,
+        :member => {:add_role => :post,
+                    :remove_role => :post}
     end
     client.resources :roles
     client.resources :subjects do |subject|

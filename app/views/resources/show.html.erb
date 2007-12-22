@@ -12,15 +12,44 @@
 		<tr>
 			<td valign="top">
 				<h2>resources roles</h2>
-				<table>					
-					<%= render :partial => "/roles/role", :collection => @resource.roles %>
-				</table>					
+				<div id="resources_roles">
+					<ul id="resources_roles_list">
+						<% @resource.roles.each do |role|%>
+							<%domid="resources_" + dom_id(role)%>
+							<li class="role_li" id='<%=domid%>'>
+								<%=role.name%>
+							</li>
+							<%=draggable_element(domid, :ghosting=>true, :revert=>false)%>
+						<%end%>
+					</ul>
+				</div>
 			</td>
 			<td valign="top">
 				<h2>all roles</h2>
-				<table>
-					<%= render :partial => "/roles/role", :collection => @client.roles %>
-				</table>									
+				<div id="clients_roles">
+					<ul id="clients_roles_list">
+						<% @client.roles.each do |role|%>
+							<%domid="clients_" + dom_id(role)%>
+							<li class="role_li" id='<%=domid%>'>
+								<%=role.name%>
+							</li>
+							<%=draggable_element(domid, :ghosting=>true, :revert=>true)%>
+						<%end%>
+					</ul>
+				</div>
 			</td>
 		</tr>
 	</table>
+
+
+<%= drop_receiving_element ('resources_roles',
+				:accept   => 'role_li',
+				:hoverclass => 'hover',
+				:with     => "'role_id=' + encodeURIComponent(element.id.split('_').last())",
+				:url      => { :controller => "resources", :action => "add_role"})%>
+
+<%= drop_receiving_element ('clients_roles',
+				:accept   => 'role_li',
+				:hoverclass => 'hover',
+				:with     => "'role_id=' + encodeURIComponent(element.id.split('_').last())",
+				:url      => { :controller => "resources", :action => "remove_role"})%>

@@ -207,3 +207,19 @@ legend {
     background: #fff;
     
 }
+
+
+
+
+.hover {
+    background-color: #888888;
+}
+
+#resources_roles ul, li, #clients_roles ul, li {
+    list-style: none;
+    cursor: -moz-grab;
+}
+
+#resources_roles, #clients_roles {
+    border: 1px solid gray;
+}

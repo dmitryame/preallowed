@@ -41,7 +41,14 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def add_role
+    puts "adding role"
+  end
 
+  def remove_role
+    puts "removing role"
+  end
+  
   private
   
   def find_scope
