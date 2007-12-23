@@ -7,9 +7,11 @@ ActionController::Routing::Routes.draw do |map|
                     :remove_role => :post}
     end
     client.resources :roles
+    client.resources :subjects,
+     :member => {:add_role => :post,
+                 :remove_role => :post}     
     client.resources :subjects do |subject|
-      subject.resources :principals,
-        :has_one => :principal_type
+      subject.resources :principals
     end
   end
   

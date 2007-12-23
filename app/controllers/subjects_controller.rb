@@ -35,11 +35,32 @@ class SubjectsController < ApplicationController
 
   def show
     @subject = @client.subjects.find(params[:id])
+    @clientroles = @client.roles - @subject.roles
+    
     respond_to do |format|
       format.html # show.rhtml
       format.xml {render :xml => @subject.to_xml }
     end
   end
+
+  def add_role
+    @subject = @client.subjects.find(params[:id])
+    
+    @role = @client.roles.find(params[:role_id])
+    @subject.roles << @role
+
+    @clientroles = @client.roles - @subject.roles
+  end
+
+  def remove_role
+    @subject = @client.subjects.find(params[:id])
+
+    @role = @client.roles.find(params[:role_id])
+    @subject.roles.delete(@role)
+
+    @clientroles = @client.roles - @subject.roles
+  end
+
 
   private
   

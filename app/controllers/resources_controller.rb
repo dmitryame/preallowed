@@ -46,7 +46,6 @@ class ResourcesController < ApplicationController
 
   def add_role
     @resource = @scope.resources.find(params[:id])
-    @clientroles = @client.roles - @resource.roles
     
     @role = @client.roles.find(params[:role_id])
     @resource.roles << @role
