@@ -35,6 +35,9 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = @scope.resources.find(params[:id])
+    @clientroles = @client.roles - @resource.roles
+    
+    
     respond_to do |format|
       format.html # show.rhtml
       format.xml {render :xml => @resource.to_xml }
@@ -42,11 +45,22 @@ class ResourcesController < ApplicationController
   end
 
   def add_role
-    puts "adding role"
+    @resource = @scope.resources.find(params[:id])
+    @clientroles = @client.roles - @resource.roles
+    
+    @role = @client.roles.find(params[:role_id])
+    @resource.roles << @role
+
+    @clientroles = @client.roles - @resource.roles
   end
 
   def remove_role
-    puts "removing role"
+    @resource = @scope.resources.find(params[:id])
+
+    @role = @client.roles.find(params[:role_id])
+    @resource.roles.delete(@role)
+
+    @clientroles = @client.roles - @resource.roles
   end
   
   private
