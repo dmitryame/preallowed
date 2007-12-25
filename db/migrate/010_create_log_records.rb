@@ -1,15 +1,10 @@
 class CreateLogRecords < ActiveRecord::Migration
   def self.up
     create_table :log_records do |t|
-      t.references :subject, :resource, :null => false
-      t.column :granted,          :boolean
-      t.column :notes,            :string
+      t.string :req_body, :req_headers, :req_method, :req_path, :resp_status, :resp_headers, :limit => 2048
       t.timestamps 
     end
-    
-    execute 'ALTER TABLE log_records ADD CONSTRAINT fk_log_records_subject FOREIGN KEY ( subject_id ) REFERENCES subjects(id)'
-    execute 'ALTER TABLE log_records ADD CONSTRAINT fk_log_records_resource FOREIGN KEY ( resource_id ) REFERENCES resources(id)'
-    
+        
   end
 
   def self.down

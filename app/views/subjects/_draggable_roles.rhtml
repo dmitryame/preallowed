@@ -39,12 +39,12 @@
 				:accept   => 'role_li',
 				:hoverclass => 'hover',
 				:with     => "'role_id=' + encodeURIComponent(element.id.split('_').last())",
-				:url      => { :controller => "subjects", :action => "add_role"})%>
+				:url      => {:controller => "subjects", :action => "add_role"})%>
 
 <%= drop_receiving_element ('clients_roles',
 				:accept   => 'role_li',
 				:hoverclass => 'hover',
 				:with     => "'role_id=' + encodeURIComponent(element.id.split('_').last())",
-				:url      => { :controller => "subjects", :action => "remove_role"})%>
+				:url      => {:controller => "subjects", :action => "remove_role"})%>
 
 </div>

@@ -18,16 +18,15 @@ ActiveRecord::Schema.define(:version => 11) do
   end
 
   create_table "log_records", :force => true do |t|
-    t.integer  "subject_id",  :null => false
-    t.integer  "resource_id", :null => false
-    t.boolean  "granted"
-    t.string   "notes"
+    t.string   "req_body",     :limit => 2048
+    t.string   "req_headers",  :limit => 2048
+    t.string   "req_method",   :limit => 2048
+    t.string   "req_path",     :limit => 2048
+    t.string   "resp_status",  :limit => 2048
+    t.string   "resp_headers", :limit => 2048
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "log_records", ["subject_id"], :name => "fk_log_records_subject"
-  add_index "log_records", ["resource_id"], :name => "fk_log_records_resource"
 
   create_table "principal_types", :force => true do |t|
     t.string   "name"
