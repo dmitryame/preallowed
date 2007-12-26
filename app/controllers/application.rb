@@ -25,11 +25,24 @@ class ApplicationController < ActionController::Base
     @log_record.save
   end
   
-    #todo: put in a logic to limit number of attempts to 3  
-    def authenticate 
-      authenticate_or_request_with_http_basic do |name, pass| 
-        name == "dmitry" && pass == "dmitry"
-      end 
+  #todo: put in a logic to limit number of attempts to 3  
+  def authenticate 
+    authenticate_or_request_with_http_basic do |name, pass| 
+      subject = Subject.find_by_name(name)
+      # debugger
+      if subject != nil
+        stored_hashed_password = ""
+        stored_salt = ""
+        subject.principals.each do |principal|
+          stored_hashed_password = principal.value if principal.principal_type.name == "hashed_password"
+          stored_salt = principal.value if principal.principal_type.name == "salt"
+        end
+        
+        string_to_hash = pass + "wibble" + stored_salt
+        hashed_password = Digest::SHA1.hexdigest(string_to_hash)
+        return true if(hashed_password == stored_hashed_password)        
+      end
     end 
+  end 
 
 end
