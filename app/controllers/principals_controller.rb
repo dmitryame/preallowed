@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 class PrincipalsController < ApplicationController
   before_filter :find_subject
 
@@ -12,6 +14,19 @@ class PrincipalsController < ApplicationController
   def create
     @principal = Principal.new(params[:principal])
     if (@subject.principals << @principal)
+      if(@principal.principal_type.id == 1) # hashed password
+        salt = @principal.object_id.to_s + rand.to_s
+        string_to_hash = @principal.value + "wibble" + salt
+        @principal.value = Digest::SHA1.hexdigest(string_to_hash)
+        @principal.save        
+
+        @principal = Principal.new
+        @principal.principal_type_id = 2 #salt
+        @principal.value = salt
+        @principal.subject = @subject
+        @principal.save
+        
+      end
       redirect_to client_subject_url(@client, @subject)
     else 
       render :action => :new

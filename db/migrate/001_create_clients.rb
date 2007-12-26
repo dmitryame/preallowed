@@ -4,6 +4,10 @@ class CreateClients < ActiveRecord::Migration
         t.column :name,       :string
         t.timestamps 
     end
+    #add default client   
+    preallowed = Client.create :name => "preallowed"
+    preallowed.save!
+    
   end
 
   def self.down
