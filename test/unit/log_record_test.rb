@@ -7,28 +7,30 @@ class LogRecordTest < Test::Unit::TestCase
   def test_crud
     logRecord = log_records(:access_granted)
     logAccessGranted = LogRecord.new(
-                              :subject    => subjects(:super_user),
-                              :resource => resources(:preallowed_super_user),
-                              :granted    => true,
-                              :notes      => "resources granted in this case" 
-                              )
+      :req_body => "request.body.string",
+      :req_headers => "request.headers",
+      :req_method =>  "request.method",
+      :req_path => "asd",
+      :resp_headers => "response.headers",
+      :resp_status => "200 Ok"
+    )
                               
     assert logAccessGranted.save
     
     logAccessDenied = LogRecord.new(
-                              :subject    => subjects(:super_user),
-                              :resource => resources(:preallowed_super_user),
-                              :granted    => false,
-                              :notes      => "resources denied in this case" 
-                              )
-    
+      :req_body => "request.body.string",
+      :req_headers => "request.headers",
+      :req_method =>  "request.method",
+      :req_path => "asd",
+      :resp_headers => "response.headers",
+      :resp_status => "303 denied"
+    )
+        
     assert logAccessDenied.save
     
-    logAccessDenied.granted = true
     
     assert logAccessDenied.save
     assert logAccessDenied.reload
-    assert true, logAccessDenied.granted
     
     assert logAccessDenied.destroy
     assert logAccessGranted.destroy

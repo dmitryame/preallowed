@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.99.0' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.0.1' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -33,7 +33,7 @@ Rails::Initializer.run do |config|
   # Use SQL instead of Active Record's schema dumper when creating the test database.
   # This is necessary if your schema can't be completely dumped by the schema dumper, 
   # like if you have constraints or database-specific column types
-  config.active_record.schema_format = :ruby
+  # config.active_record.schema_format = :ruby
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
@@ -43,8 +43,8 @@ Rails::Initializer.run do |config|
   
   # See Rails::Configuration for more options
   config.action_controller.session = { 
-     :session_key => '_prllwd_session', 
-     :secret      => '_VeRy_sEcReT' 
+     :session_key => '_prllwd_session',
+     :secret      => 'lksldkfjlksjdflkjsldkfjlskdjflksjdlfkjlsdjflksdjflkjlqweew'
   } 
   
 end
@@ -61,5 +61,6 @@ end
 # Add new mime types for use in respond_to blocks:
 # Mime::Type.register "text/richtext", :rtf
 # Mime::Type.register "application/x-mobile", :mobile
+$KCODE = 'u'
 
 # Include your application configuration below

@@ -11,6 +11,12 @@ class ClientsControllerTest < Test::Unit::TestCase
     @controller = ClientsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
+    #authenticate
+    @request.env['HTTP_AUTHORIZATION'] = 
+        ActionController::HttpAuthentication::Basic.encode_credentials(
+          "dmitry", 
+          "dmitry" 
+        )     
   end
 
   def test_should_get_index
@@ -63,4 +69,6 @@ class ClientsControllerTest < Test::Unit::TestCase
   #   assert_match 'application/xml', @response.headers['Content-Type']
   # end
 
+  private 
+  
 end

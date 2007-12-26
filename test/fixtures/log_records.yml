@@ -1,12 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 access_granted:
-  subject: test_user
-  resource: fleet_admin
-  granted:  true
-  notes: acces granted
-   
+    req_body:    request.body.string
+    req_headers: request.headers
+    req_method:  request.method
+    req_path:    asd
+    resp_headers: response.headers
+    resp_status:  200 Ok
+
 access_denied:
-  subject: test_user
-  resource: fleet_admin
-  granted:  false
-  notes: acces denied 
+    req_body:    request.body.string
+    req_headers: request.headers
+    req_method:  request.method
+    req_path:    asd
+    resp_headers: response.headers
+    resp_status:  303 denied
