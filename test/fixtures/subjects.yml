@@ -1,10 +1,4 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-test_user:
-  name: dmitry
-  client: chase
-admin_user:
-  name: victor
-  client:    chase
 super_user:
-  name: adminsuper
-  client:    preallowed
+  name: admin
+  client: preallowed

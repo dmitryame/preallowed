@@ -1,10 +1,10 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-preallowed_super_password:
-  subject: super_user
-  value: preallowed super pasword
-  principal_type: password
-      
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html      
 preallowed_admin_password:
-  subject: super_user
-  value: preallowed admin password
+  subject: admin
+  value: 35263a0f3aa0ea37b57027d3c9635725746644e3
   principal_type: password
+
+preallowed_admin_salt:
+  subject: admin
+  value: '291247300.585749468074609'
+  principal_type: salt

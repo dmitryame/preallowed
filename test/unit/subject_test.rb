@@ -12,7 +12,7 @@ class SubjectTest < Test::Unit::TestCase
      assert aNewSubject.save
 
      preallowedSuperSubject = subjects(:super_user)
-     assert_equal "adminsuper", preallowedSuperSubject.name
+     assert_equal "admin", preallowedSuperSubject.name
 
      aNewSubject.name = "updated name"
      assert aNewSubject.save

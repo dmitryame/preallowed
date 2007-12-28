@@ -17,7 +17,7 @@ class PrincipalTest < Test::Unit::TestCase
 
     testCertificatePrincipal = Principal.new(
                              :value    => 'testing certificate principal',
-                             :principal_type => principal_types(:certificate),
+                             :principal_type => principal_types(:password),
                              :subject => subjects(:super_user)
                              )
 

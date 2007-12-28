@@ -14,8 +14,8 @@ class ClientsControllerTest < Test::Unit::TestCase
     #authenticate
     @request.env['HTTP_AUTHORIZATION'] = 
         ActionController::HttpAuthentication::Basic.encode_credentials(
-          "dmitry", 
-          "dmitry" 
+          "admin", 
+          "admin" 
         )     
   end
 
