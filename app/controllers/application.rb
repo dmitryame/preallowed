@@ -40,7 +40,10 @@ class ApplicationController < ActionController::Base
         
         string_to_hash = pass + "wibble" + stored_salt
         hashed_password = Digest::SHA1.hexdigest(string_to_hash)
-        return true if(hashed_password == stored_hashed_password)        
+        if(hashed_password == stored_hashed_password)        
+          session[:subject_id] = subject.id #this subject_id is stored in the session to be used in has_access method of a subjects_controller, essentially this is a logged in user id
+          return true
+        end
       end
     end 
   end 

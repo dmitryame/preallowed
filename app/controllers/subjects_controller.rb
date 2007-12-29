@@ -60,6 +60,13 @@ class SubjectsController < ApplicationController
 
     @clientroles = @client.roles - @subject.roles
   end
+  
+  # this method is a core of the solution for verifying if a particular subject has a access to a particular resource.
+  # takes a resource as a post parameter, the resource can use wild cards.
+  def has_access
+    @subject = @client.subjects.find(params[:id])
+    
+  end
 
 
   private
