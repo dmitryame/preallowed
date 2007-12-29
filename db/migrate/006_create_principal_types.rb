@@ -5,10 +5,10 @@ class CreatePrincipalTypes < ActiveRecord::Migration
       t.timestamps 
     end
     #add default principal types here   
-    plainPassword = PrincipalType.create :name => "hashed_password"
+    plainPassword = PrincipalType.create :id => 1, :name => "hashed_password"
     plainPassword.save!
 
-    salt = PrincipalType.create :name => "salt"
+    salt = PrincipalType.create :id => 2, :name => "salt"
     salt.save!
     
   end

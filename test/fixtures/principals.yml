@@ -6,5 +6,5 @@ preallowed_admin_password:
 
 preallowed_admin_salt:
   subject: admin
-  value: '291247300.585749468074609'
+  value: 291247300.585749468074609
   principal_type: salt

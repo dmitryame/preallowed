@@ -11,7 +11,7 @@ class PrincipalTypeTest < Test::Unit::TestCase
 
     principalTypeFromFixture = principal_types(:password)
     
-    assert_equal "password", principalTypeFromFixture.name
+    assert_equal "hashed_password", principalTypeFromFixture.name
     
     aNewPrincipalType.name = "updated name"
     assert aNewPrincipalType.save
