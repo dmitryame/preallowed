@@ -23,9 +23,18 @@ body {
 	color: #fff;
 	font-weight: bold;
 }
+
+DIV.left {
+	text-align: left;
+}
+
 DIV.center {
 	text-align: center;
 }
+DIV.right {
+	text-align: right;
+}
+
 .menu {
 	display: block;
 	background: #84D02E;
@@ -120,8 +129,8 @@ pre {
   font-size: 11px;
 }
 
-a { color: #000; }
-a:visited { color: #666; }
+a { color: #555; }
+a:visited { color: #777; }
 #a:hover { color: #fff; background-color:#000; }
 
 label {

@@ -68,9 +68,7 @@ class SubjectsController < ApplicationController
     resource_to_verify = params[:resource]
 
     @subject.roles.each do |role|
-      puts "there are " + role.resources.count.to_s + " resources"      
       role.resources.each do |resource|
-        puts resource_to_verify + " == " + resource.name
         if resource_to_verify == resource.name # should code a comparison agains ruby regular expressions here
           render :text => 1 
           return

@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
   before_filter :logrequest
   after_filter :logresponse
   before_filter :authenticate 
+  before_filter :authorize
   
   private
   
@@ -42,10 +43,16 @@ class ApplicationController < ActionController::Base
         hashed_password = Digest::SHA1.hexdigest(string_to_hash)
         if(hashed_password == stored_hashed_password)        
           session[:subject_id] = subject.id #this subject_id is stored in the session to be used in has_access method of a subjects_controller, essentially this is a logged in user id
+          session[:subject_name] = subject.name
           return true
         end
       end
     end 
   end 
+
+  # this intercepts all authenticated requests and checks for authorization
+  def authorize
+    puts "authorized"
+  end
 
 end

@@ -15,8 +15,12 @@
 			<img width="280" height="63" src="/images/RLI-logo-2.1.gif" border="0">
 		</a>
 	</div>
-	
-	<%= link_to 'home', :controller => "home", :action => :index  %> 
+	<div class="left">
+		<%= link_to 'home', :controller => "home", :action => :index  %> 
+	</div>
+	<div class="right">
+		<%=session[:subject_name]%>	
+	</div>
 
 	<div id="content">
 		<p style="color: green"><%= flash[:notice] %></p>

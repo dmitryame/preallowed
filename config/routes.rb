@@ -32,7 +32,6 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect '', :controller => "welcome"
   map.home '',  :controller => 'home', 
                 :action => "index"
-
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
 #  map.connect ':controller/service.wsdl', :action => 'wsdl'
