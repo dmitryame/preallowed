@@ -3,5 +3,4 @@ class Subject < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_many                :principals
   has_many                :log_records
-
 end

@@ -10,7 +10,8 @@ ActionController::Routing::Routes.draw do |map|
     client.resources :subjects,
      :member => {:add_role => :post,
                  :remove_role => :post,
-                 :has_access => :post}     
+                 :has_access => :post,
+                 :has_access_verify => :get}     
     client.resources :subjects do |subject|
       subject.resources :principals
     end

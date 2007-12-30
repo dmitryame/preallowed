@@ -1,0 +1,5 @@
+<p><b>Subject:</b> <%=@subject.name%></p>
+<%= form_tag( {:action => :has_access}, :method => :post ) %>
+	<p><b>Resource String:</b> <input type="text" name="resource" /></p>
+	<p><%= submit_tag "Verify"%></p>
+</form>
