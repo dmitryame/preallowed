@@ -50,16 +50,28 @@ class ApplicationController < ActionController::Base
     end 
   end 
 
+  # this method (is not an action) is used from different actions and filters as well
+  def self.check_helper(subject_id, client, resource_to_verify)
+    @subject = client.subjects.find(subject_id)
+    
+    return true if resource_to_verify == '/home/insufficient'
+      
+
+    @subject.roles.each do |role|
+      role.resources.each do |resource|
+        if resource_to_verify == resource.name # should code a comparison agains ruby regular expressions here
+          return true
+        end
+      end
+    end
+    return false
+  end
+
   # this intercepts all authenticated requests and checks for authorization
   def authorize
-    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + request.path
-
-    accessible = SubjectsController.check_helper(1, Client.find(1), request.path)
-    if accessible == true
-      puts "authorized"
-    else
-      puts "non authorized"
-      # res.error!
+    accessible = ApplicationController.check_helper(1, Client.find(1), request.path)
+    if accessible == false
+      redirect_to :controller => :home, :action => :insufficient
     end
 
   end

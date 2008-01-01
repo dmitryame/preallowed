@@ -6,4 +6,6 @@ class HomeController < ApplicationController
   def index
   end
  
+  def insufficient
+  end
 end
