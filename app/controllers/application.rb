@@ -4,8 +4,8 @@
 class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_preallowed_session_id'
-  before_filter :logrequest
-  after_filter :logresponse
+  # before_filter :logrequest
+  # after_filter :logresponse
   before_filter :authenticate 
   before_filter :authorize
   
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
   
   #todo: put in a logic to limit number of attempts to 3  
-  def authenticate 
+  def authenticate     
     authenticate_or_request_with_http_basic do |name, pass| 
       subject = Subject.find_by_name(name)
       # debugger
@@ -52,7 +52,16 @@ class ApplicationController < ActionController::Base
 
   # this intercepts all authenticated requests and checks for authorization
   def authorize
-    puts "authorized"
+    puts "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ " + request.path
+
+    accessible = SubjectsController.check_helper(1, Client.find(1), request.path)
+    if accessible == true
+      puts "authorized"
+    else
+      puts "non authorized"
+      # res.error!
+    end
+
   end
 
 end
