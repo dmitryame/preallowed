@@ -6,10 +6,10 @@ class ApplicationController < ActionController::Base
   
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_preallowed_session_id'
-  # before_filter :logrequest
-  # after_filter :logresponse
-  # before_filter :authenticate 
-  # before_filter :authorize
+  before_filter :logrequest
+  after_filter :logresponse
+  before_filter :authenticate 
+  before_filter :authorize
   
   
   # force ssl on the entire application
