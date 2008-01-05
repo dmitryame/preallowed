@@ -5,7 +5,7 @@ class CreateClients < ActiveRecord::Migration
         t.timestamps 
     end
     #add default client   
-    preallowed = Client.create :name => "preallowed", :id => 1
+    preallowed = Client.create :name => "rootlocus", :id => 1
     preallowed.save!
     
   end
