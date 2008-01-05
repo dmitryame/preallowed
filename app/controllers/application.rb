@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
+  # uncomment to enable https redirection
   # include SslRequirement
   
   # Pick a unique cookie name to distinguish our session data from others'
