@@ -71,6 +71,8 @@ class ApplicationController < ActionController::Base
         if resource_to_verify == resource.name # should code a comparison agains ruby regular expressions here
           return true
         end
+        return true if resource.name == '/' # hacky hack, really need to replace with reg exp ASAP, for now if resource is '/' give access to the whole application
+          
       end
     end
     return false
