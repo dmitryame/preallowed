@@ -60,8 +60,8 @@ class ApplicationController < ActionController::Base
   end 
 
   # this method (is not an action) is used from different actions and filters as well
-  def self.check_helper(subject_id, client, resource_to_verify)
-    @subject = client.subjects.find(subject_id)
+  def self.check_helper(subject_id, resource_to_verify)
+    @subject = Subject.find(subject_id)
     
     return true if resource_to_verify == '/home/insufficient'
       
@@ -81,7 +81,7 @@ class ApplicationController < ActionController::Base
 
   # this intercepts all authenticated requests and checks for authorization
   def authorize
-    accessible = ApplicationController.check_helper(1, Client.find(1), request.path)
+    accessible = ApplicationController.check_helper(session[:subject_id], request.path)
     if accessible == false
       redirect_to :controller => :home, :action => :insufficient
     end

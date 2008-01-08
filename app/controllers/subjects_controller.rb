@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
 
   before_filter :find_client
+  #, :except => has_access
   
   def new
     @subject = Subject.new
@@ -64,7 +65,7 @@ class SubjectsController < ApplicationController
   # this method is a core of the solution for verifying if a particular subject has a access to a particular resource.
   # takes a resource as a post parameter, the resource can use wild cards.
   def has_access
-    accessible = ApplicationController.check_helper(params[:id], @client, params[:resource])
+    accessible = ApplicationController.check_helper(params[:id], params[:resource])
     if accessible == true # should code a comparison agains ruby regular expressions here
       render :text => 1 
       return
