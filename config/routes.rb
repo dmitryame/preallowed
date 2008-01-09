@@ -40,4 +40,6 @@ ActionController::Routing::Routes.draw do |map|
 #  map.connect ':controller/:action/:id.:format'
 #  map.connect ':controller/:action/:id'
   map.connect 'home/insufficient', :controller => 'home', :action => 'insufficient'
+  map.connect 'clients/:client_id/subjects/id_from_name/:subject_name', :controller => 'subjects', :action => 'id_from_name'
+
 end

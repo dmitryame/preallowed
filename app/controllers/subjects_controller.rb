@@ -79,6 +79,16 @@ class SubjectsController < ApplicationController
     @subject = @client.subjects.find(params[:id])
   end
 
+  # lookup subject_id from name 
+  def id_from_name
+    @subject = @client.subjects.find(:first, :conditions => ["name = ?",params[:subject_name]])
+    if @subject != nil
+      render :text => @subject.id.to_s 
+    else
+      render :text => 0 #this means there is no subject found for this name
+    end
+  end
+
   private
   
   def find_client
