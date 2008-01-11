@@ -3,7 +3,7 @@
 
 class ApplicationController < ActionController::Base
   # uncomment to enable https redirection
-  # include SslRequirement
+  include SslRequirement
   
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_preallowed_session_id'
