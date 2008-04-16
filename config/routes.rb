@@ -41,5 +41,6 @@ ActionController::Routing::Routes.draw do |map|
 #  map.connect ':controller/:action/:id'
   map.connect 'home/insufficient', :controller => 'home', :action => 'insufficient'
   map.connect 'clients/:client_id/subjects/id_from_name/:subject_name', :controller => 'subjects', :action => 'id_from_name'
+  map.connect 'clients/:client_id/subjects/:subject_id/is_subject_in_role/:role_id', :controller => 'subjects', :action => 'is_subject_in_role'
 
 end

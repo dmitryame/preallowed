@@ -89,6 +89,17 @@ class SubjectsController < ApplicationController
     end
   end
 
+  # a restful web service method that renders back 1 or 0
+  def is_subject_in_role
+    @subject = @client.subjects.find(params[:subject_id])    
+    number_of_roles = @subject.roles.count :conditions => ["id = ?", params[:role_id]] 
+    if number_of_roles == 1
+      render :text => 1
+    else
+      render :text => 0
+    end
+  end
+
   private
   
   def find_client
