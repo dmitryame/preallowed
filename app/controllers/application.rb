@@ -15,11 +15,12 @@ class ApplicationController < ActionController::Base
   
   # force ssl on the entire application
   def ssl_required?
-    true
+   if RAILS_ENV == 'production'
+     true
+   else
+     false
+   end
   end
-  # def ssl_required?
-  #  RAILS_ENV != 'development'
-  # end
   
     
   private
