@@ -17,7 +17,11 @@ class ApplicationController < ActionController::Base
   def ssl_required?
     true
   end
+  # def ssl_required?
+  #  RAILS_ENV != 'development'
+  # end
   
+    
   private
   
   def logrequest
