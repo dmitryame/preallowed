@@ -11,20 +11,9 @@ class RolesSubjects < ActiveRecord::Migration
     execute 'ALTER TABLE roles_subjects ADD CONSTRAINT fk_roles_subjects_role FOREIGN KEY ( role_id ) REFERENCES roles(id)'
     execute 'ALTER TABLE roles_subjects ADD CONSTRAINT fk_roles_subjects_subject FOREIGN KEY ( subject_id ) REFERENCES subjects(id)'
 
-    admin = Subject.create :name => "admin", :client_id => 1
-    admin.save!
-    adminsPasswordPrincipal = 
-        Principal.create :value => "35263a0f3aa0ea37b57027d3c9635725746644e3", 
-        :principal_type_id      => 1, 
-        :subject_id             => admin.id
-    adminsPasswordPrincipal.save!
-    adminsSaltPrincipal     = 
-        Principal.create :value => "291247300.585749468074609", 
-        :principal_type_id      => 2, 
-        :subject_id             => admin.id
-    adminsSaltPrincipal.save!
-
-  end
+    Subject.find(1).roles << Role.find(1)
+    
+    end
 
   def self.down
     drop_table :roles_subjects

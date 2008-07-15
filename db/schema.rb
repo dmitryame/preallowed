@@ -1,5 +1,5 @@
 # This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of ActiveRecord to incrementally modify your database, and
+# please use the migrations feature of Active Record to incrementally modify your database, and
 # then regenerate this schema definition.
 #
 # Note that this schema.rb definition is the authoritative source for your database schema. If you need
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "principals", :force => true do |t|
     t.string   "value"
-    t.integer  "principal_type_id", :null => false
-    t.integer  "subject_id",        :null => false
+    t.integer  "principal_type_id", :limit => 11, :null => false
+    t.integer  "subject_id",        :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -53,8 +53,8 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "resources", :force => true do |t|
     t.string   "name"
-    t.integer  "resource_type_id", :null => false
-    t.integer  "scope_id",         :null => false
+    t.integer  "resource_type_id", :limit => 11, :null => false
+    t.integer  "scope_id",         :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(:version => 11) do
   add_index "resources", ["resource_type_id"], :name => "fk_resources_resource_type"
 
   create_table "resources_roles", :id => false, :force => true do |t|
-    t.integer  "resource_id", :null => false
-    t.integer  "role_id",     :null => false
+    t.integer  "resource_id", :limit => 11, :null => false
+    t.integer  "role_id",     :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
-    t.integer  "client_id",  :null => false
+    t.integer  "client_id",  :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,8 +82,8 @@ ActiveRecord::Schema.define(:version => 11) do
   add_index "roles", ["client_id"], :name => "fk_roles_client"
 
   create_table "roles_subjects", :id => false, :force => true do |t|
-    t.integer  "role_id",    :null => false
-    t.integer  "subject_id", :null => false
+    t.integer  "role_id",    :limit => 11, :null => false
+    t.integer  "subject_id", :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(:version => 11) do
   add_index "roles_subjects", ["subject_id"], :name => "index_roles_subjects_on_subject_id"
 
   create_table "scopes", :force => true do |t|
-    t.integer  "client_id",  :null => false
+    t.integer  "client_id",  :limit => 11, :null => false
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 11) do
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
-    t.integer  "client_id",  :null => false
+    t.integer  "client_id",  :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -8,6 +8,9 @@ class CreateScopes < ActiveRecord::Migration
     
     execute 'ALTER TABLE scopes ADD CONSTRAINT fk_scopes_client 
                                     FOREIGN KEY ( client_id ) REFERENCES clients(id)'
+    preallowedScope = Scope.create :name => "rootlocus", :id => 1, :client_id => 1
+    preallowedScope.save!
+
   end
 
   def self.down
