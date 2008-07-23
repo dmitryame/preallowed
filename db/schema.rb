@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 20080722191904) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -99,6 +99,16 @@ ActiveRecord::Schema.define(:version => 11) do
   end
 
   add_index "scopes", ["client_id"], :name => "fk_scopes_client"
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
