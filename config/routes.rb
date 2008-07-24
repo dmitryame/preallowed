@@ -1,20 +1,24 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :clients, :member => {:subject_id_from_name => :get}
   map.resources :clients do |client|
     client.resources :scopes do |scope|
       scope.resources :resources,
         :has_one => :resource_type,
-        :member => {:add_role => :post,
-                    :remove_role => :post}
+        :member => {:add_role => :put,
+                    :remove_role => :put
+                    }                    
     end
     client.resources :roles
     client.resources :subjects,
-     :member => {:add_role => :post,
-                 :remove_role => :post,
-                 :has_access => :post,
-                 :has_access_verify => :get}     
+     :member => {:add_role => :put,
+                 :remove_role => :put,
+                 :has_access => :get,
+                 :has_access_verify => :get,
+                 :is_subject_in_role => :get
+                 }     
     client.resources :subjects do |subject|
       subject.resources :principals
-    end
+    end 
   end
   
   # The priority is based upon order of creation: first created -> highest priority.
@@ -39,7 +43,7 @@ ActionController::Routing::Routes.draw do |map|
 #  map.connect ':controller/:action/:id.:format'
 #  map.connect ':controller/:action/:id'
   map.connect 'home/insufficient', :controller => 'home', :action => 'insufficient'
-  map.connect 'clients/:client_id/subjects/id_from_name/:subject_name', :controller => 'subjects', :action => 'id_from_name'
-  map.connect 'clients/:client_id/subjects/:subject_id/is_subject_in_role/:role_id', :controller => 'subjects', :action => 'is_subject_in_role'
+  # map.connect 'clients/:client_id/subjects/id_from_name/:subject_name', :controller => 'subjects', :action => 'id_from_name'
+#  map.connect 'clients/:client_id/subjects/:subject_id/is_subject_in_role/:role_id', :controller => 'subjects', :action => 'is_subject_in_role'
 
 end

@@ -5,6 +5,10 @@ class SubjectsController < ApplicationController
   
   def new
     @subject = Subject.new
+     respond_to do |format|
+        format.html # new.html.erb
+        format.xml  { render :xml => @subject }
+     end
   end
 
   def edit
@@ -13,20 +17,34 @@ class SubjectsController < ApplicationController
 
   def create
     @subject = Subject.new(params[:subject])
-    if (@client.subjects << @subject)
-      redirect_to client_url(@client)
-    else 
-      render :action => :new
+    
+    respond_to do |format|
+      if @client.subjects << @subject
+        flash[:notice] = 'Subject was successfully created.'
+        format.html { redirect_to client_subject_url(@client, @subject) }
+        format.xml  { render :xml => @subject, :status => :created, :location => [ @client, @subject] }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+      end
     end
+    
+    
   end
 
   def update
     @subject = @client.subjects.find(params[:id])
-    if @subject.update_attributes(params[:subject])
-      redirect_to client_url(@client)
-    else
-      render :action => :edit
-    end
+    respond_to do |format|
+      if @subject.update_attributes(params[:subject])
+        flash[:notice] = 'Subject was successfully updated.'
+        format.html { redirect_to client_subject_url(@client, @subject) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+      end
+    end    
+  
   end
 
   def destroy
@@ -40,12 +58,12 @@ class SubjectsController < ApplicationController
     
     respond_to do |format|
       format.html # show.rhtml
-      format.xml {render :xml => @subject.to_xml }
+      format.xml {render :xml => @subject }
     end
   end
 
   def add_role
-    @subject = @client.subjects.find(params[:id])
+    @subject = @client.subjects.find(params[:id])    
     
     @role = @client.roles.find(params[:role_id])
     @subject.roles << @role
@@ -67,11 +85,11 @@ class SubjectsController < ApplicationController
   def has_access
     accessible = ApplicationController.check_helper(params[:id], params[:resource])
     if accessible == true # should code a comparison agains ruby regular expressions here
-      render :text => 1 
+      render :text => "<a>1</a>" 
       return
     end
-    # if no matching resrouces found by the end of the iteration, return false
-    render :text => 0
+    # if no matching resouces found by the end of the iteration, return false
+    render :text => "<a>0</a>"
   end
   
   # only used for interactive testing to allow post submission of the has_access action from the browser
@@ -79,24 +97,21 @@ class SubjectsController < ApplicationController
     @subject = @client.subjects.find(params[:id])
   end
 
-  # lookup subject_id from name 
-  def id_from_name
-    @subject = @client.subjects.find(:first, :conditions => ["name = ?",params[:subject_name]])
-    if @subject != nil
-      render :text => @subject.id.to_s 
-    else
-      render :text => 0 #this means there is no subject found for this name
-    end
-  end
 
   # a restful web service method that renders back 1 or 0
   def is_subject_in_role
-    @subject = @client.subjects.find(params[:subject_id])    
+    @subject = @client.subjects.find(params[:id])    
     number_of_roles = @subject.roles.count :conditions => ["id = ?", params[:role_id]] 
     if number_of_roles == 1
-      render :text => 1
+      respond_to do |format|
+        format.html 
+        format.xml {render :text => "<a>1</a>" }
+      end
     else
-      render :text => 0
+      respond_to do |format|
+        format.html 
+        format.xml {render :text => "<a>0</a>" }
+      end
     end
   end
 
