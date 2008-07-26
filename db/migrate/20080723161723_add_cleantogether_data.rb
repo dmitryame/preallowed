@@ -25,7 +25,7 @@ class AddCleantogetherData < ActiveRecord::Migration
     #      :subject_id             => 2
     #  adminsSaltPrincipal.save!
     # 
-    #  Resource.create(:id => 2, :name => "^/clients/2/.*$|^/clients/2$", :resource_type_id => 1, :scope_id => 1).save!
+    #  Resource.create(:id => 2, :name => "/clients/2/.*$|^/clients/2$|^/clients/2.xml$", :resource_type_id => 1, :scope_id => 1).save!
     #  Resource.create(:id => 3, :name => "^/.*$", :resource_type_id => 1, :scope_id => 2).save!
     # 
     #  Resource.find(2).roles << Role.find(5)         
