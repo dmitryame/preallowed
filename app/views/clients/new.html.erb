@@ -11,9 +11,9 @@
 			<%= error_messages_for :subject %>				
 			email: <%= s.text_field :email %>
 			<br>
-			password: <%= s.text_field :password %>
+			password: <%= s.password_field :password %>
 			<br>
-			confirm: <%= s.text_field :password_confirmation %>
+			confirm: <%= s.password_field :password_confirmation %>
 		</fieldset>		
 	<% end %>
 	<p><%=submit_tag "Create"%></p>
