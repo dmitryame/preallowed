@@ -1,7 +1,21 @@
 <h1>New Client</h1>
 
-<% form_for(:client, :url => clients_path) do |f| %>
-	<p><b>Name</b></br>   <%= f.text_field :name %> </p>
+<% form_for(:client, :url => {:action => :create}) do |c| %>
+	<%= error_messages_for :client %>
+	<p><b>Name</b><br/>   <%= c.text_field :name %> </p>
+	<% fields_for :subject do |s| %>
+		<fieldset>
+			<legend>
+				Subject Information: 
+			</legend>				
+			<%= error_messages_for :subject %>				
+			email: <%= s.text_field :email %>
+			<br>
+			password: <%= s.text_field :password %>
+			<br>
+			confirm: <%= s.text_field :password_confirmation %>
+		</fieldset>		
+	<% end %>
 	<p><%=submit_tag "Create"%></p>
 <%end%>
 

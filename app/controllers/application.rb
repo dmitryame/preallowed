@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
 
   def logrequest
     @log_record             = LogRecord.new
+    @log_record.client_id   = params[:client_id]    
     @log_record.req_body    = request.body.string
     @log_record.req_headers = request.headers
     @log_record.req_method  = request.method

@@ -14,6 +14,7 @@ class PrincipalsController < ApplicationController
   def create
     @principal = Principal.new(params[:principal])
     if (@subject.principals << @principal)
+
       if(@principal.principal_type.id == 1) # hashed password
         salt = @principal.object_id.to_s + rand.to_s
         string_to_hash = @principal.value + "wibble" + salt

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080723161723) do
+ActiveRecord::Schema.define(:version => 20080727004543) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -26,7 +26,10 @@ ActiveRecord::Schema.define(:version => 20080723161723) do
     t.string   "resp_headers", :limit => 2048
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "client_id",    :limit => 11
   end
+
+  add_index "log_records", ["client_id"], :name => "index_log_records_on_client_id"
 
   create_table "principal_types", :force => true do |t|
     t.string   "name"
@@ -101,7 +104,7 @@ ActiveRecord::Schema.define(:version => 20080723161723) do
   add_index "scopes", ["client_id"], :name => "fk_scopes_client"
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+    t.string   "session_id", :default => "", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -115,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20080723161723) do
     t.integer  "client_id",  :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   add_index "subjects", ["client_id"], :name => "fk_subjects_client"

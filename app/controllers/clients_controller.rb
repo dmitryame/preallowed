@@ -21,21 +21,63 @@ class ClientsController < ApplicationController
     end
   end
   
-  # GET /clients/new
-  def new
-    @client = Client.new
-  end
-  
   
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
   end    
+
+
+  # GET /clients/new
+  def new
+    @client = Client.new    
+    @subject = Subject.new
+  end
+  
   
   # POST /clients
   # POST /clients.xml
   def create
     @client = Client.new(params[:client])
+    @subject = Subject.new(params[:subject])
+    Client.transaction do
+      @client.save! #save new client so that we can get it's id
+      
+      @preallowed_client = Client.find(1)
+      @preallowed_scope = @preallowed_client.scopes.find(1)
+
+      role = Role.new
+      role.name = @client.name + "_admin"
+      role.client = @preallowed_client
+      role.save! 
+
+    
+      @subject.name = @client.name # this is a new master subject that will have all possible access rights to this newly created client
+      @subject.client = @preallowed_client
+      @subject.roles << role      
+      # debugger
+      # TODO: add subject delegating to principal password encription here
+      @subject.save!
+    
+      resource = Resource.new
+      resource.name = "^/clients/" + @client.id.to_s + "/.*$|^/clients/" + @client.id.to_s + "$|^/clients/" + @client.id.to_s + ".xml"
+      resource.scope = @preallowed_scope
+      resource.resource_type = ResourceType.find(1)
+      resource.roles << role
+      resource.save!
+      
+      password = Principal.new
+      salt = Principal.new
+      password.subject = @subject
+      password.principal_type_id = 1    
+      salt.subject = @subject
+      salt.principal_type_id = 2
+      Subject.encriptPasswords password, salt, @subject.password
+      password.save!
+      salt.save!
+      
+    end
+    
     respond_to do |format|
       if @client.save
         flash[:notice] = "Client was successfully created"
@@ -49,6 +91,10 @@ class ClientsController < ApplicationController
         format.xml {render :xml => @client.errors.to_xml}
       end
     end
+
+  rescue ActiveRecord::RecordInvalid => e
+    @subject.valid?
+    render :action => :new    
   end
   
   # PUT /clients/1
