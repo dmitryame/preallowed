@@ -60,7 +60,7 @@ class ClientsController < ApplicationController
       @subject.save!
     
       resource = Resource.new
-      resource.name = "^/clients/" + @client.id.to_s + "/.*$|^/clients/" + @client.id.to_s + "$|^/clients/" + @client.id.to_s + ".xml"
+      resource.name = "^/clients/" + @client.id.to_s + "/.*$|^/clients/" + @client.id.to_s + "$|^/clients/" + @client.id.to_s + ".xml$"
       resource.scope = @preallowed_scope
       resource.resource_type = ResourceType.find(1)
       resource.roles << role
