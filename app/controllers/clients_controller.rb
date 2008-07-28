@@ -51,16 +51,14 @@ class ClientsController < ApplicationController
       role.client = @preallowed_client
       role.save! 
 
-    
+      # TODO: build a validation logic for the subject
       @subject.name = @client.name # this is a new master subject that will have all possible access rights to this newly created client
       @subject.client = @preallowed_client
       @subject.roles << role      
-      # debugger
-      # TODO: add subject delegating to principal password encription here
       @subject.save!
     
-      resource = Resource.new
-      resource.name = "^/clients/" + @client.id.to_s + "/.*$|^/clients/" + @client.id.to_s + "$|^/clients/" + @client.id.to_s + ".xml$"
+      resource = Resource.new      
+      resource.name = "^/clients/"  + @client.id.to_s + "($|.xml$|/.*$)"      
       resource.scope = @preallowed_scope
       resource.resource_type = ResourceType.find(1)
       resource.roles << role
