@@ -6,14 +6,14 @@ class Subject < ActiveRecord::Base
 
   attr_accessor :password, :password_confirmation
   
-  # validates_format_of     :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i
-  # validates_presence_of   :email
-  
-                                                         
-  # validates_presence_of     :password
-  #  validates_presence_of     :password_confirmation
-  # validates_length_of       :password, :within => 4..40 
-  # validates_confirmation_of :password                 
+  validates_format_of     :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i, :if => :preallowed_subject?
+  validates_presence_of   :email, :if => :preallowed_subject?
+
+
+  validates_presence_of     :password, :if => :preallowed_subject?
+  validates_presence_of     :password_confirmation, :if => :preallowed_subject?
+  validates_length_of       :password, :within => 4..40 , :if => :preallowed_subject?
+  validates_confirmation_of :password, :if => :preallowed_subject?
   
 protected
 
@@ -39,4 +39,9 @@ protected
       saltPrincipal.value = salt
     # end
   end
+  
+  def preallowed_subject?
+    self.client.id == 1
+  end
+  
 end
