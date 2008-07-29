@@ -31,10 +31,12 @@ protected
   # end
   
   def self.encriptPasswords(passwordPrincipal, saltPrincipal, passwordValue)
-    salt = passwordPrincipal.object_id.to_s + rand.to_s
-    string_to_hash = passwordValue + "wibble" + salt
-    passwordPrincipal.value = Digest::SHA1.hexdigest(string_to_hash)
+    # if(passwordValue and passwordPrincipal and saltPrincipal)
+      salt = passwordPrincipal.object_id.to_s + rand.to_s
+      string_to_hash = passwordValue + "wibble" + salt
+      passwordPrincipal.value = Digest::SHA1.hexdigest(string_to_hash)
 
-    saltPrincipal.value = salt
+      saltPrincipal.value = salt
+    # end
   end
 end

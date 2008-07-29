@@ -1,8 +1,20 @@
 <h1>Edit client</h1>
 
 <% form_for(:client, :url => client_path(@client), :html => { :method => :put }) do  |f| %>
-	<p><b>Name</b></br>     <%= f.text_field :name%>
-	
+	<p><b>Name</b>     <%= @client.name %>
+		<% fields_for :subject do |s| %>
+			<fieldset>
+				<legend>
+					Subject Information: 
+				</legend>				
+				<%= error_messages_for :subject %>				
+				email: <%= s.text_field :email %>
+				<br>
+				password: <%= s.password_field :password %>
+				<br>
+				confirm: <%= s.password_field :password_confirmation %>
+			</fieldset>		
+		<% end %>
 	<p><%= submit_tag "Update"%></p>
 <% end %>
 

@@ -25,12 +25,16 @@ class ClientsController < ApplicationController
   # GET /clients/1/edit
   def edit
     @client = Client.find(params[:id])
+    @preallowed_client = Client.find(1)
+    
+    @subject = @preallowed_client.subjects.find_by_name(@client.name)
+    
   end    
 
 
   # GET /clients/new
   def new
-    @client = Client.new    
+    @client = Client.new
     @subject = Subject.new
   end
   
@@ -99,15 +103,47 @@ class ClientsController < ApplicationController
   # PUT /clients/1.xml
   def update
     @client = Client.find(params[:id])
+    @preallowed_client = Client.find(1)
+    @subject = @preallowed_client.subjects.find_by_name(@client.name)
+    @subject.update_attributes(params[:subject])
+    
+
+    Client.transaction do      
+      password = Principal.new
+      salt = Principal.new
+      @subject.principals.each do |principal|
+        puts principal.principal_type_id
+        if principal.principal_type_id == 1
+           password = principal
+         end
+        if principal.principal_type_id == 2
+          salt = principal 
+        end
+      end
+      
+      Subject.encriptPasswords password, salt, @subject.password
+      password.save!
+      salt.save!
+
+    end
+
     respond_to do |format|
-      if @client.update_attributes(params[:client])
+      if @client.save
+        flash[:notice] = "Client was successfully updated"
         format.html {redirect_to client_url(@client)}
-        format.xml {render :nothing => true}
+        format.xml do
+          headers["Location"] = client_url(@client)
+          render :nothing => true, :status => "200 OK"
+        end
       else
-        format.html {render :action => "edit"}
+        format.html {render :action => :edit}
         format.xml {render :xml => @client.errors.to_xml}
       end
     end
+
+  rescue ActiveRecord::RecordInvalid => e
+    @subject.valid?
+    render :action => :edit    
   end
   
   # DELETE /clients/1
