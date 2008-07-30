@@ -8,12 +8,12 @@ class Subject < ActiveRecord::Base
   
   validates_format_of     :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i, :if => :preallowed_subject?
   validates_presence_of   :email, :if => :preallowed_subject?
-
-
-  validates_presence_of     :password, :if => :preallowed_subject?
-  validates_presence_of     :password_confirmation, :if => :preallowed_subject?
-  validates_length_of       :password, :within => 4..40 , :if => :preallowed_subject?
-  validates_confirmation_of :password, :if => :preallowed_subject?
+  # 
+  # 
+  # validates_presence_of     :password, :if => :preallowed_subject?
+  # validates_presence_of     :password_confirmation, :if => :preallowed_subject?
+  # validates_length_of       :password, :within => 4..40 , :if => :preallowed_subject?
+  # validates_confirmation_of :password, :if => :preallowed_subject?
   
 protected
 
@@ -41,7 +41,7 @@ protected
   end
   
   def preallowed_subject?
-    self.client.id == 1 and self.respond_to? :email # need to keep this duck typing check to satisfy earlier migrations
+    (client.id == 1) && (respond_to? :email) # need to keep this duck typing check to satisfy earlier migrations
   end
   
 end
