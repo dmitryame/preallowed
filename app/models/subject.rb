@@ -41,7 +41,7 @@ protected
   end
   
   def preallowed_subject?
-    self.client.id == 1
+    self.client.id == 1 and self.respond_to? :email # need to keep this duck typing check to satisfy earlier migrations
   end
   
 end
