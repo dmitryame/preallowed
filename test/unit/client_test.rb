@@ -6,7 +6,7 @@ class ClientTest < Test::Unit::TestCase
   def test_create
     chaseClient = clients(:chase)
     assert_equal "Chase Manhattan", chaseClient.name
-    
+     
     newClient = Client.new(:name  => "Test CLient")
     assert newClient.save
   end

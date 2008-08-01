@@ -10,10 +10,6 @@ class ResourcesRoles < ActiveRecord::Migration
     
     execute 'ALTER TABLE resources_roles ADD CONSTRAINT fk_resources_roles_resource FOREIGN KEY ( resource_id ) REFERENCES resources(id)'
     execute 'ALTER TABLE resources_roles ADD CONSTRAINT fk_resources_roles_role FOREIGN KEY ( role_id ) REFERENCES roles(id)'
-
-    Resource.find(1).roles << Role.find(1)
-
-    
   end
 
   def self.down

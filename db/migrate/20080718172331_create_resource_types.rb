@@ -4,10 +4,6 @@ class CreateResourceTypes < ActiveRecord::Migration
       t.column :name,         :string
       t.timestamps 
     end
-    
-    # add default resource_types types here
-    ResourceType.create(:name => "URL ResourceType").save!
-    ResourceType.create(:name => "Printer ResourceType").save!    
   end
 
   def self.down
