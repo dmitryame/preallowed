@@ -1,4 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-super_user:
-  name: admin
-  client: preallowed

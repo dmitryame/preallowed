@@ -1,7 +1,0 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-password:
-  id: 1
-  name: hashed_password
-salt:
-  id: 2    
-  name: salt

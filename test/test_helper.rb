@@ -2,6 +2,11 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
+# require 'mocha'
+
+require 'factory_girl'
+require File.expand_path(File.dirname(__FILE__) + "/factories")
+
 class Test::Unit::TestCase
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
@@ -25,4 +30,12 @@ class Test::Unit::TestCase
   self.use_instantiated_fixtures  = false
 
   # Add more helper methods to be used by all tests here...
+  
+  #create preallowed client
+  
+  Factory.create(:client, :name  => "RootLocusInc") if Client.count == 0  #create preallowed client if does not exists, must be client id 1  
+
+  Factory.create(:password_principal_type) if PrincipalType.count == 0  #create principal type password with id 1
+  Factory.create(:salt_principal_type) if PrincipalType.count == 1  #create principal type password with id 1
+
 end

@@ -5,19 +5,18 @@ require 'clients_controller'
 class ClientsController; def rescue_action(e) raise e end; end
 
 class ClientsControllerTest < Test::Unit::TestCase
-  fixtures :clients
 
-  def setup
-    @controller = ClientsController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
-    #authenticate
-    @request.env['HTTP_AUTHORIZATION'] = 
-        ActionController::HttpAuthentication::Basic.encode_credentials(
-          "admin", 
-          "admin" 
-        )     
-  end
+  # def setup
+  #   @controller = ClientsController.new
+  #   @request    = ActionController::TestRequest.new
+  #   @response   = ActionController::TestResponse.new
+  #   #authenticate
+  #   @request.env['HTTP_AUTHORIZATION'] = 
+  #       ActionController::HttpAuthentication::Basic.encode_credentials(
+  #         "admin", 
+  #         "admin" 
+  #       )     
+  # end
 
   # def test_should_get_index
   #   get :index

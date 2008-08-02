@@ -1,36 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class PrincipalTest < Test::Unit::TestCase
-  fixtures :principals, :principal_types, :subjects
-  
-
-  def test_crud
-    principalType = principal_types(:password)
-    principalPreallowedAdminPassowrd = principals(:preallowed_admin_password)
-    testPasswordPrincipal = Principal.new(
-                             :value    => 'testing principal',
-                             :principal_type => principalType,
-                             :subject => subjects(:super_user)
-                             )
-
-    assert testPasswordPrincipal.save
-
-    testCertificatePrincipal = Principal.new(
-                             :value    => 'testing certificate principal',
-                             :principal_type => principal_types(:password),
-                             :subject => subjects(:super_user)
-                             )
-
-    assert testCertificatePrincipal.save
-
-    testCertificatePrincipal.value = 'testing updating the name'
-
-    assert testCertificatePrincipal.save
-
-    assert testCertificatePrincipal.reload
-  
-    assert testCertificatePrincipal.destroy
-    assert testPasswordPrincipal.destroy
-  end
-
+class PrincipalTest < Test::Unit::TestCase  
+  # context "A Principal instance" do    
+  #   setup do
+  #     @subject = Factory.create(:subject)
+  #     @password_principal = Factory.create(:password_principal, :value => "35263a0f3aa0ea37b57027d3c9635725746644e3", :subject => @subject) # admin
+  #     @salt_principal = Factory.create(:salt_principal, :value => "291247300.585749468074609", :subject => @subject) #this salt corresponds to the encripted admin
+  #   end
+  #   #   
+  #   # should "return its full name" do
+  #   #   assert_equal 'RootLocusInc', @principal.
+  #   # end
+  #   should_belong_to :subject
+  # end
 end

@@ -1,8 +1,8 @@
+# TODO: refactor subject/preallowed subject to inheritance model rather then figuring it out by client.id == 1
 class Subject < ActiveRecord::Base
   belongs_to              :client
   has_and_belongs_to_many :roles
   has_many                :principals
-  has_many                :log_records
 
   attr_accessor :password, :password_confirmation
   
