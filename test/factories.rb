@@ -44,6 +44,26 @@ Factory.define :salt_principal, :class => Principal  do |principal|
   principal.association :subject
 end
 
+Factory.define :resource_type  do |resource_type|
+  resource_type.name {Factory.next :name }
+end
+
+Factory.define :resource  do |resource|
+  resource.name {Factory.next :name }
+  resource.association :resource_type
+end
+
+Factory.define :role  do |role|
+  role.name {Factory.next :name }
+  role.association :client
+end
+
+
+Factory.define :scope  do |scope|
+  scope.name {Factory.next :name }
+  scope.association :client
+end
+
 
 # Factory.define :user do |u|
 #   u.password { Factory.next :email }

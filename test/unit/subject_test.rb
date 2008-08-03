@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 class SubjectTest < Test::Unit::TestCase
   context "A subject test" do    
     setup do
-      @client = Factory.create(:preallowed_client)
-      @subject = Factory.create(:subject, :name  => "RootLocusInc", :client => @client)
+      @client = Factory(:preallowed_client)
+      @subject = Factory(:subject, :name  => "RootLocusInc", :client => @client)
 
       @preallowed_client = Client.find 1
       @preallowed_subject = Factory.build(:subject, :name  => "RootLocusInc", :client => @preallowed_client, :email => "qwe@qwe.com")

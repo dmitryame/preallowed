@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class ClientTest < Test::Unit::TestCase
   context "A Client instance" do    
     setup do
-      @client = Factory.create(:client)
+      @client = Factory(:client)
     end
     
     should_require_attributes :name

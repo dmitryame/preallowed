@@ -4,7 +4,7 @@ class PrincipalTest < Test::Unit::TestCase
   context "A Principal instance" do    
     setup do
       @password_principal = Factory(:password_principal, :value => "35263a0f3aa0ea37b57027d3c9635725746644e3") # admin
-      @salt_principal = Factory.create(:salt_principal, :value => "291247300.585749468074609") #this salt corresponds to the encripted admin
+      @salt_principal = Factory(:salt_principal, :value => "291247300.585749468074609") #this salt corresponds to the encripted admin
     end
       
     should_belong_to :subject
