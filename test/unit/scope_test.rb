@@ -8,5 +8,7 @@ class ScopeTest < Test::Unit::TestCase
     
     should_belong_to :client
     should_have_many :resources  
+    
+    should_require_attributes :name    
   end
 end

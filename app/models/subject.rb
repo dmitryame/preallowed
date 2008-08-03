@@ -5,7 +5,8 @@ class Subject < ActiveRecord::Base
   has_many                :principals
 
   attr_accessor :password, :password_confirmation
-  
+
+  validates_presence_of :name  
   validates_format_of     :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i, :if => :preallowed_subject?
   validates_presence_of   :email, :if => :preallowed_subject?
   # 

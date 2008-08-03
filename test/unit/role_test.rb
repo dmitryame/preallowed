@@ -10,4 +10,7 @@ class RoleTest < Test::Unit::TestCase
   should_belong_to :client
   should_have_and_belong_to_many :resources
   should_have_and_belong_to_many :subjects
+  
+  should_require_attributes :name
+  
 end

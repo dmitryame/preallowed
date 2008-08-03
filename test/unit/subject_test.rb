@@ -19,6 +19,7 @@ class SubjectTest < Test::Unit::TestCase
     should_have_many :principals
     
     # should_allow_values_for :email, "qwe@qwe.com"
+    should_require_attributes :name
     
   end    
 

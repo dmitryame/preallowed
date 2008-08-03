@@ -9,4 +9,8 @@ class PrincipalTypeTest < Test::Unit::TestCase
   end
 
   should_have_many :principals
+
+  should_require_attributes :name
+  should_require_unique_attributes :name
+
 end

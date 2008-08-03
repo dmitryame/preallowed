@@ -9,5 +9,8 @@ class PrincipalTest < Test::Unit::TestCase
       
     should_belong_to :subject
     should_belong_to :principal_type
+    
+    should_require_attributes :value
+    
   end
 end

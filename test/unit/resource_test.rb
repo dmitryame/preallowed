@@ -10,4 +10,7 @@ class ResourceTest < Test::Unit::TestCase
   should_belong_to :resource_type
   should_have_and_belong_to_many :roles
   should_belong_to :scope
+  
+  should_require_attributes :name
+  
 end

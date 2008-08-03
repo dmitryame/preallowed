@@ -6,11 +6,12 @@ class ClientTest < Test::Unit::TestCase
       @client = Factory(:client)
     end
     
-    should_require_attributes :name
-    should_require_unique_attributes :name
-
     should_have_many :scopes
     should_have_many :roles
     should_have_many :subjects
+    
+    should_require_attributes :name
+    should_require_unique_attributes :name
+    
   end    
 end
