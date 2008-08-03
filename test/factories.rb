@@ -19,6 +19,7 @@ end
 
 Factory.define :subject do |subject|
   subject.name {Factory.next :name }
+  subject.association :client  
 end
 
 Factory.define :log_record do |log_record|
@@ -33,14 +34,14 @@ Factory.define :salt_principal_type, :class => PrincipalType do |principal_type|
 end 
 
 Factory.define :password_principal, :class => Principal do |principal|
-  principal.principal_type { |type| type.association(:password_principal_type)}
-  principal.subject {|subject| subject.association(:subject) }
+  principal.association :principal_type, :factory => :password_principal_type
+  principal.association :subject
 end
 
 
 Factory.define :salt_principal, :class => Principal  do |principal|
-  principal.principal_type { |type| type.association(:salt_principal_type)}
-  principal.subject {|subject| subject.association(:subject) }
+  principal.association :principal_type, :factory => :salt_principal_type
+  principal.association :subject
 end
 
 
