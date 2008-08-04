@@ -39,7 +39,6 @@ Factory.define :password_principal, :class => Principal do |principal|
   principal.association :subject
 end
 
-
 Factory.define :salt_principal, :class => Principal  do |principal|
   principal.value "test salt value"
   principal.principal_type PrincipalType.find(2) # statically set to a principal type that is already in db

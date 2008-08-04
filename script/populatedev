@@ -1,4 +1,4 @@
-#!/usr/bin/env ./script/runner -e development 
+#!/usr/bin/env ./script/runner 
 
 preallowed = Client.create :name => "rootlocus", :id => 1
 preallowed.save

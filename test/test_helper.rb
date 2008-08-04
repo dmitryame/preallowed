@@ -5,6 +5,7 @@ require 'test_help'
 # require 'mocha'
 
 require 'factory_girl'
+
 require File.expand_path(File.dirname(__FILE__) + "/factories")
 
 class Test::Unit::TestCase
@@ -33,9 +34,8 @@ class Test::Unit::TestCase
   
   #create preallowed client
   
-  Factory(:client, :name  => "RootLocusInc") if Client.count == 0  #create preallowed client if does not exists, must be client id 1  
-
-  Factory(:password_principal_type) if PrincipalType.count == 0  #create principal type password with id 1
-  Factory(:salt_principal_type) if PrincipalType.count == 1  #create principal type password with id 1
-
+  # Factory(:client, :name  => "RootLocusInc") if Client.count == 0  #create preallowed client if does not exists, must be client id 1  
+  # 
+  # Factory(:password_principal_type) if PrincipalType.count == 0  #create principal type password with id 1
+  # Factory(:salt_principal_type) if PrincipalType.count == 1  #create principal type password with id 1
 end

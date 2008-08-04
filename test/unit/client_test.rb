@@ -12,6 +12,8 @@ class ClientTest < Test::Unit::TestCase
     
     should_require_attributes :name
     should_require_unique_attributes :name
+    should_require_attributes :name
+
     
   end    
 end
