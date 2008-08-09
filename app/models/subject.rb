@@ -14,7 +14,7 @@ class Subject < ActiveRecord::Base
   # validates_presence_of     :password, :if => :preallowed_subject?
   # validates_presence_of     :password_confirmation, :if => :preallowed_subject?
   # validates_length_of       :password, :within => 4..40 , :if => :preallowed_subject?
-  # validates_confirmation_of :password, :if => :preallowed_subject?
+  validates_confirmation_of :password, :if => :preallowed_subject?
   
 protected
 

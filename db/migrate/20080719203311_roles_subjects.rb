@@ -8,8 +8,8 @@ class RolesSubjects < ActiveRecord::Migration
     add_index :roles_subjects, [ :role_id, :subject_id ]
     add_index :roles_subjects, :subject_id 
 
-    execute 'ALTER TABLE roles_subjects ADD CONSTRAINT fk_roles_subjects_role FOREIGN KEY ( role_id ) REFERENCES roles(id)'
-    execute 'ALTER TABLE roles_subjects ADD CONSTRAINT fk_roles_subjects_subject FOREIGN KEY ( subject_id ) REFERENCES subjects(id)'
+    # execute 'ALTER TABLE roles_subjects ADD CONSTRAINT fk_roles_subjects_role FOREIGN KEY ( role_id ) REFERENCES roles(id)'
+    # execute 'ALTER TABLE roles_subjects ADD CONSTRAINT fk_roles_subjects_subject FOREIGN KEY ( subject_id ) REFERENCES subjects(id)'
   end
 
   def self.down

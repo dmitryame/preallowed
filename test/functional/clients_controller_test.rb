@@ -20,11 +20,9 @@ class ClientsControllerTest < Test::Unit::TestCase
     )     
   end
 
-  should_eventually "be restful" do
-    should_be_restful do |resource| # TODO: figure out how to test forms with fields_for nested form attributes
-      resource.create.params = { :name => "random client" }#, :subject => { :email =>"ddd", :password=>"qweqweqwe", :password_confirmation=>"qweqweqwe"} }
-      resource.update.params = { :name => "Changed" }
-    end        
-  end
+  # should_be_restful do |resource| # TODO: figure out how to test forms with fields_for nested form attributes
+  #   resource.create.params = { :name => "random client" }#, :subject => { :email =>"ddd", :password=>"qweqweqwe", :password_confirmation=>"qweqweqwe"} }
+  #   resource.update.params = { :name => "Changed" }
+  # end        
 
 end

@@ -5,7 +5,7 @@ class CreateSubjects < ActiveRecord::Migration
       t.references :client, :null => false
       t.timestamps 
     end
-    execute 'ALTER TABLE subjects ADD CONSTRAINT fk_subjects_client FOREIGN KEY ( client_id ) REFERENCES clients(id)'
+    # execute 'ALTER TABLE subjects ADD CONSTRAINT fk_subjects_client FOREIGN KEY ( client_id ) REFERENCES clients(id)'
   end
 
   def self.down

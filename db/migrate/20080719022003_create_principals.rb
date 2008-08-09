@@ -5,8 +5,8 @@ class CreatePrincipals < ActiveRecord::Migration
       t.references :principal_type, :subject,   :null => false
       t.timestamps 
     end
-    execute 'ALTER TABLE principals ADD CONSTRAINT fk_principals_subject FOREIGN KEY ( subject_id ) REFERENCES subjects(id)'
-    execute 'ALTER TABLE principals ADD CONSTRAINT fk_principals_principal_type FOREIGN KEY ( principal_type_id ) REFERENCES principal_types(id)'
+    # execute 'ALTER TABLE principals ADD CONSTRAINT fk_principals_subject FOREIGN KEY ( subject_id ) REFERENCES subjects(id)'
+    # execute 'ALTER TABLE principals ADD CONSTRAINT fk_principals_principal_type FOREIGN KEY ( principal_type_id ) REFERENCES principal_types(id)'
   end
 
   def self.down

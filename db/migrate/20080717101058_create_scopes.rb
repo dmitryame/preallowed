@@ -6,8 +6,8 @@ class CreateScopes < ActiveRecord::Migration
       t.timestamps 
     end
     
-    execute 'ALTER TABLE scopes ADD CONSTRAINT fk_scopes_client 
-                                    FOREIGN KEY ( client_id ) REFERENCES clients(id)'
+    # execute 'ALTER TABLE scopes ADD CONSTRAINT fk_scopes_client 
+    #                                 FOREIGN KEY ( client_id ) REFERENCES clients(id)'
 
   end
 
