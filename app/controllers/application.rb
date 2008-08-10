@@ -96,6 +96,7 @@ class ApplicationController < ActionController::Base
     end 
   end 
 
+# defines resources that never require the authentication
   def skip_authentication
     return true if request.path == '/home/insufficient'
     return true if request.path == '/clients/new'  # we need the next two lines as an exception, so that the users can self register new clients.
