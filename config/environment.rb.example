@@ -44,7 +44,7 @@ Rails::Initializer.run do |config|
   # See Rails::Configuration for more options
   config.action_controller.session = { 
      :session_key => '_prllwd_session',
-     :secret      => 'lksldkfjlksjdflkjsldkfjlskdjflksjdlfkjlsdjflksdjflkjlqweew'
+     :secret      => '333b6dfd5608b298c6f4db6787cf3c139d9d4c4a2dec6f58e7857587f581c61cd684fa6134b279cc88e3d66b82c694627c2f018c35561416c59a9ebd0282f51c'
   } 
   
 end
