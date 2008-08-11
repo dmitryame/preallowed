@@ -1,8 +1,0 @@
-<tr id="<%= dom_id(scope) %>">
-	<td><%=h scope.name%></td>
-	<td><%= link_to "show", client_scope_path(@client, scope)%></td>
-	<td><%= link_to_remote 'destroy', 
-                    :url => client_scope_path(@client, scope), 
-                    :confirm => 'Are you sure?', 
-                    :method => :delete %></td>
-</tr>

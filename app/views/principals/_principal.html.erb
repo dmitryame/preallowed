@@ -1,9 +1,0 @@
-<tr id="<%= dom_id(principal) %>">
-	<td>*********</td>
-	<td><%=h principal.principal_type.name%></td>
-	<td><%= link_to "show", client_subject_principal_path(@client, @subject, principal)%></td>
-	<td><%= link_to_remote 'destroy', 
-                    :url => client_subject_principal_path(@client, @subject, principal), 
-                    :confirm => 'Are you sure?', 
-                    :method => :delete %></td>
-</tr>

@@ -1,8 +1,0 @@
-<tr id="<%= dom_id(subject) %>">
-	<td><%=h subject.name%></td>
-	<td><%= link_to "show", client_subject_path(@client, subject)%></td>
-	<td><%= link_to_remote 'destroy', 
-                    :url => client_subject_path(@client, subject), 
-                    :confirm => 'Are you sure?', 
-                    :method => :delete %></td>
-</tr>
