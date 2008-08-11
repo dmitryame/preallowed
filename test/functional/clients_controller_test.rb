@@ -8,7 +8,7 @@ class ClientsControllerTest < Test::Unit::TestCase
 
 
   def setup
-    @client =Client.find(1)
+    @client = Client.find(1)
     @controller = ClientsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
@@ -20,9 +20,9 @@ class ClientsControllerTest < Test::Unit::TestCase
     )     
   end
 
-  # should_be_restful do |resource| # TODO: figure out how to test forms with fields_for nested form attributes
-  #   resource.create.params = { :name => "random client" }#, :subject => { :email =>"ddd", :password=>"qweqweqwe", :password_confirmation=>"qweqweqwe"} }
-  #   resource.update.params = { :name => "Changed" }
-  # end        
+  should_be_restful do |resource| 
+    resource.create.params = { :name => "random client" }
+    resource.update.params = { :name => "Changed" }
+  end        
 
 end

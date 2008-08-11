@@ -52,6 +52,7 @@ end
 Factory.define :resource  do |resource|
   resource.name {Factory.next :name }
   resource.association :resource_type
+  resource.association :scope
 end
 
 Factory.define :role  do |role|

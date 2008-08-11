@@ -13,7 +13,8 @@ class RolesController < ApplicationController
   def create
     @role = Role.new(params[:role])
     if (@client.roles << @role)
-      redirect_to client_url(@client)
+      flash[:notice] = "Resource was successfully created."                      
+      redirect_to client_role_url(@client, @role)
     else 
       render :action => :new
     end
@@ -22,7 +23,8 @@ class RolesController < ApplicationController
   def update
     @role = @client.roles.find(params[:id])
     if @role.update_attributes(params[:role])
-      redirect_to client_url(@client)
+      flash[:notice] = "Resource was successfully updated."                      
+      redirect_to client_role_url(@client, @role)
     else
       render :action => :edit
     end
@@ -31,6 +33,8 @@ class RolesController < ApplicationController
   def destroy
     @role = @client.roles.find(params[:id])
     @client.roles.destroy(@role)
+    flash[:notice] = "Resource was successfully removed."                      
+    redirect_to client_roles_url(@client)    
   end
   
   def show

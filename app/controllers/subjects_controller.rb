@@ -47,9 +47,21 @@ class SubjectsController < ApplicationController
   
   end
 
+
   def destroy
     @subject = @client.subjects.find(params[:id])
     @client.subjects.destroy(@subject)
+
+    respond_to do |format|
+      flash[:notice] = 'Subject was successfully removed.'      
+      format.html do
+        redirect_to client_subjects_url
+      end
+      format.js # run the destroy.rjs template
+      format.xml  do
+        render :nothing => true
+      end
+    end
   end
 
   def show

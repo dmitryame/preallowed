@@ -13,7 +13,8 @@ class ResourcesController < ApplicationController
   def create
     @resource = Resource.new(params[:resource])
     if (@scope.resources << @resource)
-      redirect_to client_scope_url(@client, @scope)
+      flash[:notice] = "Resource was successfully created."                  
+      redirect_to client_scope_resource_url(@client, @scope, @resource)
     else 
       render :action => :new
     end
@@ -22,7 +23,8 @@ class ResourcesController < ApplicationController
   def update
     @resource = @scope.resources.find(params[:id])
     if @resource.update_attributes(params[:resource])
-      redirect_to client_scope_url(@client, @scope)
+      flash[:notice] = "Resource was successfully updated."                        
+      redirect_to client_scope_resource_url(@client, @scope, @resource)
     else
       render :action => :edit
     end
@@ -31,6 +33,8 @@ class ResourcesController < ApplicationController
   def destroy
     @resource = @scope.resources.find(params[:id])
     @scope.resources.destroy(@resource)
+    flash[:notice] = "Resource was successfully removed."                      
+    redirect_to client_scope_resources_url(@client, @scope)    
   end
 
   def show

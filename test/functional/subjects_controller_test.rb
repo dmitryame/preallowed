@@ -16,11 +16,19 @@ class SubjectsControllerTest < ActionController::TestCase
     )     
   end
 
-  should_eventually "be restful" do # TODO: write should_be_restful test
-    should_be_restful do |resource| # TODO: figure out how to test forms with fields_for nested form attributes
-      resource.create.params = { :name => "random subject", :email => "qwe@qwe.com" }#, :subject => { :email =>"ddd", :password=>"qweqweqwe", :password_confirmation=>"qweqweqwe"} }
-      resource.update.params = { :name => "Changed", :email => "qwe@qwe.com" }
-      resource.parent     = [ :client ]    
-    end        
-  end
+  should_be_restful do |resource| 
+    resource.actions    = [
+      # :index, #TODO: add index to controller and to test
+      :show, 
+      :new, 
+      :edit, 
+      :update, 
+      :create, 
+      :destroy
+      ]
+    
+    resource.parent     = [ :client ]    
+    resource.create.params = { :name => "random subject", :email => "qwe@qwe.com" }
+    resource.update.params = { :name => "Changed", :email => "qwe@qwe.com" }
+  end        
 end

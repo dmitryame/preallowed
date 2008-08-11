@@ -4,4 +4,8 @@ class Principal < ActiveRecord::Base
   
   validates_presence_of :value
   
+  def client
+    subject.client
+  end
+  
 end

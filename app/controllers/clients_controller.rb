@@ -43,42 +43,41 @@ class ClientsController < ApplicationController
   # POST /clients.xml
   def create
     @client = Client.new(params[:client])
-    @subject = Subject.new(params[:subject])
-    Client.transaction do
-      @client.save! #save new client so that we can get it's id
-      
-      @preallowed_client = Client.find(1)
-      @preallowed_scope = @preallowed_client.scopes.find(1)
-
-      role = Role.new
-      role.name = @client.name + "_admin"
-      role.client = @preallowed_client
-      role.save! 
-
-      # TODO: build a validation logic for the subject
-      @subject.name = @client.name # this is a new master subject that will have all possible access rights to this newly created client
-      @subject.client = @preallowed_client
-      @subject.roles << role      
-      @subject.save!
-    
-      resource = Resource.new      
-      resource.name = "^/clients/"  + @client.id.to_s + "($|.xml$|/.*$)"      
-      resource.scope = @preallowed_scope
-      resource.resource_type = ResourceType.find(1)
-      resource.roles << role
-      resource.save!
-      
-      password = Principal.new
-      salt = Principal.new
-      password.subject = @subject
-      password.principal_type_id = 1    
-      salt.subject = @subject
-      salt.principal_type_id = 2
-      Subject.encriptPasswords password, salt, @subject.password
-      password.save!
-      salt.save!
-      
-    end
+    # @subject = Subject.new(params[:subject])
+    # Client.transaction do
+    #   @client.save! #save new client so that we can get it's id
+    #   
+    #   @preallowed_client = Client.find(1)
+    #   @preallowed_scope = @preallowed_client.scopes.find(1)
+    # 
+    #   role = Role.new
+    #   role.name = @client.name + "_admin"
+    #   role.client = @preallowed_client
+    #   role.save! 
+    # 
+    #   # TODO: build a validation logic for the subject
+    #   @subject.name = @client.name # this is a new master subject that will have all possible access rights to this newly created client
+    #   @subject.client = @preallowed_client
+    #   @subject.roles << role      
+    #   @subject.save!
+    # 
+    #   resource = Resource.new      
+    #   resource.name = "^/clients/"  + @client.id.to_s + "($|.xml$|/.*$)"      
+    #   resource.scope = @preallowed_scope
+    #   resource.resource_type = ResourceType.find(1)
+    #   resource.roles << role
+    #   resource.save!
+    #   
+    #   password = Principal.new
+    #   salt = Principal.new
+    #   password.subject = @subject
+    #   password.principal_type_id = 1    
+    #   salt.subject = @subject
+    #   salt.principal_type_id = 2
+    #   Subject.encriptPasswords password, salt, @subject.password
+    #   password.save!
+    #   salt.save!      
+    # end
     
     respond_to do |format|
       if @client.save
@@ -103,29 +102,29 @@ class ClientsController < ApplicationController
   # PUT /clients/1.xml
   def update
     @client = Client.find(params[:id])
-    @preallowed_client = Client.find(1)
-    @subject = @preallowed_client.subjects.find_by_name(@client.name)
-    @subject.update_attributes(params[:subject])
+    # @preallowed_client = Client.find(1)
+    # @subject = @preallowed_client.subjects.find_by_name(@client.name)
+    # @subject.update_attributes(params[:subject])
     
 
-    Client.transaction do      
-      password = Principal.new
-      salt = Principal.new
-      @subject.principals.each do |principal|
-        puts principal.principal_type_id
-        if principal.principal_type_id == 1
-           password = principal
-         end
-        if principal.principal_type_id == 2
-          salt = principal 
-        end
-      end
-      
-      Subject.encriptPasswords password, salt, @subject.password
-      password.save!
-      salt.save!
-
-    end
+    # Client.transaction do      
+    #   password = Principal.new
+    #   salt = Principal.new
+    #   @subject.principals.each do |principal|
+    #     puts principal.principal_type_id
+    #     if principal.principal_type_id == 1
+    #        password = principal
+    #      end
+    #     if principal.principal_type_id == 2
+    #       salt = principal 
+    #     end
+    #   end
+    #   
+    #   Subject.encriptPasswords password, salt, @subject.password
+    #   password.save!
+    #   salt.save!
+    # 
+    # end
 
     respond_to do |format|
       if @client.save
@@ -153,6 +152,7 @@ class ClientsController < ApplicationController
     @client.destroy
 
     respond_to do |format|
+      flash[:notice] = 'Client was successfully removed.'      
       format.html do
         redirect_to clients_url
       end

@@ -28,7 +28,8 @@ class PrincipalsController < ApplicationController
         @principal.save
         
       end
-      redirect_to client_subject_url(@client, @subject)
+      flash[:notice] = "Principal was successfully created."            
+      redirect_to client_subject_principal_url(@client, @subject, @principal)
     else 
       render :action => :new
     end
@@ -37,7 +38,8 @@ class PrincipalsController < ApplicationController
   def update
     @principal = @subject.principals.find(params[:id])
     if @principal.update_attributes(params[:principal])
-      redirect_to client_subject_url(@client, @subject)
+      flash[:notice] = "Principal was successfully updated."            
+      redirect_to client_subject_principal_url(@client, @subject, @principal)
     else
       render :action => :edit
     end
@@ -46,6 +48,8 @@ class PrincipalsController < ApplicationController
   def destroy
     @principal = @subject.principals.find(params[:id])
     @subject.principals.destroy(@principal)
+    flash[:notice] = 'Principal was successfully removed.'      
+    redirect_to client_subject_principals_url(@client, @subject)
   end
 
   def show
