@@ -1,8 +1,11 @@
 class SubjectsController < ApplicationController
+  before_filter :find_client
+
+
   # GET /subjects
   # GET /subjects.xml
   def index
-    @subjects = Subject.find(:all)
+    @subjects = @client.subjects
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +16,7 @@ class SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.xml
   def show
-    @subject = Subject.find(params[:id])
+    @subject = @client.subjects.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +37,7 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
-    @subject = Subject.find(params[:id])
+    @subject = @client.subjects.find(params[:id])
   end
 
   # POST /subjects
@@ -43,10 +46,10 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(params[:subject])
 
     respond_to do |format|
-      if @subject.save
+      if @client.subjects << @subject
         flash[:notice] = 'Subject was successfully created.'
-        format.html { redirect_to(@subject) }
-        format.xml  { render :xml => @subject, :status => :created, :location => @subject }
+        format.html { redirect_to client_subject_url(@client, @subject) }
+        format.xml  { render :xml => @subject, :status => :created, :location => [@client, @subject] }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
@@ -57,12 +60,12 @@ class SubjectsController < ApplicationController
   # PUT /subjects/1
   # PUT /subjects/1.xml
   def update
-    @subject = Subject.find(params[:id])
+    @subject = @client.subjects.find(params[:id])
 
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
         flash[:notice] = 'Subject was successfully updated.'
-        format.html { redirect_to(@subject) }
+        format.html { redirect_to client_subject_url(@client, @subject) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -74,12 +77,23 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   # DELETE /subjects/1.xml
   def destroy
-    @subject = Subject.find(params[:id])
+    @subject = @client.subjects.find(params[:id])
     @subject.destroy
 
     respond_to do |format|
-      format.html { redirect_to(subjects_url) }
+      flash[:notice] = 'Subject was successfully removed.'      
+      format.html { redirect_to(client_subjects_url(@client)) }
       format.xml  { head :ok }
     end
   end
+
+private
+
+  def find_client
+    @client_id = params[:client_id]
+    redirect_to clients_url unless @client_id
+    @client = Client.find(@client_id)
+  end
+
+
 end

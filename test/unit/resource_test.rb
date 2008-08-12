@@ -9,6 +9,5 @@ class ResourceTest < ActiveSupport::TestCase
     
     should_ensure_length_in_range :name, (3..2048) 
     
-    
   end    
 end

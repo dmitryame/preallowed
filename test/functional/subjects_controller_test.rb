@@ -42,4 +42,17 @@ class SubjectsControllerTest < ActionController::TestCase
   # 
   #   assert_redirected_to subjects_path
   # end
+  def setup
+    @subject = Factory(:subject)
+    @controller = SubjectsController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+  end
+
+  should_be_restful do |resource| 
+    resource.parent     = [ :client ]        
+    resource.create.params = { :name => "random subject"}
+    resource.update.params = { :name => "Changed"}
+  end        
+
 end
