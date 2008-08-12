@@ -7,6 +7,12 @@ class RoleTest < ActiveSupport::TestCase
     end
     should_belong_to :client
     
+    should_have_many :subjects_associations
+    should_have_many :subjects, :through => :subjects_associations
+
+    should_have_many :resources_associations
+    should_have_many :resources, :through => :resources_associations
+    
     should_ensure_length_in_range :name, (3..30) 
     
   end    

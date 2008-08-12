@@ -1,6 +1,9 @@
 class Subject < ActiveRecord::Base
   belongs_to :client
 
+  has_many :subjects_associations
+  has_many :roles, :through => :subjects_associations, :uniq => true   
+
   validates_format_of :email, :with      => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i , :if => :email?
   validates_length_of :email, :within    => 3..30, :if => :email?
   validates_length_of :name, :within     => 3..30

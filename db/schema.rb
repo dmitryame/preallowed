@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080812001317) do
+ActiveRecord::Schema.define(:version => 20080812194242) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20080812001317) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "resources_associations", :force => true do |t|
+    t.integer  "resource_id", :limit => 11
+    t.integer  "role_id",     :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "resources_associations", ["resource_id"], :name => "index_resources_associations_on_resource_id"
+  add_index "resources_associations", ["role_id"], :name => "index_resources_associations_on_role_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -51,5 +61,15 @@ ActiveRecord::Schema.define(:version => 20080812001317) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "subjects_associations", :force => true do |t|
+    t.integer  "subject_id", :limit => 11
+    t.integer  "role_id",    :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subjects_associations", ["subject_id"], :name => "index_subjects_associations_on_subject_id"
+  add_index "subjects_associations", ["role_id"], :name => "index_subjects_associations_on_role_id"
 
 end

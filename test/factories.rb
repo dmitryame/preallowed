@@ -31,3 +31,13 @@ Factory.define :resource do |resource|
   resource.association :client  
 end
 
+Factory.define :subjects_association do |subjects_association|
+  subjects_association.association :subject
+  subjects_association.association :role
+end
+
+Factory.define :resources_association do |resources_association|
+  resources_association.association :resource
+  resources_association.association :role
+end
+

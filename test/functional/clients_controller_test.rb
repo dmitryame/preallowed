@@ -56,6 +56,4 @@ class ClientsControllerTest < ActionController::TestCase
     resource.update.params = { :name => "Changed" }
   end        
 
-
-
 end
