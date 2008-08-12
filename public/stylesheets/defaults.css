@@ -37,12 +37,8 @@ DIV.right {
 
 .menu {
 	display: block;
-	background: #84D02E;
 	width: 1000px;
-	color: #fff;
 	font-weight: bold;
-	padding-top: 8px;
-	border-top: 2px dotted #fff;
 }
 .menu a {
 	background: #84D02E;
@@ -51,24 +47,22 @@ DIV.right {
 	padding-right: 3px;
 	font-weight: bold;
 	text-decoration: none;
+	border-top: 2px solid #0f0;
+	border-right: 2px solid #0f0;
+	
+}
+.menu a:visited { color: #fff; }
+.menu a:hover {
+	background: #00f;
+	color: #000;
 }
 .menu a:active {
-	background: #84D02E;
-	color: #fff;
-	padding: 3px;
+	background: #fff;
+	color: #000;
 	font-weight: bold;
 	text-decoration: none;
 }
-.menu a:hover {
-	background: #fff;
-	color: #84D02E;
-	padding-top: 3px;
-	padding-bottom: 13px;
-	padding-left: 3px;		
-	padding-right: 3px;
-	font-weight: bold;
-	text-decoration: underline;
-}
+
 #content {
 	background: #ffffff;
 	color: #000;

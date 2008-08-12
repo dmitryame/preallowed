@@ -1,8 +1,14 @@
+<div class="menu">
+	<%= link_to 'subjects', client_subjects_path(@client) %> 
+	<%= link_to 'roles', client_roles_path(@client) %> 
+	<%= link_to 'resources', client_resources_path(@client) %> 
+</div>
+
 <p>
-  <b>Name:</b>
+  <b>Client Name:</b>
   <%=h @client.name %>
 </p>
 
 
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<%= link_to image_tag ("back.png", :border => 0, :width => 16, :height => 16), clients_path %>
+<%= link_to image_tag ("edit.png", :border => 0, :width => 16, :height => 16), edit_client_path(@client) %> 

@@ -19,6 +19,13 @@
 		<%=session[:subject_name]%>	
 	</div>
 
+	<div class="menu">
+		<%= link_to 'subjects', client_subjects_path(@client) %>
+		<%= link_to 'roles', client_roles_path(@client) %> 
+		<%= link_to 'resources', client_resources_path(@client), :style => "color: blue;"  %> 
+	</div>
+
+
 	<div id="content">
 		<p style="color: green"><%= flash[:notice] %></p>
 		<div id="main">

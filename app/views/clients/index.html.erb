@@ -7,14 +7,13 @@
 
 <% for client in @clients %>
   <tr>
-    <td><%=h client.name %></td>
-    <td><%= link_to 'Show', client %></td>
-    <td><%= link_to 'Edit', edit_client_path(client) %></td>
-    <td><%= link_to 'Destroy', client, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to( h(client.name), client) %></td>
+    <td><%= link_to image_tag ("edit.png", :border => 0, :width => 16, :height => 16), edit_client_path(client) %></td>
+    <td><%= link_to image_tag ("trash.png", :border => 0, :width => 16, :height => 16), client, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New client', new_client_path %>
+<%= link_to image_tag ("add.png", :border => 0, :width => 16, :height => 16), new_client_path %>
