@@ -9,10 +9,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080811214101) do
+ActiveRecord::Schema.define(:version => 20080812001317) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clients", ["name"], :name => "index_clients_on_name"
+
+  create_table "resources", :force => true do |t|
+    t.string   "name"
+    t.integer  "client_id",  :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "client_id",  :limit => 11
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,5 +42,14 @@ ActiveRecord::Schema.define(:version => 20080811214101) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "subjects", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password"
+    t.integer  "client_id",  :limit => 11
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

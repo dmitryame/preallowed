@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @subject.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @subject.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%=h @subject.password %>
+</p>
+
+
+<%= link_to 'Edit', edit_subject_path(@subject) %> |
+<%= link_to 'Back', subjects_path %>

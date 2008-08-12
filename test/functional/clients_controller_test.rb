@@ -49,12 +49,6 @@ class ClientsControllerTest < ActionController::TestCase
     @controller = ClientsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
-    #authenticate
-    @request.env['HTTP_AUTHORIZATION'] = 
-    ActionController::HttpAuthentication::Basic.encode_credentials(
-    "admin", 
-    "admin" 
-    )     
   end
 
   should_be_restful do |resource| 
