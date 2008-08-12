@@ -6,5 +6,9 @@ class ResourceTest < ActiveSupport::TestCase
       @resource = Factory(:resource)
     end
     should_belong_to :client
+    
+    should_ensure_length_in_range :name, (3..2048) 
+    
+    
   end    
 end
