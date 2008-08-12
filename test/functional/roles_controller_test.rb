@@ -42,4 +42,18 @@ class RolesControllerTest < ActionController::TestCase
   # 
   #   assert_redirected_to roles_path
   # end
+
+  def setup
+    @role = Factory(:role)
+    @controller = RolesController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+  end
+
+  should_be_restful do |resource| 
+    resource.parent     = [ :client ]        
+    resource.create.params = { :name => "random role"}
+    resource.update.params = { :name => "Changed"}
+  end        
+
 end

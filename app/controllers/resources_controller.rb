@@ -1,8 +1,11 @@
 class ResourcesController < ApplicationController
+  before_filter :find_client
+
+
   # GET /resources
   # GET /resources.xml
   def index
-    @resources = Resource.find(:all)
+    @resources = @client.resources
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +16,7 @@ class ResourcesController < ApplicationController
   # GET /resources/1
   # GET /resources/1.xml
   def show
-    @resource = Resource.find(params[:id])
+    @resource = @client.resources.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,7 +37,7 @@ class ResourcesController < ApplicationController
 
   # GET /resources/1/edit
   def edit
-    @resource = Resource.find(params[:id])
+    @resource = @client.resources.find(params[:id])
   end
 
   # POST /resources
@@ -43,10 +46,10 @@ class ResourcesController < ApplicationController
     @resource = Resource.new(params[:resource])
 
     respond_to do |format|
-      if @resource.save
+      if @client.resources << @resource
         flash[:notice] = 'Resource was successfully created.'
-        format.html { redirect_to(@resource) }
-        format.xml  { render :xml => @resource, :status => :created, :location => @resource }
+        format.html { redirect_to client_resource_url(@client, @resource) }
+        format.xml  { render :xml => @resource, :status => :created, :location => [@client, @resource] }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @resource.errors, :status => :unprocessable_entity }
@@ -57,12 +60,12 @@ class ResourcesController < ApplicationController
   # PUT /resources/1
   # PUT /resources/1.xml
   def update
-    @resource = Resource.find(params[:id])
+    @resource = @client.resources.find(params[:id])
 
     respond_to do |format|
       if @resource.update_attributes(params[:resource])
         flash[:notice] = 'Resource was successfully updated.'
-        format.html { redirect_to(@resource) }
+        format.html { redirect_to client_resource_url(@client, @resource) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -74,12 +77,22 @@ class ResourcesController < ApplicationController
   # DELETE /resources/1
   # DELETE /resources/1.xml
   def destroy
-    @resource = Resource.find(params[:id])
+    @resource = @client.resources.find(params[:id])
     @resource.destroy
 
     respond_to do |format|
-      format.html { redirect_to(resources_url) }
+      flash[:notice] = 'Resource was successfully removed.'            
+      format.html { redirect_to client_resources_url(@client) }
       format.xml  { head :ok }
     end
   end
+
+  private
+
+    def find_client
+      @client_id = params[:client_id]
+      redirect_to clients_url unless @client_id
+      @client = Client.find(@client_id)
+    end
+
 end

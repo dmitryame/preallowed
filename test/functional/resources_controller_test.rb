@@ -42,6 +42,18 @@ class ResourcesControllerTest < ActionController::TestCase
   # 
   #   assert_redirected_to resources_path
   # end
+  def setup
+    @resource = Factory(:resource)
+    @controller = ResourcesController.new
+    @request    = ActionController::TestRequest.new
+    @response   = ActionController::TestResponse.new
+  end
+
+  should_be_restful do |resource| 
+    resource.parent     = [ :client ]        
+    resource.create.params = { :name => "random resource"}
+    resource.update.params = { :name => "Changed"}
+  end        
 
 
 end

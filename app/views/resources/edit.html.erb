@@ -1,6 +1,6 @@
 <h1>Editing resource</h1>
 
-<% form_for(@resource) do |f| %>
+<% form_for(:resource, :url => client_resources_path) do |f| %>
   <%= f.error_messages %>
 
   <p>
@@ -12,5 +12,5 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @resource %> |
-<%= link_to 'Back', resources_path %>
+<%= link_to 'Show', client_resource_path(@client, @resource) %> |
+<%= link_to 'Back', client_resources_path(@client) %>

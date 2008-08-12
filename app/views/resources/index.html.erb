@@ -8,13 +8,13 @@
 <% for resource in @resources %>
   <tr>
     <td><%=h resource.name %></td>
-    <td><%= link_to 'Show', resource %></td>
-    <td><%= link_to 'Edit', edit_resource_path(resource) %></td>
-    <td><%= link_to 'Destroy', resource, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', client_resource_path(@client, resource) %></td>
+    <td><%= link_to 'Edit', edit_client_resource_path(@client, resource) %></td>
+    <td><%= link_to 'Destroy', client_resource_path(@client, resource), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New resource', new_resource_path %>
+<%= link_to 'New resource', new_client_resource_path(@client) %>
