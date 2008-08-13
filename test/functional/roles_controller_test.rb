@@ -47,7 +47,7 @@ class RolesControllerTest < ActionController::TestCase
     @client = Factory(:client)
     @role = Factory(:role, :client => @client)    
     @subject = Factory(:subject, :client => @client)
-    
+        
     @controller = RolesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
@@ -66,9 +66,17 @@ class RolesControllerTest < ActionController::TestCase
      end
   
      should_respond_with :ok
-     should_not_set_the_flash
-  
+     should_not_set_the_flash  
    end
 
+   context "on add/remove subject to role" do
+      setup do 
+        # put :add_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id 
+        put :remove_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id  #TODO:something iffy here
+      end
+
+      should_respond_with :ok
+      should_not_set_the_flash  
+    end
 
 end

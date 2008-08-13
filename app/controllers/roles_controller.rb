@@ -104,11 +104,13 @@ class RolesController < ApplicationController
   def remove_subject
     @role = @client.roles.find(params[:id])  
     @subject = @client.subjects.find(params[:subject_id])
-    
-    @subject.roles.delete(@role)
 
     respond_to do |format|
-      format.xml  { head :ok }
+      if @subject.roles.delete(@role)
+        format.xml  { head :ok }
+      else
+        format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+      end        
     end
   end
 
