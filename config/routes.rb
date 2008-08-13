@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :clients do |client|
     client.resources :subjects,
     :member => {
-      :has_access => :get,
+      :has_access => :get,    # the url should look like this  /clients/:client_id/subjects/:id/has_access  params[:resource]=(resoruce string described by REG EXP)
       :is_subject_in_role => :get
     }     
 

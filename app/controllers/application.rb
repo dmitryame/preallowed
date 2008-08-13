@@ -12,4 +12,24 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+  
+  
+  
+  
+  # this method (is not an action) is used from different actions and filters as well
+  # this method is a core of figuring out if a particulalr subject has access to a particular resource.
+  # TODO: optimize performance
+  def subject_has_access_to_resource?(subject_id, resource_to_verify)    
+    return false unless subject_id 
+    @subject = Subject.find(subject_id)
+    @subject.roles.each do |role|
+      role.resources.each do |resource|
+        if resource_to_verify =~ Regexp.new(resource.name) #the resource string will be matched agains regular expression -- very powerful
+          return true
+        end
+      end
+    end
+    return false
+  end
+
 end

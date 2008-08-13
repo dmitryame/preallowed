@@ -87,6 +87,21 @@ class SubjectsController < ApplicationController
     end
   end
 
+
+  # custom restful methods 
+    
+  #this method should never fails, returns either <a>0<a> or <a>1</a>  
+  def has_access
+    accessible = subject_has_access_to_resource?(params[:id], params[:resource])
+    if accessible == true # should code a comparison agains ruby regular expressions here
+      render :text => "<a>1</a>" 
+      return
+    end
+    # if no matching resouces found by the end of the iteration, return false
+    render :text => "<a>0</a>"
+  end
+
+
 private
 
   def find_client
