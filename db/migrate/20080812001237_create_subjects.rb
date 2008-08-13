@@ -8,9 +8,16 @@ class CreateSubjects < ActiveRecord::Migration
       
       t.timestamps
     end
+    add_index :subjects, :name
+    add_index :subjects, :client_id
+    add_index :subjects, [:client_id, :email]
   end
 
   def self.down
+    remove_index :subjects, :name
+    remove_index :subjects, :client_id
+    remove_index :subjects, [:client_id, :email]
+    
     drop_table :subjects
   end
 end

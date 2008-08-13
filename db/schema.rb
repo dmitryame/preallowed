@@ -13,11 +13,13 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
 
   create_table "clients", :force => true do |t|
     t.string   "name"
+    t.boolean  "preallowed", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "clients", ["name"], :name => "index_clients_on_name"
+  add_index "clients", ["preallowed"], :name => "index_clients_on_preallowed"
 
   create_table "resources", :force => true do |t|
     t.string   "name"
@@ -25,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "resources", ["name"], :name => "index_resources_on_name"
+  add_index "resources", ["client_id"], :name => "index_resources_on_client_id"
 
   create_table "resources_associations", :force => true do |t|
     t.integer  "resource_id", :limit => 11
@@ -42,6 +47,9 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "roles", ["name"], :name => "index_roles_on_name"
+  add_index "roles", ["client_id"], :name => "index_roles_on_client_id"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -61,6 +69,10 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "subjects", ["name"], :name => "index_subjects_on_name"
+  add_index "subjects", ["client_id"], :name => "index_subjects_on_client_id"
+  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email"
 
   create_table "subjects_associations", :force => true do |t|
     t.integer  "subject_id", :limit => 11

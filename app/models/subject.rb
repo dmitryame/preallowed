@@ -9,4 +9,8 @@ class Subject < ActiveRecord::Base
   validates_length_of :name, :within     => 3..30
   validates_length_of :password, :within => 3..300, :if => :password?
 
+  validates_uniqueness_of :name, :scope => :client_id
+  validates_uniqueness_of :email, :scope => :client_id
+
+
 end

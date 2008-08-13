@@ -5,9 +5,17 @@ class ResourceTest < ActiveSupport::TestCase
     setup do
       @resource = Factory(:resource)
     end
+    should_have_index :name
+    should_have_index :client_id
+
     should_belong_to :client
+
+    should_have_many :resources_associations
+    should_have_many :roles, :through => :resources_associations
+
     
     should_ensure_length_in_range :name, (3..2048) 
-    
+
+    should_require_unique_attributes :name, :scoped_to => :client_id
   end    
 end

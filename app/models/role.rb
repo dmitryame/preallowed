@@ -9,4 +9,6 @@ class Role < ActiveRecord::Base
 
   validates_length_of :name, :within     => 3..30
   
+  validates_uniqueness_of :name, :scope => :client_id
+  
 end
