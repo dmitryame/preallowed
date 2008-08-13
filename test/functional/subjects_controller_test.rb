@@ -45,6 +45,29 @@ class SubjectsControllerTest < ActionController::TestCase
     end
   end
 
+  context "on check if subject in role -- expecting false" do
+    setup do 
+      # @subject.roles << @role
+      get :is_subject_in_role, :id => @subject.id, :role_id => @role.id , :client_id => @subject.client.id # this should fail if the subject was not added to role first
+    end
+    should_not_set_the_flash  
+    should "return false" do
+      assert_tag :tag => "a", :content => "0"
+    end
+  end
+
+  context "on check if subject in role -- expecting true" do
+    setup do 
+      @subject.roles << @role
+      get :is_subject_in_role, :id => @subject.id, :role_id => @role.id , :client_id => @subject.client.id # this should fail if the subject was not added to role first
+    end
+    should_not_set_the_flash  
+    should "return false" do
+      assert_tag :tag => "a", :content => "1"
+    end
+  end
+
+
 
   context "on check if subject belongs to a particular role" do
   end

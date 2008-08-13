@@ -101,6 +101,17 @@ class SubjectsController < ApplicationController
     render :text => "<a>0</a>"
   end
 
+  #this method should never fails, returns either <a>0<a> or <a>1</a>  
+  def is_subject_in_role
+    @subject = @client.subjects.find(params[:id])    
+    number_of_roles = @subject.roles.count :conditions => ["role_id = ?", params[:role_id]] 
+    if number_of_roles == 1
+      render :text => "<a>1</a>" 
+    else
+      render :text => "<a>0</a>" 
+    end
+  end
+
 
 private
 
