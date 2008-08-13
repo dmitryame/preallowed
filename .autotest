@@ -15,9 +15,9 @@ module Autotest::Growl
   Autotest.add_hook :ran_command do |at|
     output = at.results.last.slice(/(\d+).*errors/)
     if output =~ /ns.*[1-9]/
-      growl "Test Results", "#{output}", './rails_fail.png', 2 #, "-s" 
+      growl "Test Results", "#{output}", './public/images/rails_fail.png', 2 #, "-s" 
     else
-      growl "Test Results", "#{output}", './rails_ok.png'
+      growl "Test Results", "#{output}", './public/images/rails_ok.png'
     end
   end
 end
