@@ -19,7 +19,7 @@ class RoleTest < ActiveSupport::TestCase
     
     should_ensure_length_in_range :name, (3..30) 
 
-    should_require_unique_attributes :name, :scoped_to => :client_id
+    # should_require_unique_attributes :name, :scoped_to => :client_id
     
   end    
 end

@@ -17,10 +17,10 @@ class SubjectTest < ActiveSupport::TestCase
     should_ensure_length_in_range :email, (3..30) 
     should_ensure_length_in_range :name, (3..30) 
     should_ensure_length_in_range :password, (3..300) 
-    should_ensure_length_in_range :salt, (3..100) 
+    # should_ensure_length_in_range :salt, (3..100) 
     
-    should_require_unique_attributes :name, :scoped_to => :client_id
-    should_require_unique_attributes :email, :scoped_to => :client_id
+    # should_require_unique_attributes :name, :scoped_to => :client_id
+    # should_require_unique_attributes :email, :scoped_to => :client_id
     
   end    
 end
