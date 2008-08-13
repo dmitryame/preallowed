@@ -87,6 +87,31 @@ class RolesController < ApplicationController
     end
   end
 
+  # custom restful methods 
+  def add_subject
+    @role = @client.roles.find(params[:id])
+    @subject = @client.subjects.find(params[:subject_id])
+
+    respond_to do |format|
+      if @subject.roles << @role
+        format.xml  { head :ok }
+      else
+        format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove_subject
+    @role = @client.roles.find(params[:id])  
+    @subject = @client.subjects.find(params[:subject_id])
+    
+    @subject.roles.delete(@role)
+
+    respond_to do |format|
+      format.xml  { head :ok }
+    end
+  end
+
   private
 
   def find_client

@@ -44,7 +44,10 @@ class RolesControllerTest < ActionController::TestCase
   # end
 
   def setup
-    @role = Factory(:role)
+    @client = Factory(:client)
+    @role = Factory(:role, :client => @client)    
+    @subject = Factory(:subject, :client => @client)
+    
     @controller = RolesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
@@ -55,5 +58,17 @@ class RolesControllerTest < ActionController::TestCase
     resource.create.params = { :name => "random role"}
     resource.update.params = { :name => "Changed"}
   end        
+
+
+  context "on add subject to role" do
+     setup do 
+       put :add_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id 
+     end
+  
+     should_respond_with :ok
+     should_not_set_the_flash
+  
+   end
+
 
 end

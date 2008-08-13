@@ -1,9 +1,22 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.resources :clients do |client|
-    client.resources :subjects
-    client.resources :roles
-    client.resources :resources
+    client.resources :subjects,
+    :member => {
+      :has_access => :get,
+      :is_subject_in_role => :get
+    }     
+
+    client.resources :roles,
+    :member => {
+      :add_subject => :put,
+      :remove_subject => :put,
+      :add_resource => :put,
+      :remove_resource => :put
+    }
+
+    client.resources :resources    
+
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -43,6 +56,6 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
 
   # Install the default routes as the lowest priority.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  # map.connect ':controller/:action/:id'
+  # map.connect ':controller/:action/:id.:format'
 end
