@@ -4,19 +4,20 @@ class CreateSubjects < ActiveRecord::Migration
       t.string :name
       t.string :email
       t.string :password
+      t.string :salt
       t.integer :client_id
       
       t.timestamps
     end
-    add_index :subjects, :name
     add_index :subjects, :client_id
     add_index :subjects, [:client_id, :email]
+    add_index :subjects, [:client_id, :name]
   end
 
   def self.down
-    remove_index :subjects, :name
     remove_index :subjects, :client_id
     remove_index :subjects, [:client_id, :email]
+    remove_index :subjects, [:client_id, :name]
     
     drop_table :subjects
   end

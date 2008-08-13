@@ -16,6 +16,10 @@
     <%= f.text_field :password %>
   </p>
   <p>
+    <%= f.label :salt %><br />
+    <%= f.text_field :salt %>
+  </p>
+  <p>
     <%= f.submit "Create" %>
   </p>
 <% end %>

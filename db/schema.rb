@@ -65,14 +65,15 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.string   "name"
     t.string   "email"
     t.string   "password"
+    t.string   "salt"
     t.integer  "client_id",  :limit => 11
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "subjects", ["name"], :name => "index_subjects_on_name"
   add_index "subjects", ["client_id"], :name => "index_subjects_on_client_id"
   add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email"
+  add_index "subjects", ["client_id", "name"], :name => "index_subjects_on_client_id_and_name"
 
   create_table "subjects_associations", :force => true do |t|
     t.integer  "subject_id", :limit => 11
