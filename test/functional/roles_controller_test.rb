@@ -1,52 +1,12 @@
 require 'test_helper'
 
 class RolesControllerTest < ActionController::TestCase
-  # def test_should_get_index
-  #   get :index
-  #   assert_response :success
-  #   assert_not_nil assigns(:roles)
-  # end
-  # 
-  # def test_should_get_new
-  #   get :new
-  #   assert_response :success
-  # end
-  # 
-  # def test_should_create_role
-  #   assert_difference('Role.count') do
-  #     post :create, :role => { }
-  #   end
-  # 
-  #   assert_redirected_to role_path(assigns(:role))
-  # end
-  # 
-  # def test_should_show_role
-  #   get :show, :id => roles(:one).id
-  #   assert_response :success
-  # end
-  # 
-  # def test_should_get_edit
-  #   get :edit, :id => roles(:one).id
-  #   assert_response :success
-  # end
-  # 
-  # def test_should_update_role
-  #   put :update, :id => roles(:one).id, :role => { }
-  #   assert_redirected_to role_path(assigns(:role))
-  # end
-  # 
-  # def test_should_destroy_role
-  #   assert_difference('Role.count', -1) do
-  #     delete :destroy, :id => roles(:one).id
-  #   end
-  # 
-  #   assert_redirected_to roles_path
-  # end
 
   def setup
     @client = Factory(:client)
     @role = Factory(:role, :client => @client)    
     @subject = Factory(:subject, :client => @client)
+    @resource = Factory(:resource, :client => @client)
         
     @controller = RolesController.new
     @request    = ActionController::TestRequest.new
@@ -64,19 +24,35 @@ class RolesControllerTest < ActionController::TestCase
      setup do 
        put :add_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id 
      end
-  
      should_respond_with :ok
      should_not_set_the_flash  
    end
 
-   context "on add/remove subject to role" do
+   context "on remove subject from role" do
       setup do 
-        # put :add_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id 
-        put :remove_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id  #TODO:something iffy here
+        @subject.roles << @role
+        put :remove_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id # this should fail if the subject was not added to role first
       end
-
       should_respond_with :ok
       should_not_set_the_flash  
     end
+
+    context "on add resource to role" do
+       setup do 
+         put :add_resource, :id => @role.id, :resource_id => @resource.id, :client_id => @resource.client.id 
+       end
+       should_respond_with :ok
+       should_not_set_the_flash  
+     end
+
+     context "on remove resource from role" do
+        setup do 
+          @resource.roles << @role
+          put :remove_resource, :id => @role.id, :resource_id => @resource.id, :client_id => @resource.client.id # this should fail if the resource was not added to role first
+        end
+        should_respond_with :ok
+        should_not_set_the_flash  
+      end
+
 
 end
