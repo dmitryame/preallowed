@@ -3,14 +3,14 @@
 client = Client.create :name => "preallowed.com"
 client.save
 
-role = Role.create(:name => "preallowed_admin", :client => client)
-role.save
-
 subject = Subject.create(:name => "admin", :client => client, :email => "dmitry@rootlocusinc.com", :password => "admin")
 subject.save
     
 resource = Resource.create(:name => "^/.*$", :client => client)
 resource.save
+
+role = Role.create(:name => "preallowed_admin", :client => client)
+role.save
 
 subject.roles << role
 resource.roles << role

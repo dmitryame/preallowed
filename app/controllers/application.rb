@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   include SslRequirement
 
   before_filter :authenticate
-  # before_filter :authorize 
+  before_filter :authorize 
 
 
   # before_filter :logrequest
@@ -88,9 +88,9 @@ class ApplicationController < ActionController::Base
     
     # this intercepts all authenticated requests and checks for authorization
     def authorize
-      return if skip_authentication 
+      return if skip_authentication?
 
-      if subject_has_access_to_resource(session[:subject_id], request.path) == false
+      if subject_has_access_to_resource?(session[:subject_id], request.path) == false
         redirect_to :controller => :home, :action => :insufficient
       end
     end

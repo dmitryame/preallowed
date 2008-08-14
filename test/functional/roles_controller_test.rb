@@ -3,21 +3,10 @@ require 'test_helper'
 class RolesControllerTest < ActionController::TestCase
 
   def setup
-    @client = Factory(:client)
-    @role = Factory(:role, :client => @client)    
-    @subject = Factory(:subject, :client => @client)
-    @resource = Factory(:resource, :client => @client)
-        
-    @controller = RolesController.new
-    @request    = ActionController::TestRequest.new
-    @response   = ActionController::TestResponse.new
     #authenticate
-    @subject = Factory(:subject, :name => "admin", :password => "admin", :client => @client)
-    @request.env['HTTP_AUTHORIZATION'] = 
-    ActionController::HttpAuthentication::Basic.encode_credentials(
-    "admin", 
-    "admin" 
-    )        
+    create_and_authenticate_preallowed_subject
+          
+    @controller = RolesController.new
   end
 
   should_be_restful do |resource| 
@@ -29,7 +18,7 @@ class RolesControllerTest < ActionController::TestCase
 
   context "on add subject to role" do
      setup do 
-       put :add_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id 
+       put :add_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id
      end
      should_respond_with :ok
      should_not_set_the_flash  
