@@ -94,6 +94,7 @@ class RolesController < ApplicationController
     respond_to do |format|
       if @subject.roles << @role
         format.xml  { head :ok }
+        format.js
       else
         format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
       end
@@ -106,6 +107,7 @@ class RolesController < ApplicationController
     respond_to do |format|
       if @subject.roles.find(@role) and @subject.roles.delete(@role)
         format.xml  { head :ok }
+        format.js
       else
         format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
       end        
@@ -117,7 +119,8 @@ class RolesController < ApplicationController
     @resource = @client.resources.find(params[:resource_id])
     respond_to do |format|
       if @resource.roles << @role
-        format.xml  { head :ok }
+        format.xml { head :ok }
+        format.js
       else
         format.xml  { render :xml => @resource.errors, :status => :unprocessable_entity }
       end
@@ -130,6 +133,7 @@ class RolesController < ApplicationController
     respond_to do |format|
       if @resource.roles.find(@role) and @resource.roles.delete(@role)
         format.xml  { head :ok }
+        format.js
       else
         format.xml  { render :xml => @resource.errors, :status => :unprocessable_entity }
       end        

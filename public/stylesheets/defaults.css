@@ -5,6 +5,7 @@ body {
 	padding:0;
 	font-size : 12px;
 	color : #fff;
+	padding-right: 30px;
 }
 
 #header {
@@ -94,15 +95,17 @@ h1.title {
 	margin-bottom: 0;
 }
 
-.footer {
+div.footer {
+	display: inline;	
 	height: 100px;
 	width: 1000px;
 	margin-right : auto;
 	margin-left : auto;
 	color : #fff;
 	padding-top : 5px;
-	font-size: 9px;
-	text-align : center;
+    font-size: 8px;
+    text-align: right;
+	
 }
 .footer a {
 	background: none;
@@ -140,10 +143,6 @@ label {
 
 
 div.banner {
-     font-size: 8px;
-     text-align: right;
-}
-div.footer {
      font-size: 8px;
      text-align: right;
 }
@@ -218,11 +217,21 @@ legend {
     background-color: #888888;
 }
 
-#resources_roles ul, li, #subjects_roles ul, li, #clients_roles ul, li {
+#roles_resources_list, #clients_resources_list, #roles_subjects_list, #clients_subjects_list {
     list-style: none;
     cursor: -moz-grab;
 }
 
-#resources_roles, #subjects_roles, #clients_roles {
+#roles_resources, #clients_resources, #roles_subjects, #clients_subjects {
     border: 1px solid gray;
+}
+
+div.associations_control {
+	display: table-cell;	
+	float:none;	
+}
+
+#draggable_resources, #draggable_subjects {
+	padding: 10px 25px 10px 10px;	
+	float:left;	
 }

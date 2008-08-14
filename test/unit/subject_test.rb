@@ -9,7 +9,7 @@ class SubjectTest < ActiveSupport::TestCase
     
     should_have_index :client_id
     should_have_index [:client_id, :name]
-    should_have_index [:client_id, :email]
+    # should_have_index [:client_id, :email]
     
     should_have_many :subjects_associations
     should_have_many :roles, :through => :subjects_associations

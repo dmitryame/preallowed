@@ -1,0 +1,52 @@
+<div id="draggable_resources">
+<h2>Resources Associations:</h2>
+<table>
+	<tr>
+		<td valign="top">
+			<h3>role's resources</h3>
+			<div id="roles_resources">
+				<ul id="roles_resources_list">
+					<% @role.resources.each do |resource|%>
+						<%domid="rolesresource_" + dom_id(resource)%>
+						<li class="resource_li" id='<%=domid%>'>
+							<%=resource.name%>
+						</li>
+						<%=draggable_element(domid, :ghosting=>true, :revert=>false)%>
+					<%end%>
+				</ul>
+			</div>
+		</td>
+		<td>&lt;--&gt;</td>
+		<td valign="top">
+			<h3>all resources</h3>
+			<div id="clients_resources">
+				<ul id="clients_resources_list">
+					<% (@client.resources - @role.resources).each do |resource|%>
+						<%domid="clientsresource_" + dom_id(resource)%>
+						<li class="resource_li" id='<%=domid%>'>
+							<%=resource.name%>
+						</li>
+						<%=draggable_element(domid, :ghosting=>true, :revert=>false)%>
+					<%end%>
+				</ul>
+			</div>
+		</td>
+	</tr>
+</table>
+
+
+<%= drop_receiving_element ('clients_resources',
+				:accept   => 'resource_li',
+				:hoverclass => 'hover',
+				:with     => "'resource_id=' + encodeURIComponent(element.id.split('_').last())",
+				:url      => {:controller => :roles, :action => :remove_resource},
+				:method	  => :put)%>
+
+<%= drop_receiving_element ('roles_resources',
+				:accept   => 'resource_li',
+				:hoverclass => 'hover',
+				:with     => "'resource_id=' + encodeURIComponent(element.id.split('_').last())",
+				:url      => {:controller => :roles, :action => :add_resource},
+				:method   => :put)%>
+
+</div>

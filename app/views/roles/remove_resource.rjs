@@ -1,0 +1,2 @@
+page[:draggable_resources].reload 
+page[:roles_resources].visual_effect :highlight,:startcolor => "#ffffff", :endcolor => "#af0000"

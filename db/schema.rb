@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
   end
 
   add_index "subjects", ["client_id", "name"], :name => "index_subjects_on_client_id_and_name", :unique => true
-  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email", :unique => true
   add_index "subjects", ["client_id"], :name => "index_subjects_on_client_id"
 
   create_table "subjects_associations", :force => true do |t|
