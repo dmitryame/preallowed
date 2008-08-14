@@ -35,14 +35,14 @@
 </table>
 
 
-<%= drop_receiving_element ('clients_resources',
+<%= drop_receiving_element('clients_resources',
 				:accept   => 'resource_li',
 				:hoverclass => 'hover',
 				:with     => "'resource_id=' + encodeURIComponent(element.id.split('_').last())",
 				:url      => {:controller => :roles, :action => :remove_resource},
 				:method	  => :put)%>
 
-<%= drop_receiving_element ('roles_resources',
+<%= drop_receiving_element('roles_resources',
 				:accept   => 'resource_li',
 				:hoverclass => 'hover',
 				:with     => "'resource_id=' + encodeURIComponent(element.id.split('_').last())",
