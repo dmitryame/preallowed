@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # uncomment to enable https redirection
   include SslRequirement
 
-  before_filter :authenticate
+  # before_filter :authenticate
   # before_filter :authorize 
 
 

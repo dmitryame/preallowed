@@ -1,8 +1,8 @@
 <h1>Editing subject</h1>
 
-<% form_for(:subject, :url => client_subjects_path) do |f| %>
+<% form_for([@client, @subject]) do |f| %>
   <%= f.error_messages %>
-
+ 
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
