@@ -18,7 +18,6 @@ Factory.define :subject do |subject|
   subject.name {Factory.next :name }
   subject.email {Factory.next :email }
   subject.password {Factory.next :password }
-  subject.salt {Factory.next :password }
   subject.association :client  
 end
 

@@ -12,6 +12,7 @@ class Subject < ActiveRecord::Base
   validates_length_of :password, :within => 3..300, :if => :password?
   # validates_length_of :salt, :within     => 3..100, :if => :password?
 
+  #TODO:validate that the name is unique per client
   # validates_uniqueness_of :name, :scope => :client_id
   # validates_uniqueness_of :email, :scope => :client_id
 
