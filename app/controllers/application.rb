@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # uncomment to enable https redirection
   include SslRequirement
 
-  # before_filter :authenticate
+  before_filter :authenticate
   # before_filter :authorize 
 
 
@@ -79,15 +79,12 @@ class ApplicationController < ActionController::Base
 
       authenticate_or_request_with_http_basic do |name, pass| 
         preallowed_client = Client.find(:first, :conditions => "preallowed = true")
-        subject = preallowed_client.subject.find_by_name(name)
+                
+        subject = preallowed_client.subjects.find_by_name(name)
         if subject != nil
-
-          stored_hashed_password = ""
-          stored_salt = ""
-
           string_to_hash = pass + "wibble" + subject.salt
           hashed_password = Digest::SHA1.hexdigest(string_to_hash)
-          if(hashed_password == stored_hashed_password)        
+          if(hashed_password == subject.password)        
             session[:subject_id] = subject.id #this subject_id is stored in the session to be used in has_access method of a subjects_controller, essentially this is a logged in user id
             session[:subject_name] = subject.name
             return true
@@ -95,6 +92,7 @@ class ApplicationController < ActionController::Base
         end
       end 
     end 
+    
     # this intercepts all authenticated requests and checks for authorization
     def authorize
       return if skip_authentication 
@@ -106,6 +104,7 @@ class ApplicationController < ActionController::Base
 
   # defines resources that never require the authentication
     def skip_authentication?
+      return true
       return true if request.path == '/home/insufficient'
       # return true if request.path == '/clients/new'  # we need the next two lines as an exception, so that the users can self register new clients.
       # return true if request.path == '/clients' and request.method == :post    
