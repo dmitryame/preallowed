@@ -1,8 +1,8 @@
 class CreateResourcesAssociations < ActiveRecord::Migration
   def self.up
     create_table :resources_associations do |t|
-      t.integer :resource_id
-      t.integer :role_id
+      t.integer :resource_id, :null => false
+      t.integer :role_id, :null => false
 
       t.timestamps
     end

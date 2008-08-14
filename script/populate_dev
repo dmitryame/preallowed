@@ -1,0 +1,41 @@
+#!/usr/bin/env ./script/runner 
+
+client = Client.create :name => "preallowed.com"
+client.save
+
+role = Role.create(:name => "preallowed_admin", :client => client)
+role.save
+
+subject = Subject.create(:name => "admin", :client => client, :email => "dmitry@rootlocusinc.com", :password => "admin")
+subject.save
+    
+resource = Resource.create(:name => "^/.*$", :client => client)
+resource.save
+
+subject.roles << role
+resource.roles << role
+
+# populate cleantogether related data
+
+client = Client.create(:name => "cleantogether.com")
+client.save
+
+Role.create(:name => "user",         :client => client).save
+Role.create(:name => "team captain", :client => client).save
+Role.create(:name => "admin",        :client => client).save
+
+#Role.create(:name => "rest", :client_id => 1).save
+
+#Subject.create(:name => "rest", :client_id => 1 , :email => "dmitry@rootlocusinc.com").save
+
+
+# Resource.create(:name => "^/clients/2($|.xml$|/.*$)", :resource_type_id => 1, :scope_id => 1).save
+# Resource.create(:name => "^/.*$", :resource_type_id => 1, :scope_id => 2).save
+
+# Resource.find(2).roles << Role.find(5)         
+# Subject.find(2).roles << Role.find(5)
+
+# Resource.find(3).roles << Role.find(2)         
+# Resource.find(3).roles << Role.find(3)         
+# Resource.find(3).roles << Role.find(4)         
+

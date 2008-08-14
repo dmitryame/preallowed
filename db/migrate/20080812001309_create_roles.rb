@@ -1,8 +1,8 @@
 class CreateRoles < ActiveRecord::Migration
   def self.up
     create_table :roles do |t|
-      t.string :name
-      t.integer :client_id
+      t.string :name, :null => false
+      t.integer :client_id, :null => false
 
       t.timestamps
     end

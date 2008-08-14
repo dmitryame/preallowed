@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 20080812194242) do
 
   create_table "clients", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                          :null => false
     t.boolean  "preallowed", :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
   add_index "clients", ["preallowed"], :name => "index_clients_on_preallowed"
 
   create_table "resources", :force => true do |t|
-    t.string   "name"
-    t.integer  "client_id",  :limit => 11
+    t.string   "name",                     :null => false
+    t.integer  "client_id",  :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,8 +33,8 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
   add_index "resources", ["client_id"], :name => "index_resources_on_client_id"
 
   create_table "resources_associations", :force => true do |t|
-    t.integer  "resource_id", :limit => 11
-    t.integer  "role_id",     :limit => 11
+    t.integer  "resource_id", :limit => 11, :null => false
+    t.integer  "role_id",     :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
   add_index "resources_associations", ["role_id"], :name => "index_resources_associations_on_role_id"
 
   create_table "roles", :force => true do |t|
-    t.string   "name"
-    t.integer  "client_id",  :limit => 11
+    t.string   "name",                     :null => false
+    t.integer  "client_id",  :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -64,22 +64,22 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "subjects", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                          :null => false
     t.string   "email"
-    t.string   "password"
+    t.string   "hashed_password"
     t.string   "salt"
-    t.integer  "client_id",  :limit => 11
+    t.integer  "client_id",       :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email", :unique => true
   add_index "subjects", ["client_id", "name"], :name => "index_subjects_on_client_id_and_name", :unique => true
+  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email", :unique => true
   add_index "subjects", ["client_id"], :name => "index_subjects_on_client_id"
 
   create_table "subjects_associations", :force => true do |t|
-    t.integer  "subject_id", :limit => 11
-    t.integer  "role_id",    :limit => 11
+    t.integer  "subject_id", :limit => 11, :null => false
+    t.integer  "role_id",    :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

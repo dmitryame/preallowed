@@ -1,3 +1,5 @@
+require 'digest/sha1'
+
 # Filters added to this controller apply to all controllers in the application.
 # Likewise, all the methods added will be available for all controllers.
 
@@ -6,7 +8,7 @@ class ApplicationController < ActionController::Base
   # uncomment to enable https redirection
   include SslRequirement
 
-  # before_filter :authenticate
+  before_filter :authenticate
   # before_filter :authorize 
 
 
@@ -34,8 +36,6 @@ class ApplicationController < ActionController::Base
       false
     end
   end
-
-  
   
   # this method (is not an action) is used from different actions and filters as well
   # this method is a core of figuring out if a particulalr subject has access to a particular resource.
@@ -76,21 +76,14 @@ class ApplicationController < ActionController::Base
     # TODO: put in a logic to limit number of attempts to 3  
     def authenticate         
       return if skip_authentication?
-
       authenticate_or_request_with_http_basic do |name, pass| 
-        preallowed_client = Client.find(:first, :conditions => "preallowed = true")
-                
-        subject = preallowed_client.subjects.find_by_name(name)
+        subject = Subject.authenticate(name, pass)
         if subject != nil
-          string_to_hash = pass + "wibble" + subject.salt
-          hashed_password = Digest::SHA1.hexdigest(string_to_hash)
-          if(hashed_password == subject.password)        
-            session[:subject_id] = subject.id #this subject_id is stored in the session to be used in has_access method of a subjects_controller, essentially this is a logged in user id
-            session[:subject_name] = subject.name
-            return true
-          end
+          session[:subject_id] = subject.id #this subject_id is stored in the session to be used in has_access method of a subjects_controller, essentially this is a logged in user id
+          session[:subject_name] = subject.name
+          true
         end
-      end 
+      end
     end 
     
     # this intercepts all authenticated requests and checks for authorization

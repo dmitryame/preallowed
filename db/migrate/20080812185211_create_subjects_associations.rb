@@ -1,8 +1,8 @@
 class CreateSubjectsAssociations < ActiveRecord::Migration
   def self.up
     create_table :subjects_associations do |t|
-      t.integer :subject_id
-      t.integer :role_id
+      t.integer :subject_id, :null => false
+      t.integer :role_id, :null => false
 
       t.timestamps
     end

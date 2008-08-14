@@ -1,11 +1,11 @@
 class CreateSubjects < ActiveRecord::Migration
   def self.up
     create_table :subjects do |t|
-      t.string :name
+      t.string :name, :null => false
       t.string :email
-      t.string :password
+      t.string :hashed_password
       t.string :salt
-      t.integer :client_id
+      t.integer :client_id, :null => false
       
       t.timestamps
     end

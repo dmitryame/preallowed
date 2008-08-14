@@ -7,6 +7,8 @@ class Role < ActiveRecord::Base
   has_many :resources_associations
   has_many :resources, :through => :resources_associations, :uniq => true 
 
+  validates_presence_of :name, :client_id
+
   validates_length_of :name, :within     => 3..30
   
   validates_uniqueness_of :name, :scope => :client_id

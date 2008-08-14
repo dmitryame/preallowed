@@ -17,6 +17,8 @@ class ResourceTest < ActiveSupport::TestCase
     
     should_ensure_length_in_range :name, (3..2048) 
 
+    should_require_attributes :name, :client_id
+
     should_require_unique_attributes :name, :scoped_to => :client_id
   end    
 end

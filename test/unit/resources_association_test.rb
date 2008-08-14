@@ -9,5 +9,6 @@ class ResourcesAssociationTest < ActiveSupport::TestCase
      should_belong_to :resource
      should_belong_to :role
      should_have_indices :resource_id, :role_id
+     should_require_attributes :resource_id, :role_id
    end
 end
