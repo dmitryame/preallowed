@@ -16,7 +16,11 @@
 		</a>
 	</div>
 	<div class="right">
-		<%=session[:subject_name]%>	
+		<%if session[:subject_name]%>
+			<%=session[:subject_name]%>
+		<%else%>
+			<%=link_to 'login', '/login' %>
+		<%end%>		
 	</div>
 
 	<div id="content">

@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_filter :find_client
+  before_filter :find_client, :except => :login
 
 
   # GET /subjects
@@ -85,6 +85,13 @@ class SubjectsController < ApplicationController
       format.html { redirect_to(client_subjects_url(@client)) }
       format.xml  { head :ok }
     end
+  end
+
+
+  def login    
+    preallowed_client = Client.find(:first, :conditions => "preallowed = true")
+    subject = preallowed_client.subjects.find(session[:subject_id]) 
+    redirect_to client_url(preallowed_client)
   end
 
 
