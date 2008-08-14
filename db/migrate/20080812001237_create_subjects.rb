@@ -10,8 +10,8 @@ class CreateSubjects < ActiveRecord::Migration
       t.timestamps
     end
     add_index :subjects, :client_id
-    add_index :subjects, [:client_id, :email]
-    add_index :subjects, [:client_id, :name]
+    add_index :subjects, [:client_id, :email], :unique => true
+    add_index :subjects, [:client_id, :name], :unique => true
   end
 
   def self.down

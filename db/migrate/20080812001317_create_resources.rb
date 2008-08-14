@@ -8,12 +8,15 @@ class CreateResources < ActiveRecord::Migration
     end
     add_index :resources, :name
     add_index :resources, :client_id
+    add_index :resources, [:client_id, :name], :unique => true
+    
 
   end
 
   def self.down
     remove_index :resources, :name
     remove_index :resources, :client_id
+    remove_index :resources, [:client_id, :name]
     
     drop_table :resources
   end

@@ -8,12 +8,14 @@ class CreateRoles < ActiveRecord::Migration
     end
     add_index :roles, :name
     add_index :roles, :client_id
+    add_index :roles, [:client_id, :name], :unique => true
 
   end
 
   def self.down
     remove_index :roles, :name
     remove_index :roles, :client_id
+    remove_index :roles, [:client_id, :name]
     
     drop_table :roles
   end

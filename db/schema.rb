@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "updated_at"
   end
 
+  add_index "resources", ["client_id", "name"], :name => "index_resources_on_client_id_and_name", :unique => true
   add_index "resources", ["name"], :name => "index_resources_on_name"
   add_index "resources", ["client_id"], :name => "index_resources_on_client_id"
 
@@ -48,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "updated_at"
   end
 
+  add_index "roles", ["client_id", "name"], :name => "index_roles_on_client_id_and_name", :unique => true
   add_index "roles", ["name"], :name => "index_roles_on_name"
   add_index "roles", ["client_id"], :name => "index_roles_on_client_id"
 
@@ -71,9 +73,9 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "updated_at"
   end
 
+  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email", :unique => true
+  add_index "subjects", ["client_id", "name"], :name => "index_subjects_on_client_id_and_name", :unique => true
   add_index "subjects", ["client_id"], :name => "index_subjects_on_client_id"
-  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email"
-  add_index "subjects", ["client_id", "name"], :name => "index_subjects_on_client_id_and_name"
 
   create_table "subjects_associations", :force => true do |t|
     t.integer  "subject_id", :limit => 11
