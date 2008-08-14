@@ -9,6 +9,7 @@ class RoleTest < ActiveSupport::TestCase
     
     should_have_index :name
     should_have_index :client_id
+    should_have_index [:client_id, :name]
     
     
     should_have_many :subjects_associations
