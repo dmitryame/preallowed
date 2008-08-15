@@ -2,7 +2,7 @@ class CreateResources < ActiveRecord::Migration
   def self.up
     create_table :resources do |t|
       t.string :name, :null => false
-      t.integer :client_id, :null => false
+      t.references :client, :null => false
 
       t.timestamps
     end

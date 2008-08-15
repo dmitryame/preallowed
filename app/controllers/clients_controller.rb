@@ -1,8 +1,9 @@
 class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.xml
-  def index
-    @clients = Client.find(:all)
+  def index    
+    logeed_in_subject = Subject.find(session[:subject_id])    
+    @clients = logeed_in_subject.managed_clients
 
     respond_to do |format|
       format.html # index.html.erb

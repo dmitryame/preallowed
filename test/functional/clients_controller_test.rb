@@ -11,6 +11,15 @@ class ClientsControllerTest < ActionController::TestCase
   should_be_restful do |resource| 
     resource.create.params = { :name => "random client" }
     resource.update.params = { :name => "Changed" }
+    resource.actions    = [
+      #:index,
+      :show, 
+      :new, 
+      :edit, 
+      :update, 
+      :create, 
+      :destroy
+      ]    
   end        
 
 end

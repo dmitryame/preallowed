@@ -9,12 +9,17 @@ class ClientTest < Test::Unit::TestCase
     should_have_many :subjects
     should_have_many :roles
     should_have_many :resources
+
+    should_have_many :establishments
+    should_have_many :administrators, :through => :establishments
     
     should_require_attributes :name
     should_require_unique_attributes :name
 
     should_have_index :name
     should_have_index :preallowed
+    
+    # should_require_attributes :email, :password
     
     should "make sure there is only one record with preallowed = true" do # this is how preallowed client is identified
         @preallowed_client = Factory(:client, :preallowed => false)

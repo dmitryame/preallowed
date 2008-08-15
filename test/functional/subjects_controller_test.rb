@@ -11,8 +11,8 @@ class SubjectsControllerTest < ActionController::TestCase
 
   should_be_restful do |resource| 
     resource.parent     = [ :client ]        
-    resource.create.params = { :name => "random subject"}
-    resource.update.params = { :name => "Changed"}
+    resource.create.params = { :name => "random subject", :email => "qwe@qwe.com", :password => "qweqwe", :password_confirmation => "qweqwe"}
+    resource.update.params = { :name => "Changed", :email => "qwe@qwe.com", :password => "qweqwe", :password_confirmation => "qweqwe"}
   end        
 
   context "on check if subject has access to a particuar resource -- expecting false" do
@@ -59,22 +59,6 @@ class SubjectsControllerTest < ActionController::TestCase
     should "return false" do
       assert_tag :tag => "a", :content => "0"
     end
-  end
-
-  context "on check if subject in role -- expecting true" do
-    setup do 
-      @subject.roles << @role
-      get :is_subject_in_role, :id => @subject.id, :role_id => @role.id , :client_id => @subject.client.id # this should fail if the subject was not added to role first
-    end
-    should_not_set_the_flash  
-    should "return false" do
-      assert_tag :tag => "a", :content => "1"
-    end
-  end
-
-
-
-  context "on check if subject belongs to a particular role" do
   end
 
 end

@@ -8,7 +8,7 @@ class SubjectsAssociationTest < ActiveSupport::TestCase
      
      should_belong_to :subject  
      should_belong_to :role
-     should_have_indices :subject_id, :role_id
+     should_have_indices :subject_id, :role_id, [:role_id, :subject_id]
      should_require_attributes :subject_id, :role_id
    end
  end

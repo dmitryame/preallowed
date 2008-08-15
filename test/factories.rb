@@ -12,12 +12,14 @@ end
 
 Factory.define :client do |client|
   client.name {Factory.next :name }
+  client.email {Factory.next :email } 
 end
 
 Factory.define :subject do |subject|
   subject.name {Factory.next :name }
   subject.email {Factory.next :email }
   subject.password {Factory.next :password }
+  subject.password_confirmation {|s| s.password }
   subject.association :client  
 end
 
@@ -41,3 +43,7 @@ Factory.define :resources_association do |resources_association|
   resources_association.association :role
 end
 
+Factory.define :establishment do |establishment|
+  establishment.managed_client {|managed_client| managed_client.association(:client) }
+  establishment.administrator {|administrator| administrator.association(:subject) }
+end

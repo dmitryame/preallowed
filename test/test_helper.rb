@@ -49,7 +49,7 @@ class Test::Unit::TestCase
 
     @client = Factory(:client)
 
-    @subject = Factory(:subject, :name => "admin", :password => "admin", :client => @client)
+    @subject = Factory(:subject, :name => "admin", :password => "admin", :client => @client)#, :email => "qwe@mail.com", :password => "password", :password_confirmation => "password")
     
     @resource = Factory(:resource, :name => "^/.*$", :client => @client)
     

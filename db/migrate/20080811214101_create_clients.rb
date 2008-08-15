@@ -13,6 +13,7 @@ class CreateClients < ActiveRecord::Migration
   def self.down
     remove_index :clients, :name
     remove_index :clients, :preallowed
+        
     drop_table :clients
   end
 end

@@ -1,12 +1,12 @@
 ActionController::Routing::Routes.draw do |map|
 
+
   map.resources :clients do |client|
     client.resources :subjects,
     :member => {
       :has_access => :get,    # the url should look like this  /clients/:client_id/subjects/:id/has_access  params[:resource]=(resoruce string described by REG EXP)
       :is_subject_in_role => :get
     }     
-
     client.resources :roles,
     :member => {
       :add_subject => :put,
@@ -14,10 +14,9 @@ ActionController::Routing::Routes.draw do |map|
       :add_resource => :put,
       :remove_resource => :put
     }
-
     client.resources :resources    
-
   end
+  map.resources :establishments
 
   # The priority is based upon order of creation: first created -> highest priority.
 
@@ -61,6 +60,5 @@ ActionController::Routing::Routes.draw do |map|
   
     map.connect '/home/insufficient', :controller => "home", :action => "insufficient"
     map.connect '/login', :controller => "subjects", :action => "login"
-    map.connect '/signup', :controller => :subjects, :action => :new
   
 end

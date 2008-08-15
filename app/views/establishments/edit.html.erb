@@ -1,0 +1,20 @@
+<h1>Editing establishment</h1>
+
+<% form_for(@establishment) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :client %><br />
+    <%= f.text_field :client %>
+  </p>
+  <p>
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @establishment %> |
+<%= link_to 'Back', establishments_path %>

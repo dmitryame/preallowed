@@ -5,9 +5,15 @@ client.save
 
 subject = Subject.create(:name => "admin", :client => client, :email => "dmitry@rootlocusinc.com", :password => "admin")
 subject.save
+
+subject.managed_clients << client
     
 resource = Resource.create(:name => "^/.*$", :client => client)
 resource.save
+
+resource2 = Resource.create(:name => "^/clients$", :client => client)
+resource2.save
+
 
 role = Role.create(:name => "preallowed_admin", :client => client)
 role.save
@@ -19,6 +25,8 @@ resource.roles << role
 
 client = Client.create(:name => "cleantogether.com")
 client.save
+
+subject.managed_clients << client
 
 Role.create(:name => "user",         :client => client).save
 Role.create(:name => "team captain", :client => client).save

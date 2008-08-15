@@ -89,7 +89,7 @@ class SubjectsController < ApplicationController
 
 
   def login    
-    preallowed_client = Client.find(:first, :conditions => "preallowed = true")
+    preallowed_client = Client.preallowed_client
     subject = preallowed_client.subjects.find(session[:subject_id]) 
     redirect_to client_url(preallowed_client)
   end

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080812194242) do
+ActiveRecord::Schema.define(:version => 20080815131939) do
 
   create_table "clients", :force => true do |t|
     t.string   "name",                          :null => false
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
 
   add_index "clients", ["name"], :name => "index_clients_on_name"
   add_index "clients", ["preallowed"], :name => "index_clients_on_preallowed"
+
+  create_table "establishments", :force => true do |t|
+    t.integer  "client_id",  :limit => 11, :null => false
+    t.integer  "subject_id", :limit => 11, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "establishments", ["client_id", "subject_id"], :name => "index_establishments_on_client_id_and_subject_id", :unique => true
+  add_index "establishments", ["client_id"], :name => "index_establishments_on_client_id"
+  add_index "establishments", ["subject_id"], :name => "index_establishments_on_subject_id"
 
   create_table "resources", :force => true do |t|
     t.string   "name",                     :null => false
@@ -39,6 +50,7 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "updated_at"
   end
 
+  add_index "resources_associations", ["role_id", "resource_id"], :name => "index_resources_associations_on_role_id_and_resource_id", :unique => true
   add_index "resources_associations", ["resource_id"], :name => "index_resources_associations_on_resource_id"
   add_index "resources_associations", ["role_id"], :name => "index_resources_associations_on_role_id"
 
@@ -75,6 +87,7 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
 
   add_index "subjects", ["client_id", "name"], :name => "index_subjects_on_client_id_and_name", :unique => true
   add_index "subjects", ["client_id"], :name => "index_subjects_on_client_id"
+  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email"
 
   create_table "subjects_associations", :force => true do |t|
     t.integer  "subject_id", :limit => 11, :null => false
@@ -83,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20080812194242) do
     t.datetime "updated_at"
   end
 
+  add_index "subjects_associations", ["role_id", "subject_id"], :name => "index_subjects_associations_on_role_id_and_subject_id", :unique => true
   add_index "subjects_associations", ["subject_id"], :name => "index_subjects_associations_on_subject_id"
   add_index "subjects_associations", ["role_id"], :name => "index_subjects_associations_on_role_id"
 
