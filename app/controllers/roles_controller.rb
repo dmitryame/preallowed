@@ -92,7 +92,7 @@ class RolesController < ApplicationController
     @role = @client.roles.find(params[:id])
     @subject = @client.subjects.find(params[:subject_id])
     respond_to do |format|
-      if @subject.roles.find(@role) or @subject.roles << @role
+      if @subject.roles << @role
         format.xml  { head :ok }
         format.js
       else
@@ -118,7 +118,7 @@ class RolesController < ApplicationController
     @role = @client.roles.find(params[:id])
     @resource = @client.resources.find(params[:resource_id])
     respond_to do |format|
-      if @resource.roles.find(@role) or @resource.roles << @role
+      if @resource.roles << @role
         format.xml { head :ok }
         format.js
       else

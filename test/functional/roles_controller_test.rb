@@ -18,7 +18,8 @@ class RolesControllerTest < ActionController::TestCase
 
   context "on add subject to role" do
     setup do 
-      put :add_subject, :id => @role.id, :subject_id => @subject.id, :client_id => @subject.client.id
+      role = Factory(:role, :client => @client)
+      put :add_subject, :id => role.id, :subject_id => @subject.id, :client_id => @subject.client.id
     end
     should_respond_with :ok
     should_not_set_the_flash      
@@ -36,7 +37,8 @@ class RolesControllerTest < ActionController::TestCase
 
   context "on add resource to role" do
     setup do 
-      put :add_resource, :id => @role.id, :resource_id => @resource.id, :client_id => @resource.client.id 
+      role = Factory(:role, :client => @client)
+      put :add_resource, :id => role.id, :resource_id => @resource.id, :client_id => @resource.client.id 
     end
     should_respond_with :ok
     should_not_set_the_flash  
