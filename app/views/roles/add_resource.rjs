@@ -1,2 +1,2 @@
-page[:draggable_resources].reload 
+page[:draggable_resources].replace_html :partial => 'draggable_resources', :locals => {:resources => @role.resources}
 page[:roles_resources].visual_effect :highlight,:startcolor => "#ffffff", :endcolor => "#00af00"
