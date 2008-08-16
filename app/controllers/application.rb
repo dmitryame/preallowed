@@ -89,7 +89,7 @@ class ApplicationController < ActionController::Base
     # this intercepts all authenticated requests and checks for authorization
     def authorize
       return if skip_authentication?
-
+      return if skip_authorization?
       if subject_has_access_to_resource?(session[:subject_id], request.path) == false
         redirect_to :controller => :home, :action => :insufficient
       end
@@ -101,6 +101,12 @@ class ApplicationController < ActionController::Base
       return true if request.path == '/'
       return true if request.path == '/establishments/new'  # we need the next two lines as an exception, so that the users can self register new clients.
       return true if request.path == '/establishments' and request.method == :post
+      false
+    end
+
+    def skip_authorization?
+      return true if request.path == '/login'
+      return true if request.path == '/clients'
       false
     end
 

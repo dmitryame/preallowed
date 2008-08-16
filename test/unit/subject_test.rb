@@ -27,7 +27,7 @@ class SubjectTest < ActiveSupport::TestCase
     should_require_attributes :name, :client_id
     
     should_require_unique_attributes :name, :scoped_to => :client_id
-    should_require_unique_attributes :email, :scoped_to => :client_id
+    # should_require_unique_attributes :email, :scoped_to => :client_id
     
   end    
 end

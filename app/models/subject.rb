@@ -24,7 +24,7 @@ class Subject < ActiveRecord::Base
   validates_length_of :salt, :within     => 3..100, :if => :password_present?
 
   validates_uniqueness_of :name, :scope => :client_id
-  validates_uniqueness_of :email, :scope => :client_id, :if => :email_present?
+  # validates_uniqueness_of :email, :scope => :client_id, :if => :email_present?
 
   attr_accessor :password_confirmation  
   validates_confirmation_of :password

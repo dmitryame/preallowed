@@ -2,7 +2,7 @@ class CreateClients < ActiveRecord::Migration
   def self.up
     create_table :clients do |t|
       t.string :name, :null => false
-      t.boolean :preallowed, :default => false
+      t.boolean :preallowed, :null => false, :default => false
       
       t.timestamps
     end

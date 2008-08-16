@@ -217,12 +217,12 @@ legend {
     background-color: #888888;
 }
 
-#roles_resources_list, #clients_resources_list, #roles_subjects_list, #clients_subjects_list {
+#roles_resources_list, #clients_resources_list, #roles_subjects_list, #clients_subjects_list, #subjects_roles_list, #clients_roles_list {
     list-style: none;
     cursor: -moz-grab;
 }
 
-#roles_resources, #clients_resources, #roles_subjects, #clients_subjects {
+#roles_resources, #clients_resources, #roles_subjects, #clients_subjects, #subjects_roles, #clients_roles {
     border: 1px solid gray;
 }
 
@@ -231,7 +231,7 @@ div.associations_control {
 	float:none;	
 }
 
-#draggable_resources, #draggable_subjects {
+#draggable_resources, #draggable_subjects, #draggable_roles {
 	padding: 10px 25px 10px 10px;	
 	float:left;	
 }

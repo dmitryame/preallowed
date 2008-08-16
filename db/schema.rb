@@ -13,7 +13,7 @@ ActiveRecord::Schema.define(:version => 20080815131939) do
 
   create_table "clients", :force => true do |t|
     t.string   "name",                          :null => false
-    t.boolean  "preallowed", :default => false
+    t.boolean  "preallowed", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

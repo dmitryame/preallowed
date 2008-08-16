@@ -1,49 +1,59 @@
 #!/usr/bin/env ./script/runner 
 
-client = Client.create :name => "preallowed.com"
-client.save
+preallowed_client = Client.create :name => "preallowed.com"
+preallowed_client.save
 
-subject = Subject.create(:name => "admin", :client => client, :email => "dmitry@rootlocusinc.com", :password => "admin")
-subject.save
+preallowed_subject = Subject.create(:name => "admin", :client => preallowed_client, :email => "dmitry@rootlocusinc.com", :password => "admin")
+preallowed_subject.save
 
-subject.managed_clients << client
+preallowed_subject.managed_clients << preallowed_client
     
-resource = Resource.create(:name => "^/.*$", :client => client)
-resource.save
+preallowed_resource = Resource.create(:name => "^/.*$", :client => preallowed_client)
+preallowed_resource.save
 
-resource2 = Resource.create(:name => "^/clients$", :client => client)
-resource2.save
+# preallowed_resource2 = Resource.create(:name => "^/clients$", :client => preallowed_client)
+# preallowed_resource2.save
 
 
-role = Role.create(:name => "preallowed_admin", :client => client)
-role.save
+preallowed_role = Role.create(:name => "preallowed_admin", :client => preallowed_client)
+preallowed_role.save
 
-subject.roles << role
-resource.roles << role
+preallowed_subject.roles << preallowed_role
+preallowed_resource.roles << preallowed_role
+
+
 
 # populate cleantogether related data
+# 
+cleantogether_client = Client.create(:name => "cleantogether.com")
+cleantogether_client.save!
 
-client = Client.create(:name => "cleantogether.com")
-client.save
+cleantogether_subject = Subject.create(:name => "cleantogether", :client => preallowed_client, :email => "dmitry@rootlocusinc.com", :password => "cleantogether", :password_confirmation => "cleantogether")
+cleantogether_subject.save!
 
-subject.managed_clients << client
+        
+cleantogether_role = Role.new
+cleantogether_role.name = cleantogether_client.name + "_admin"
+cleantogether_role.client = preallowed_client
+cleantogether_role.save!
 
-Role.create(:name => "user",         :client => client).save
-Role.create(:name => "team captain", :client => client).save
-Role.create(:name => "admin",        :client => client).save
+cleantogether_resource = Resource.new      
+cleantogether_resource.name = "^/clients/"  + cleantogether_client.id.to_s + "($|.xml$|/.*$)"      
+cleantogether_resource.client = preallowed_client
+cleantogether_resource.save!
 
-#Role.create(:name => "rest", :client_id => 1).save
+cleantogether_resource.roles << cleantogether_role
+cleantogether_subject.roles << cleantogether_role
 
-#Subject.create(:name => "rest", :client_id => 1 , :email => "dmitry@rootlocusinc.com").save
+# preallowed_client.resources.find_by_name("^/clients$").roles << cleantogether_role
+
+establishment = Establishment.new
+establishment.managed_client = cleantogether_client
+establishment.administrator = cleantogether_subject
+establishment.save!
 
 
-# Resource.create(:name => "^/clients/2($|.xml$|/.*$)", :resource_type_id => 1, :scope_id => 1).save
-# Resource.create(:name => "^/.*$", :resource_type_id => 1, :scope_id => 2).save
-
-# Resource.find(2).roles << Role.find(5)         
-# Subject.find(2).roles << Role.find(5)
-
-# Resource.find(3).roles << Role.find(2)         
-# Resource.find(3).roles << Role.find(3)         
-# Resource.find(3).roles << Role.find(4)         
+Role.create(:name => "user",         :client => cleantogether_client).save!
+Role.create(:name => "team captain", :client => cleantogether_client).save!
+Role.create(:name => "admin",        :client => cleantogether_client).save!
 

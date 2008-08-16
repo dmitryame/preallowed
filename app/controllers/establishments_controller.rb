@@ -46,7 +46,7 @@ class EstablishmentsController < ApplicationController
 
       @resource.roles << @role
       @administrator.roles << @role      
-      @administrator.client.resources.find_by_name("^/clients$").roles << @role
+      # @administrator.client.resources.find_by_name("^/clients$").roles << @role
 
       @establishment.managed_client = @managed_client
       @establishment.administrator = @administrator
