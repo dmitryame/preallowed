@@ -15,11 +15,11 @@
 			<img width="280" height="63" src="/images/RLI-logo-2.1.gif" border="0">
 		</a>
 	</div>
-	<div class="right">
+	<div class="subject_name">
 		<%=session[:subject_name]%>	
 	</div>
 
-	<div class="left">profile: <%= @client.name%></div>
+	<div class="edit_profile">profile: <%= @client.name%></div>
 	<div class="menu">
 		<%= link_to 'subjects', client_subjects_path(@client) %>
 		<%= link_to 'roles', client_roles_path(@client), :style => "color: blue;" %> 

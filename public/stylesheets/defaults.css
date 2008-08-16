@@ -235,3 +235,17 @@ div.associations_control {
 	padding: 10px 25px 10px 10px;	
 	float:left;	
 }
+
+
+
+div.edit_profile {
+	position: absolute;
+    top: 65px;    	    
+	left: 10px;
+}
+
+div.subject_name {
+	position: absolute;
+    top: 10px;    	    
+	left: 1000px;
+}

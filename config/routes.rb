@@ -16,6 +16,7 @@ ActionController::Routing::Routes.draw do |map|
     }
     client.resources :resources    
   end
+
   map.resources :profiles
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -60,5 +61,6 @@ ActionController::Routing::Routes.draw do |map|
   
     map.connect '/home/insufficient', :controller => "home", :action => "insufficient"
     map.login '/login', :controller => "subjects", :action => "login"
+    map.resolve_profile '/resolve_profile', :controller => "profiles", :action => "resolve_profile"
   
 end

@@ -8,4 +8,5 @@ class HomeController < ApplicationController
  
   def insufficient
   end
+  
 end

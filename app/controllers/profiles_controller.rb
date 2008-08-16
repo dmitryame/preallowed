@@ -1,6 +1,5 @@
 class ProfilesController < ApplicationController
 
-
   # GET /profiles/new
   # GET /profiles/new.xml
   def new
@@ -81,6 +80,11 @@ class ProfilesController < ApplicationController
         format.xml  { render :xml => @profile.errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+
+  def resolve_profile    
+    redirect_to edit_profile_path(Subject.find(session[:subject_id]).profiles.first)
   end
 
 end
