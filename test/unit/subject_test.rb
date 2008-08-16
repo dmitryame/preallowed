@@ -14,8 +14,8 @@ class SubjectTest < ActiveSupport::TestCase
     should_have_many :subjects_associations
     should_have_many :roles, :through => :subjects_associations
     
-    should_have_many :establishments
-    should_have_many :managed_clients, :through => :establishments
+    should_have_many :profiles
+    should_have_many :managed_clients, :through => :profiles
     
     should_ensure_length_in_range :email, (3..30) 
     should_ensure_length_in_range :name, (3..30) 

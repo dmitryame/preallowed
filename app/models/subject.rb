@@ -6,8 +6,8 @@ class Subject < ActiveRecord::Base
   has_many :subjects_associations
   has_many :roles, :through => :subjects_associations, :uniq => true   
 
-  has_many :establishments
-  has_many :managed_clients, :through => :establishments, :uniq => true,
+  has_many :profiles
+  has_many :managed_clients, :through => :profiles, :uniq => true,
   :class_name => "Client" 
 
 

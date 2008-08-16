@@ -43,7 +43,7 @@ Factory.define :resources_association do |resources_association|
   resources_association.association :role
 end
 
-Factory.define :establishment do |establishment|
-  establishment.managed_client {|managed_client| managed_client.association(:client) }
-  establishment.administrator {|administrator| administrator.association(:subject) }
+Factory.define :profile do |profile|
+  profile.managed_client {|managed_client| managed_client.association(:client) }
+  profile.administrator {|administrator| administrator.association(:subject) }
 end

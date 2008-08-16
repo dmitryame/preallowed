@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class EstablishmentTest < ActiveSupport::TestCase
-  context "An Establishment instance" do    
+class ProfileTest < ActiveSupport::TestCase
+  context "An Profile instance" do    
     setup do
-      @establishment = Factory.create(:establishment)
+      @profile = Factory.create(:profile)
     end
     
     should_belong_to :managed_client

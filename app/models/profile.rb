@@ -1,4 +1,4 @@
-class Establishment < ActiveRecord::Base
+class Profile < ActiveRecord::Base
   belongs_to :managed_client,
   :class_name => "Client", 
   :foreign_key => "client_id"

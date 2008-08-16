@@ -3,8 +3,8 @@ class Client < ActiveRecord::Base
   has_many :roles
   has_many :resources
   
-  has_many :establishments
-  has_many :administrators, :through => :establishments, :uniq => true,
+  has_many :profiles
+  has_many :administrators, :through => :profiles, :uniq => true,
   :class_name => "Subject" 
   
   

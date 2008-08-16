@@ -21,16 +21,16 @@ ActiveRecord::Schema.define(:version => 20080815131939) do
   add_index "clients", ["name"], :name => "index_clients_on_name"
   add_index "clients", ["preallowed"], :name => "index_clients_on_preallowed"
 
-  create_table "establishments", :force => true do |t|
+  create_table "profiles", :force => true do |t|
     t.integer  "client_id",  :limit => 11, :null => false
     t.integer  "subject_id", :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "establishments", ["client_id", "subject_id"], :name => "index_establishments_on_client_id_and_subject_id", :unique => true
-  add_index "establishments", ["client_id"], :name => "index_establishments_on_client_id"
-  add_index "establishments", ["subject_id"], :name => "index_establishments_on_subject_id"
+  add_index "profiles", ["client_id", "subject_id"], :name => "index_profiles_on_client_id_and_subject_id", :unique => true
+  add_index "profiles", ["client_id"], :name => "index_profiles_on_client_id"
+  add_index "profiles", ["subject_id"], :name => "index_profiles_on_subject_id"
 
   create_table "resources", :force => true do |t|
     t.string   "name",                     :null => false

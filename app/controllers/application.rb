@@ -99,8 +99,8 @@ class ApplicationController < ActionController::Base
     def skip_authentication?
       return true if request.path == '/home/insufficient'
       return true if request.path == '/'
-      return true if request.path == '/establishments/new'  # we need the next two lines as an exception, so that the users can self register new clients.
-      return true if request.path == '/establishments' and request.method == :post
+      return true if request.path == '/profiles/new'  # we need the next two lines as an exception, so that the users can self register new clients.
+      return true if request.path == '/profiles' and request.method == :post
       false
     end
 

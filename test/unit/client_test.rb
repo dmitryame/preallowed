@@ -10,8 +10,8 @@ class ClientTest < Test::Unit::TestCase
     should_have_many :roles
     should_have_many :resources
 
-    should_have_many :establishments
-    should_have_many :administrators, :through => :establishments
+    should_have_many :profiles
+    should_have_many :administrators, :through => :profiles
     
     should_require_attributes :name
     should_require_unique_attributes :name

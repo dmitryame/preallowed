@@ -47,10 +47,10 @@ cleantogether_subject.roles << cleantogether_role
 
 # preallowed_client.resources.find_by_name("^/clients$").roles << cleantogether_role
 
-establishment = Establishment.new
-establishment.managed_client = cleantogether_client
-establishment.administrator = cleantogether_subject
-establishment.save!
+profile = Profile.new
+profile.managed_client = cleantogether_client
+profile.administrator = cleantogether_subject
+profile.save!
 
 
 Role.create(:name => "user",         :client => cleantogether_client).save!
