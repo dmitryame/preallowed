@@ -20,8 +20,8 @@
 	</div>
 
 	<div class="left">profile: <%= @client.name%></div>
-	<div class="menu">				
-		<%= link_to 'subjects', client_subjects_path(@client), :style => "color: blue;" %>
+	<div class="menu">
+		<%= link_to 'subjects', client_subjects_path(@client) %>
 		<%= link_to 'roles', client_roles_path(@client) %> 
 		<%= link_to 'resources', client_resources_path(@client) %> 
 	</div>
