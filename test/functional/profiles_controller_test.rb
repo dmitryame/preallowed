@@ -1,6 +1,9 @@
 require 'test_helper'
 
 class ProfilesControllerTest < ActionController::TestCase
+  #TODO: really need to write a test for this controller, 
+  # the problem is that the controler is not really restful, so first need to figure out how to convert it to restful way, then write the tests with shoulda
+  
   # def test_should_get_index
   #   get :index
   #   assert_response :success
@@ -42,4 +45,5 @@ class ProfilesControllerTest < ActionController::TestCase
   # 
   #   assert_redirected_to profiles_path
   # end
+
 end
