@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-
-
+  map.resources :clients, :member => {:subject_id_from_name => :get}#TODO: write functional test    
   map.resources :clients do |client|
     client.resources :subjects,
     :member => {
@@ -14,7 +13,7 @@ ActionController::Routing::Routes.draw do |map|
       :add_resource => :put,
       :remove_resource => :put
     }
-    client.resources :resources    
+    client.resources :resources
   end
 
   map.resources :profiles

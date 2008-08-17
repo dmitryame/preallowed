@@ -28,14 +28,14 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
 
-  # force ssl on the entire application
-  def ssl_required?
-    if RAILS_ENV == 'production'
-      true
-    else
-      false
-    end
-  end
+  # force ssl on the entire application TODO: enable ssl in prod when moved to amazon with proper ssl certificate installed
+  # def ssl_required?
+  #   if RAILS_ENV == 'production'
+  #     true
+  #   else
+  #     false
+  #   end
+  # end
   
   # this method (is not an action) is used from different actions and filters as well
   # this method is a core of figuring out if a particulalr subject has access to a particular resource.
@@ -57,6 +57,7 @@ class ApplicationController < ActionController::Base
   private
 
 
+  # TODO: add log request back
   # def logrequest
   #   @log_record             = LogRecord.new
   #   @log_record.client_id   = params[:client_id]    
