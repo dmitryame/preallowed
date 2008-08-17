@@ -57,3 +57,12 @@ Role.create(:name => "user",         :client => cleantogether_client).save!
 Role.create(:name => "team captain", :client => cleantogether_client).save!
 Role.create(:name => "admin",        :client => cleantogether_client).save!
 
+cleantogether_resource = Resource.new      
+cleantogether_resource.name = "^/.*$"
+cleantogether_resource.client = cleantogether_client
+cleantogether_resource.save!
+
+cleantogether_resource = Resource.new      
+cleantogether_resource.name = "^/sponsors$|^/sponsors/logo/.*$"
+cleantogether_resource.client = cleantogether_client
+cleantogether_resource.save!
