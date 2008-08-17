@@ -20,7 +20,8 @@
 	</div>
 
 	<%if @client%>
-		<div class="edit_profile">profile: <%= link_to @client.name, "/resolve_profile" %></div>
+	
+		<div class="edit_profile">profile: <%= link_to @client.name, edit_profile_path(Profile.find_by_client_id_and_subject_id(@client, session[:subject_id])) %></div>
 	
 		<div class="menu">
 			<%= link_to 'subjects', client_subjects_path(@client) %>

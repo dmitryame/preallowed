@@ -52,16 +52,24 @@ class ProfilesController < ApplicationController
 
       @profile.managed_client = @managed_client
       @profile.administrator = @administrator
+      @profile.save! 
+
+      @profile_resource = Resource.new      
+      @profile_resource.name = "^/profiles/"  + @profile.id.to_s + "($|.xml$|/.*$)"      
+      @profile_resource.client = @administrator.client
+      @profile_resource.save!
+
+      @profile_resource.roles << @role
 
       respond_to do |format|
-        if @profile.save
+        # if @profile.save
           flash[:notice] = 'Profile was successfully created.'
           format.html { redirect_to(clients_url) }
           format.xml  { render :xml => @profile, :status => :created, :location => @profile }
-        else
-          format.html { render :action => "new" }
-          format.xml  { render :xml => @profile.errors, :status => :unprocessable_entity }
-        end
+        # else
+        #   format.html { render :action => "new" }
+        #   format.xml  { render :xml => @profile.errors, :status => :unprocessable_entity }
+        # end
       end
     end
   rescue ActiveRecord::RecordInvalid => e
@@ -88,14 +96,9 @@ class ProfilesController < ApplicationController
     end
   end
 
-
-  def resolve_profile    
-    redirect_to edit_profile_path(Subject.find(session[:subject_id]).profiles.first)
-  end
-
   private
   def find_administrator
-    @administrator = Subject.find(session[:subject_id])
+    @administrator = Subject.find(session[:subject_id]) if session[:subject_id]
   end
 
 end
