@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  before_filter :find_administrator
 
   # GET /profiles/new
   # GET /profiles/new.xml
@@ -17,7 +18,9 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    @profile = Profile.find(params[:id])
+    @profile = @administrator.profiles.find(params[:id])
+    @managed_client = @profile.managed_client
+    @administrator = @profile.administrator
   end
 
   # POST /profiles
@@ -68,12 +71,15 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.xml
   def update
-    @profile = Profile.find(params[:id])
+    @profile = @administrator.profiles.find(params[:id])
+
+    @managed_client = @profile.managed_client
+    @administrator = @profile.administrator
 
     respond_to do |format|
-      if @profile.update_attributes(params[:profile])
+      if @managed_client.update_attributes(params[:managed_client]) and @administrator.update_attributes(params[:administrator])
         flash[:notice] = 'Profile was successfully updated.'
-        format.html { redirect_to(@profile) }
+        format.html { redirect_to clients_url }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -85,6 +91,11 @@ class ProfilesController < ApplicationController
 
   def resolve_profile    
     redirect_to edit_profile_path(Subject.find(session[:subject_id]).profiles.first)
+  end
+
+  private
+  def find_administrator
+    @administrator = Subject.find(session[:subject_id])
   end
 
 end
