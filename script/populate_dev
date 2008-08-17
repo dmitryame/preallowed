@@ -47,9 +47,15 @@ cleantogether_subject.roles << cleantogether_role
 
 # preallowed_client.resources.find_by_name("^/clients$").roles << cleantogether_role
 
+
 profile = Profile.new
 profile.managed_client = cleantogether_client
 profile.administrator = cleantogether_subject
+profile.save!
+
+profile = Profile.new
+profile.managed_client = cleantogether_client
+profile.administrator = preallowed_subject
 profile.save!
 
 

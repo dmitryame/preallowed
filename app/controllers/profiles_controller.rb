@@ -36,6 +36,12 @@ class ProfilesController < ApplicationController
       @managed_client.save!
       @administrator.save!
             
+      #this profile is to allow preallowed subject to manage the newly created client        
+      profile = Profile.new
+      profile.subject_id = Client.preallowed_client.administrators.first.id # TODO: this is a little iffy, which one of the administrators of the preallowed.com to give access? initially to the first one
+      profile.client_id = @managed_client.id
+      profile.save!
+            
       @role = Role.new
       @role.name = @managed_client.name + "_admin"
       @role.client = @administrator.client
