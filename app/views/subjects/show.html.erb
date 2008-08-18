@@ -11,3 +11,7 @@
 
 <%= link_to image_tag("back.png", :border => 0, :width => 16, :height => 16), client_subjects_path(@client) %>
 <%= link_to image_tag("edit.png", :border => 0, :width => 16, :height => 16), edit_client_subject_path(@client, @subject) %> 
+
+<div class="associations_control">
+	<%= render :partial => 'draggable_roles' %>
+</div>

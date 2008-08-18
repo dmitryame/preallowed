@@ -119,6 +119,32 @@ class SubjectsController < ApplicationController
     end
   end
 
+  def add_role
+    @subject = @client.subjects.find(params[:id])
+    @role = @client.roles.find(params[:role_id])
+    respond_to do |format|
+      if @role.subjects << @subject
+        format.xml { head :ok }
+        format.js
+      else
+        format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove_role
+    @subject = @client.subjects.find(params[:id])  
+    @role = @client.roles.find(params[:role_id])
+    respond_to do |format|
+      if @role.subjects.find(@subject) and @role.subjects.delete(@subject)
+        format.xml  { head :ok }
+        format.js
+      else
+        format.xml  { render :xml => @subject.errors, :status => :unprocessable_entity }
+      end        
+    end
+  end
+
 
 private
 

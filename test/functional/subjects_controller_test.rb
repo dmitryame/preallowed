@@ -61,4 +61,24 @@ class SubjectsControllerTest < ActionController::TestCase
     end
   end
 
+
+  context "on add role to subject" do
+    setup do 
+      subject = Factory(:subject, :client => @client)
+      put :add_role, :id => subject.id, :role_id => @role.id, :client_id => @role.client.id
+    end
+    should_respond_with :ok
+    should_not_set_the_flash      
+    
+  end
+
+  context "on remove role from subject" do
+    setup do 
+      put :remove_role, :id => @subject.id, :role_id => @role.id, :client_id => @role.client.id 
+    end
+    should_respond_with :ok
+    should_not_set_the_flash  
+  end
+
+
 end

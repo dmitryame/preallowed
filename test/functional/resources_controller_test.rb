@@ -16,4 +16,24 @@ class ResourcesControllerTest < ActionController::TestCase
   end        
 
 
+  context "on add role to resource" do
+    setup do 
+      resource = Factory(:resource, :client => @client)
+      put :add_role, :id => resource.id, :role_id => @role.id, :client_id => @role.client.id
+    end
+    should_respond_with :ok
+    should_not_set_the_flash      
+    
+  end
+
+  context "on remove role from resource" do
+    setup do 
+      put :remove_role, :id => @resource.id, :role_id => @role.id, :client_id => @role.client.id 
+    end
+    should_respond_with :ok
+    should_not_set_the_flash  
+  end
+
+
+
 end

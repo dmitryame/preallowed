@@ -87,6 +87,34 @@ class ResourcesController < ApplicationController
     end
   end
 
+
+
+  def add_role
+    @resource = @client.resources.find(params[:id])
+    @role = @client.roles.find(params[:role_id])
+    respond_to do |format|
+      if @role.resources << @resource
+        format.xml { head :ok }
+        format.js
+      else
+        format.xml  { render :xml => @resource.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  def remove_role
+    @resource = @client.resources.find(params[:id])  
+    @role = @client.roles.find(params[:role_id])
+    respond_to do |format|
+      if @role.resources.find(@resource) and @role.resources.delete(@resource)
+        format.xml  { head :ok }
+        format.js
+      else
+        format.xml  { render :xml => @resource.errors, :status => :unprocessable_entity }
+      end        
+    end
+  end
+
   private
 
     def find_client
