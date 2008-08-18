@@ -10,6 +10,10 @@ Factory.sequence :password do |n|
   "Sup3r#{n}" 
 end
 
+Factory.sequence :value do |n|
+  "value#{n}" 
+end
+
 Factory.define :client do |client|
   client.name {Factory.next :name }
   client.email {Factory.next :email } 
@@ -46,4 +50,15 @@ end
 Factory.define :profile do |profile|
   profile.managed_client {|managed_client| managed_client.association(:client) }
   profile.administrator {|administrator| administrator.association(:subject) }
+end
+
+Factory.define :access_log do |acceess_log|
+  acceess_log.association :client  
+  acceess_log.request_body     {Factory.next :value }
+  acceess_log.request_headers  {Factory.next :value }
+  acceess_log.request_method   {Factory.next :value }
+  acceess_log.request_path     {Factory.next :value }
+  acceess_log.response_body    {Factory.next :value }
+  acceess_log.response_headers {Factory.next :value }
+  acceess_log.response_status  {Factory.next :value }
 end

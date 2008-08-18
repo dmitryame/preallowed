@@ -12,8 +12,8 @@ class ApplicationController < ActionController::Base
   before_filter :authorize 
 
 
-  # before_filter :logrequest
-  # after_filter :logresponse
+  before_filter :logrequest
+  after_filter :logresponse
 
 
 
@@ -57,22 +57,22 @@ class ApplicationController < ActionController::Base
   private
 
 
-  # TODO: add log request back
-  # def logrequest
-  #   @log_record             = LogRecord.new
-  #   @log_record.client_id   = params[:client_id]    
-  #   @log_record.req_body    = request.body.string
-  #   @log_record.req_headers = request.headers
-  #   @log_record.req_method  = request.method
-  #   @log_record.req_path    = request.path
-  #   @log_record.save
-  # end
-  # 
-  # def logresponse
-  #   @log_record.resp_headers = response.headers
-  #   @log_record.resp_status  = response.headers["Status"]
-  #   @log_record.save
-  # end
+  def logrequest
+    @access_log                  = AccessLog.new
+    @access_log.client_id        = params[:client_id]    
+    @access_log.request_body     = request.body.string
+    @access_log.request_headers  = request.headers
+    @access_log.request_method   = request.method
+    @access_log.request_path     = request.path
+    @access_log.save
+  end
+
+  def logresponse
+    @access_log.response_headers = response.headers
+    @access_log.response_status  = response.headers["Status"]
+    @access_log.response_body    = response.body
+    @access_log.save
+  end
 
     # TODO: put in a logic to limit number of attempts to 3  
     def authenticate         
