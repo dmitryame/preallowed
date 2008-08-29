@@ -92,13 +92,14 @@ class ApplicationController < ActionController::Base
       return if skip_authentication?
       return if skip_authorization?
       if subject_has_access_to_resource?(session[:subject_id], request.path) == false
-        redirect_to :controller => :home, :action => :insufficient
+        redirect_to insufficient_path
       end
     end
 
   # defines resources that never require the authentication
     def skip_authentication?
       return true if request.path == '/home/insufficient'
+      return true if request.path == '/home/help'
       return true if request.path == '/'
       return true if request.path == '/profiles/new'  # we need the next two lines as an exception, so that the users can self register new clients.
       return true if request.path == '/profiles' and request.method == :post

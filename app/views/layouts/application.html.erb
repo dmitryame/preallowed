@@ -10,17 +10,20 @@
 </head>
 
 <body>
+	<div class="subject_name">
+		<%if session[:subject_name]%>
+			<%=session[:subject_name]%>
+		<%else%>
+			<%=link_to 'login', '/login' %>
+		<%end%>		
+	</div>
 	<div id="header">
 		<a href="http://www.rootlocusinc.com">
 			<img width="280" height="63" src="/images/RLI-logo-2.1.gif" border="0">
 		</a>
 	</div>
 	<div class="right">
-		<%if session[:subject_name]%>
-			<%=session[:subject_name]%>
-		<%else%>
-			<%=link_to 'login', '/login' %>
-		<%end%>		
+		<%=link_to "help", help_url%>
 	</div>
 
 	<div id="content">
