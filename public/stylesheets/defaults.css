@@ -82,6 +82,44 @@ h2.headline {
 h1.title {
 	font-weight: bold;
 }
+p, li {
+font-family:verdana;
+font-size:12px;
+font-weight:normal;
+line-height:1.4em;
+margin:0 0 20px;
+}
+ul {
+margin:10px 0;
+padding:0 0 0 25px;
+}
+li {
+margin:0;
+}
+
+h1 {
+font-family:verdana;
+font-size:16px;
+margin:0 0 4px;
+}
+h2 {
+font-family:verdana;
+font-size:14px;
+line-height:1.2em;
+margin:0 0 3px;
+}
+h3 {
+font-family:verdana;
+font-size:12px;
+margin:0 0 2px;
+}
+a {
+color:#3252B2;
+}
+a img {
+border:0 none;
+}
+
 
 .text {
 	background: #fff;

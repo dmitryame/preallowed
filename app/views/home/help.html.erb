@@ -1,1 +1,49 @@
-help
+<%= stylesheet_link_tag "textmate" %>
+
+<h1>Introduction</h1>
+<p>
+	Preallowed is a restful service implemented in Ruby on Rails. Any resource that is accessible via a browser is also available via programmatic interface in XML format. Ruby on Rails offers a simple elegant way for accessing restful resources called <b>Active Resource</b> (see example below). Accessing it from Java or any other language capable of accessing resources via http is just as simple (see a Java example).
+</p>
+
+<h1>Initial setup</h1>
+Although the service is extremely easy to use, it requires some basic configuration. 
+
+<h2>Registering profile</h2>
+<p>
+	You have to <%= link_to "Register a Profile", new_profile_path %>. It takes only few seconds and is absolutely free.
+</p>
+<p>
+	During the registration process all fields are required. Here is an explanation of the fields meaning:
+</p>
+<p>
+	<b>Client Name</b> -- this is how we keep the users separate from each other. The client name should describe your software and can be something like mycompany.com, or dev.mycompany.com, or mywebsite etc... All the service requests are made within a clients scope. You will need to know the client id to access the service. 
+</p>
+<p>
+	<b>User name, password, password confirmation</b> -- you will use this user name and password combination to access resources for your client name. Currently there is only one Client per User, but it might eventually change based on requests we get from you. 
+</p>
+<p>
+	<b>Email</b> -- we only need it to communicate back to you about service alerts and notifications, so please make sure to provide existing email address.
+</p>
+
+<h2>environment.rb</h2>
+<pre class="textmate-source"><span class="source source_ruby source_ruby_rails"><span class="comment comment_line comment_line_number-sign comment_line_number-sign_ruby"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_ruby">#</span> Include your application configuration below
+</span>  
+<span class="variable variable_other variable_other_constant variable_other_constant_ruby">PREALLOWED_LOGIN</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="string string_quoted string_quoted_single string_quoted_single_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">'</span>your_user_login<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">'</span></span> <span class="comment comment_line comment_line_number-sign comment_line_number-sign_ruby"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_ruby">#</span> this is the same login/password combination you are using to log in to the preallowed.com site. You configured it during registering a profile.
+</span><span class="variable variable_other variable_other_constant variable_other_constant_ruby">PREALLOWED_PASSWORD</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="string string_quoted string_quoted_single string_quoted_single_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">'</span>your_password<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">'</span></span>
+
+<span class="variable variable_other variable_other_constant variable_other_constant_ruby">CLIENT_ID</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="string string_quoted string_quoted_double string_quoted_double_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">"</span>2<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">"</span></span> <span class="comment comment_line comment_line_number-sign comment_line_number-sign_ruby"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_ruby">#</span> to find client_id login and click on a client from a list. The url will look like this http://www.preallowed.com/clients/2 . The number 2 is your client id.
+</span><span class="variable variable_other variable_other_constant variable_other_constant_ruby">USER_ROLE_ID</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="string string_quoted string_quoted_double string_quoted_double_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">"</span>3<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">"</span></span> <span class="comment comment_line comment_line_number-sign comment_line_number-sign_ruby"><span class="punctuation punctuation_definition punctuation_definition_comment punctuation_definition_comment_ruby">#</span> we assuming that the number of roles for your application is fixed and is known ahead of time. Each role has id in preallowed system. You will access roles by there id.
+</span><span class="variable variable_other variable_other_constant variable_other_constant_ruby">TEAM_CAPTAIN_ROLE_ID</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="string string_quoted string_quoted_double string_quoted_double_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">"</span>4<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">"</span></span>
+<span class="variable variable_other variable_other_constant variable_other_constant_ruby">ADMIN_ROLE_ID</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="string string_quoted string_quoted_double string_quoted_double_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">"</span>5<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">"</span></span>
+<span class="variable variable_other variable_other_constant variable_other_constant_ruby">PREALLOWED_HOST</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="string string_quoted string_quoted_double string_quoted_double_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">"</span>http://www.preallowed.com<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">"</span></span>
+<span class="variable variable_other variable_other_constant variable_other_constant_ruby">CLIENTS_URI</span> <span class="keyword keyword_operator keyword_operator_assignment keyword_operator_assignment_ruby">=</span> <span class="variable variable_other variable_other_constant variable_other_constant_ruby">PREALLOWED_HOST</span> <span class="keyword keyword_operator keyword_operator_arithmetic keyword_operator_arithmetic_ruby">+</span> <span class="string string_quoted string_quoted_double string_quoted_double_ruby"><span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_begin punctuation_definition_string_begin_ruby">"</span>/clients/<span class="punctuation punctuation_definition punctuation_definition_string punctuation_definition_string_end punctuation_definition_string_end_ruby">"</span></span> <span class="keyword keyword_operator keyword_operator_arithmetic keyword_operator_arithmetic_ruby">+</span> <span class="variable variable_other variable_other_constant variable_other_constant_ruby">CLIENT_ID</span>
+</span>
+</pre>
+
+
+<h1>Accessing service from Ruby on Rails client (Active Resource)</h1>
+We need to create few "Active Resource" model classes.
+
+
+
+<h1>Accessing service from Java client</h1>

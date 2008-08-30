@@ -1,0 +1,153 @@
+/* Stylesheet generated from TextMate theme
+ *
+ * All Hallow's Eve
+ * 
+ *
+ */
+
+/* Mostly to improve view within the TextMate HTML viewer */
+/*body {
+    margin: 0;
+    padding: 0;
+}
+*/
+
+pre.textmate-source {
+	margin: 0;
+	padding: 0 0 0 2px;
+	font-family: Monaco, monospace;
+	font-size: 12px;
+	line-height: 1.3em;
+	word-wrap: break-word;
+	white-space: pre;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -o-pre-wrap;
+}
+
+pre.textmate-source {
+	color: #FFFFFF;
+	background-color: #000000;
+}
+
+pre.textmate-source .linenum {
+	width: 75px;
+	padding: 0.1em 1em 0.2em 0;
+	color: #888;
+	background-color: #eee;
+}
+pre.textmate-source span {
+   padding-top: 0.2em;
+   padding-bottom: 0.1em;
+}
+pre.textmate-source ::selection {
+	background-color: rgba(115, 89, 126, 0.88);
+}
+/* Text base */
+pre.textmate-source .text {
+	color: #FFFFFF;
+	background-color: #434242;
+}
+
+/* Source base */
+pre.textmate-source .source {
+	color: #FFFFFF;
+	background-color: #000000;
+}
+
+/* Comment */
+pre.textmate-source .comment {
+	color: #9933CC;
+}
+
+/* Constant */
+pre.textmate-source .constant {
+	color: #3387CC;
+}
+
+/* Keyword */
+pre.textmate-source .keyword {
+	color: #CC7833;
+}
+
+/* Pre-processor Line */
+pre.textmate-source .meta_preprocessor_c {
+	color: #D0D0FF;
+}
+
+/* Pre-processor Directive */
+pre.textmate-source .keyword_control_import {
+}
+
+/* Function name */
+pre.textmate-source .entity_name_function {
+}
+
+/* Function argument */
+pre.textmate-source .variable_parameter {
+	font-style: italic;
+}
+
+/* Block comment */
+pre.textmate-source .source .comment_block {
+	color: #FFFFFF;
+	background-color: #9B9B9B;
+}
+
+/* String */
+pre.textmate-source .string {
+	color: #66CC33;
+}
+
+/* String escapes */
+pre.textmate-source .string .constant_character_escape {
+	color: #AAAAAA;
+}
+
+/* String (executed) */
+pre.textmate-source .string_interpolated {
+	color: #000000;
+	background-color: #CCCC33;
+}
+
+/* Regular expression */
+pre.textmate-source .string_regexp {
+	color: #CCCC33;
+}
+
+/* String (literal) */
+pre.textmate-source .string_literal {
+	color: #CCCC33;
+}
+
+/* String escapes (executed) */
+pre.textmate-source .string_interpolated .constant_character_escape {
+	color: #555555;
+}
+
+/* Type name */
+pre.textmate-source .entity_name_type {
+	text-decoration: underline;
+}
+
+/* Class inheritance */
+pre.textmate-source .entity_other_inherited-class {
+	font-style: italic;
+	text-decoration: underline;
+}
+
+/* Tag name */
+pre.textmate-source .entity_name_tag {
+	text-decoration: underline;
+}
+
+/* Tag attribute */
+pre.textmate-source .entity_other_attribute-name {
+}
+
+/* Support function */
+pre.textmate-source .support_function {
+	color: #C83730;
+}
+
+
