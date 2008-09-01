@@ -2,4 +2,4 @@ log/*.log
 tmp/**/*
 .DS_Store
 config/environment.rb
-config/dtabase.yml
+config/database.yml
