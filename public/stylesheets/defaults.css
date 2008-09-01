@@ -278,12 +278,12 @@ div.associations_control {
 
 div.edit_profile {
 	position: absolute;
-    top: 65px;    	    
-	left: 10px;
+    top: 1px;    	    
+	left: 300px;
 }
 
 div.subject_name {
 	position: absolute;
-    top: 10px;    	    
+    top: 1px;    	    
 	left: 1000px;
 }
