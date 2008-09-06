@@ -96,4 +96,16 @@ class ClientsController < ApplicationController
     end
   end
 
+  # lookup subject_id from name 
+  def role_id_from_name
+    @client = Client.find(params[:id])    
+    @role = @client.roles.find(:first, :conditions => ["name = ?",params[:role_name]])
+    if @role != nil
+      render :text => "<a>" + @role.id.to_s + "</a>"
+    else
+      render :text => "<a>0</a>" #this means there is no subject found for this name
+    end
+  end
+
+
 end
