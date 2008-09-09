@@ -10,14 +10,9 @@
 </head>
 
 <body>
-	<div class="subject_name">
-		<%=session[:subject_name]%>	
-	</div>
-	<div class="right">
-		<%=link_to "help", help_url%>
-	</div>
 
-	<div class="edit_profile">profile: <%= @client.name%></div>
+	<%= render(:partial => "shared/profile") %> 	
+
 	<div class="menu">
 		<%= link_to 'subjects', client_subjects_path(@client) %>
 		<%= link_to 'roles', client_roles_path(@client), :style => "color: blue;" %> 

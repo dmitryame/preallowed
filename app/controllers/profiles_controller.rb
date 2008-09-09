@@ -20,6 +20,7 @@ class ProfilesController < ApplicationController
   def edit
     @profile = @administrator.profiles.find(params[:id])
     @managed_client = @profile.managed_client
+    @client = @managed_client
     @administrator = @profile.administrator
   end
 
@@ -29,6 +30,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(params[:profile])
 
     @managed_client = Client.new(params[:managed_client])
+    @client = @managed_client
     @administrator = Subject.new(params[:administrator])
     @administrator.client = Client.preallowed_client
 
@@ -88,6 +90,7 @@ class ProfilesController < ApplicationController
     @profile = @administrator.profiles.find(params[:id])
 
     @managed_client = @profile.managed_client
+    @client = @managed_client
     @administrator = @profile.administrator
 
     respond_to do |format|

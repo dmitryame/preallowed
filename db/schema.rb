@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   add_index "access_logs", ["client_id"], :name => "index_access_logs_on_client_id"
 
   create_table "clients", :force => true do |t|
-    t.string   "name",       :default => "",    :null => false
+    t.string   "name",                          :null => false
     t.boolean  "preallowed", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   add_index "profiles", ["subject_id"], :name => "index_profiles_on_subject_id"
 
   create_table "resources", :force => true do |t|
-    t.string   "name",                     :default => "", :null => false
-    t.integer  "client_id",  :limit => 11,                 :null => false
+    t.string   "name",                     :null => false
+    t.integer  "client_id",  :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   add_index "resources_associations", ["role_id"], :name => "index_resources_associations_on_role_id"
 
   create_table "roles", :force => true do |t|
-    t.string   "name",                     :default => "", :null => false
-    t.integer  "client_id",  :limit => 11,                 :null => false
+    t.string   "name",                     :null => false
+    t.integer  "client_id",  :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   add_index "roles", ["client_id"], :name => "index_roles_on_client_id"
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :default => "", :null => false
+    t.string   "session_id", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -91,11 +91,11 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "subjects", :force => true do |t|
-    t.string   "name",                          :default => "", :null => false
+    t.string   "name",                          :null => false
     t.string   "email"
     t.string   "hashed_password"
     t.string   "salt"
-    t.integer  "client_id",       :limit => 11,                 :null => false
+    t.integer  "client_id",       :limit => 11, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

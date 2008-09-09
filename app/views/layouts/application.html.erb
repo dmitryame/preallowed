@@ -11,16 +11,7 @@
 </head>
 
 <body>
-	<div class="subject_name">
-		<%if session[:subject_name]%>
-			<%=session[:subject_name]%>
-		<%else%>
-			<%=link_to 'login', '/login' %>
-		<%end%>		
-	</div>
-	<div class="right">
-		<%=link_to "help", help_url%>
-	</div>
+	<%= render(:partial => "shared/profile") %> 	
 
 	<div id="content">
 		<p style="color: green"><%= flash[:notice] %></p>

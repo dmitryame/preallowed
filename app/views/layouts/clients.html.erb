@@ -10,17 +10,9 @@
 </head>
 
 <body>
-	<div class="subject_name">
-		<%=session[:subject_name]%>	
-	</div>
-	<div class="right">
-		<%=link_to "help", help_url%>
-	</div>
+	<%= render(:partial => "shared/profile") %> 	
 
-	<%if @client%>
-	
-		<div class="edit_profile">profile: <%= link_to @client.name, edit_profile_path(Profile.find_by_client_id_and_subject_id(@client, session[:subject_id])) %></div>
-	
+	<%if @client%>		
 		<div class="menu">
 			<%= link_to 'subjects', client_subjects_path(@client) %>
 			<%= link_to 'roles', client_roles_path(@client) %> 
