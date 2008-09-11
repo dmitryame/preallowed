@@ -66,6 +66,7 @@ ActionController::Routing::Routes.draw do |map|
   # map.connect ':controller/:action/:id.:format'
   
     map.insufficient '/home/insufficient', :controller => "home", :action => "insufficient"
+    map.ourclients '/home/ourclients', :controller => "home", :action => "ourclients"
     map.help '/home/help', :controller => "home", :action => "help"
     map.login '/login', :controller => "subjects", :action => "login"
   
