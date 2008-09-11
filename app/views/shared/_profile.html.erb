@@ -1,7 +1,7 @@
 <div id="profile_box">
 	<%unless session[:subject_name].blank? %>	
 	<div id="subject_name">
-		login:&nbsp;<%=session[:subject_name]%>
+		login:&nbsp;<%=link_to session[:subject_name], clients_url%>
 	</div>
 
 	<%unless @client.blank? %>
@@ -12,6 +12,6 @@
 		<%=link_to 'login', '/login' %>	
 	<%end%>
 	<div id="help_menu_box">
-		<%=link_to "FAQ", help_url%>|<%=link_to "help", help_url%>|<%=link_to "terms", help_url%>
+		<%=link_to "home", home_url%>|<%=link_to "FAQ", help_url%>|<%=link_to "help", help_url%>|<%=link_to "terms", help_url%>
 	</div>	
 </div>

@@ -64,7 +64,7 @@ ActionController::Routing::Routes.draw do |map|
   # Install the default routes as the lowest priority.
   # map.connect ':controller/:action/:id'
   # map.connect ':controller/:action/:id.:format'
-  
+    map.home '/home/index', :controller => "home", :action => "index"
     map.insufficient '/home/insufficient', :controller => "home", :action => "insufficient"
     map.ourclients '/home/ourclients', :controller => "home", :action => "ourclients"
     map.help '/home/help', :controller => "home", :action => "help"
