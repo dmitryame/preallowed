@@ -68,6 +68,7 @@ ActionController::Routing::Routes.draw do |map|
     map.insufficient '/home/insufficient', :controller => "home", :action => "insufficient"
     map.ourclients '/home/ourclients', :controller => "home", :action => "ourclients"
     map.help '/home/help', :controller => "home", :action => "help"
-    map.login '/login', :controller => "subjects", :action => "login"
-  
+    map.faq '/home/faq', :controller => "home", :action => "faq"
+    map.terms '/home/terms', :controller => "home", :action => "terms"
+    map.login '/login', :controller => "subjects", :action => "login"  
 end

@@ -18,6 +18,14 @@
 		<%= link_to 'resources', client_resources_path(@client) %> 
 	</div>
 
+
+	<div id="content">
+		<p style="color: green"><%= flash[:notice] %></p>
+		<div id="main">
+			<%= yield :layout %>
+		</div>
+	</div>
+
 	<%= render(:partial => "shared/footer") %> 		
 </body>
 </html>

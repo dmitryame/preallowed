@@ -14,5 +14,11 @@ class HomeController < ApplicationController
   
   def ourclients
   end
+  
+  def faq
+  end
+  
+  def terms
+  end
 
 end
