@@ -164,9 +164,12 @@ pre {
   font-size: 11px;
 }
 
-a { color: #555; }
-a:visited { color: #777; }
-#a:hover { color: #fff; background-color:#000; }
+a { 
+	color: #4183C4; 
+	text-decoration:none;
+}
+a:visited { color: ##4183C4; }
+a:hover { color: #fff; background-color:#000; }
 
 label {
     font-size: 8px;
