@@ -12,8 +12,9 @@ class ApplicationController < ActionController::Base
   before_filter :authorize 
 
 
-  before_filter :logrequest
-  after_filter :logresponse
+  # uncomment to enable audit log
+  # before_filter :logrequest
+  # after_filter :logresponse
 
 
 
