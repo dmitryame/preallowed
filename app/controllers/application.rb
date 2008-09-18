@@ -13,8 +13,8 @@ class ApplicationController < ActionController::Base
 
 
   # uncomment to enable audit log
-  # before_filter :logrequest
-  # after_filter :logresponse
+  before_filter :logrequest
+  after_filter :logresponse
 
 
 
