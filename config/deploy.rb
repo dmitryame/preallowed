@@ -26,9 +26,9 @@ set :scm, "git"
 # set :scm_passphrase, "p@ssw0rd" #This is your custom users password
 set :user, "deployer"
 
-role :app, "echowaves.com"
-role :web, "echowaves.com"
-role :db,  "echowaves.com", :primary => true
+role :app, "preallowed.com"
+role :web, "preallowed.com"
+role :db,  "preallowed.com", :primary => true
 
 
 namespace :deploy do
