@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
     @access_log                  = AccessLog.new
     @access_log.client_id        = params[:client_id]    
     @access_log.request_body     = request.body.string
-    @access_log.request_headers  = request.headers
+    @access_log.request_headers  = request.headers.to_s
     @access_log.request_method   = request.method
     @access_log.request_path     = request.path
     @access_log.save
