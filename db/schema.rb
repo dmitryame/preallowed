@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   end
 
   add_index "resources", ["client_id", "name"], :name => "index_resources_on_client_id_and_name", :unique => true
-  add_index "resources", ["name"], :name => "index_resources_on_name"
   add_index "resources", ["client_id"], :name => "index_resources_on_client_id"
+  add_index "resources", ["name"], :name => "index_resources_on_name"
 
   create_table "resources_associations", :force => true do |t|
     t.integer  "resource_id", :null => false
@@ -65,8 +65,8 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
     t.datetime "updated_at"
   end
 
-  add_index "resources_associations", ["role_id", "resource_id"], :name => "index_resources_associations_on_role_id_and_resource_id", :unique => true
   add_index "resources_associations", ["resource_id"], :name => "index_resources_associations_on_resource_id"
+  add_index "resources_associations", ["role_id", "resource_id"], :name => "index_resources_associations_on_role_id_and_resource_id", :unique => true
   add_index "resources_associations", ["role_id"], :name => "index_resources_associations_on_role_id"
 
   create_table "roles", :force => true do |t|
@@ -77,8 +77,8 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   end
 
   add_index "roles", ["client_id", "name"], :name => "index_roles_on_client_id_and_name", :unique => true
-  add_index "roles", ["name"], :name => "index_roles_on_name"
   add_index "roles", ["client_id"], :name => "index_roles_on_client_id"
+  add_index "roles", ["name"], :name => "index_roles_on_name"
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -100,9 +100,9 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
     t.datetime "updated_at"
   end
 
+  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email"
   add_index "subjects", ["client_id", "name"], :name => "index_subjects_on_client_id_and_name", :unique => true
   add_index "subjects", ["client_id"], :name => "index_subjects_on_client_id"
-  add_index "subjects", ["client_id", "email"], :name => "index_subjects_on_client_id_and_email"
 
   create_table "subjects_associations", :force => true do |t|
     t.integer  "subject_id", :null => false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20080818121628) do
   end
 
   add_index "subjects_associations", ["role_id", "subject_id"], :name => "index_subjects_associations_on_role_id_and_subject_id", :unique => true
-  add_index "subjects_associations", ["subject_id"], :name => "index_subjects_associations_on_subject_id"
   add_index "subjects_associations", ["role_id"], :name => "index_subjects_associations_on_role_id"
+  add_index "subjects_associations", ["subject_id"], :name => "index_subjects_associations_on_subject_id"
 
 end
