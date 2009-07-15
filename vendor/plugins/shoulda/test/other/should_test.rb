@@ -1,6 +1,6 @@
 require File.join(File.dirname(__FILE__), '..', 'test_helper')
 
-class ShouldTest < Test::Unit::TestCase # :nodoc:
+class ShouldTest < ActiveSupport::TestCase # :nodoc:
   should "be able to define a should statement outside of a context" do
     assert true
   end
@@ -13,6 +13,10 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
     should "be able to see class methods" do
       assert true
     end
+  end
+
+  def self.should_be_able_to_setup_a_should_eventually_in_a_class_method
+    should "be able to setup a should eventually in a class method"
   end
 
   def self.should_see_a_context_block_like_a_Test_Unit_class
@@ -46,6 +50,7 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
     should_see_class_methods
     should_see_a_context_block_like_a_Test_Unit_class
     should_be_able_to_make_context_macros("Context ")
+    should_be_able_to_setup_a_should_eventually_in_a_class_method
 
     should "not define @blah" do
       assert ! self.instance_variables.include?("@blah")
@@ -119,21 +124,21 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
 
   def test_should_create_a_new_context
     assert_nothing_raised do
-      Thoughtbot::Shoulda::Context.new("context name", self) do; end
+      Shoulda::Context.new("context name", self) do; end
     end
   end
 
   def test_should_create_a_nested_context
     assert_nothing_raised do
-      parent = Thoughtbot::Shoulda::Context.new("Parent", self) do; end
-      child  = Thoughtbot::Shoulda::Context.new("Child", parent) do; end
+      parent = Shoulda::Context.new("Parent", self) do; end
+      child  = Shoulda::Context.new("Child", parent) do; end
     end
   end
 
   def test_should_name_a_contexts_correctly
-    parent     = Thoughtbot::Shoulda::Context.new("Parent", self) do; end
-    child      = Thoughtbot::Shoulda::Context.new("Child", parent) do; end
-    grandchild = Thoughtbot::Shoulda::Context.new("GrandChild", child) do; end
+    parent     = Shoulda::Context.new("Parent", self) do; end
+    child      = Shoulda::Context.new("Child", parent) do; end
+    grandchild = Shoulda::Context.new("GrandChild", child) do; end
 
     assert_equal "Parent", parent.full_name
     assert_equal "Parent Child", child.full_name
@@ -143,7 +148,7 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
   # Should statements
 
   def test_should_have_should_hashes_when_given_should_statements
-    context = Thoughtbot::Shoulda::Context.new("name", self) do
+    context = Shoulda::Context.new("name", self) do
       should "be good" do; end
       should "another" do; end
     end
@@ -155,7 +160,7 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
   # setup and teardown
 
   def test_should_capture_setup_and_teardown_blocks
-    context = Thoughtbot::Shoulda::Context.new("name", self) do
+    context = Shoulda::Context.new("name", self) do
       setup    do; "setup";    end
       teardown do; "teardown"; end
     end
@@ -167,7 +172,7 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
   # building
 
   def test_should_create_shoulda_test_for_each_should_on_build
-    context = Thoughtbot::Shoulda::Context.new("name", self) do
+    context = Shoulda::Context.new("name", self) do
       should "one" do; end
       should "two" do; end
     end
@@ -177,8 +182,8 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
   end
 
   def test_should_create_test_methods_on_build
-    tu_class = Test::Unit::TestCase
-    context = Thoughtbot::Shoulda::Context.new("A Context", tu_class) do
+    tu_class = ActiveSupport::TestCase
+    context = Shoulda::Context.new("A Context", tu_class) do
       should "define the test" do; end
     end
 
@@ -187,8 +192,8 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
   end
 
   def test_should_create_test_methods_on_build_when_subcontext
-    tu_class = Test::Unit::TestCase
-    context = Thoughtbot::Shoulda::Context.new("A Context", tu_class) do
+    tu_class = ActiveSupport::TestCase
+    context = Shoulda::Context.new("A Context", tu_class) do
       context "with a child" do
         should "define the test" do; end
       end
@@ -203,21 +208,21 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
   def test_should_create_a_new_context_and_build_it_on_Test_Unit_context
     c = mock("context")
     c.expects(:build)
-    Thoughtbot::Shoulda::Context.expects(:new).with("foo", kind_of(Class)).returns(c)
+    Shoulda::Context.expects(:new).with("foo", kind_of(Class)).returns(c)
     self.class.context "foo" do; end
   end
 
   def test_should_create_a_one_off_context_and_build_it_on_Test_Unit_should
     s = mock("test")
-    Thoughtbot::Shoulda::Context.any_instance.expects(:should).with("rock", {}).returns(s)
-    Thoughtbot::Shoulda::Context.any_instance.expects(:build)
+    Shoulda::Context.any_instance.expects(:should).with("rock", {}).returns(s)
+    Shoulda::Context.any_instance.expects(:build)
     self.class.should "rock" do; end
   end
 
   def test_should_create_a_one_off_context_and_build_it_on_Test_Unit_should_eventually
     s = mock("test")
-    Thoughtbot::Shoulda::Context.any_instance.expects(:should_eventually).with("rock").returns(s)
-    Thoughtbot::Shoulda::Context.any_instance.expects(:build)
+    Shoulda::Context.any_instance.expects(:should_eventually).with("rock").returns(s)
+    Shoulda::Context.any_instance.expects(:build)
     self.class.should_eventually "rock" do; end
   end
 
@@ -227,12 +232,23 @@ class ShouldTest < Test::Unit::TestCase # :nodoc:
 
   context "A :before proc" do
     setup do
-      assert "before", @value
+      assert_equal "before", @value
       @value = "setup"
     end
 
     should "run before the current setup", :before => lambda { @value = "before" } do
       assert_equal "setup", @value
+    end
+  end
+
+  context "a before statement" do
+    setup do
+      assert_equal "before", @value
+      @value = "setup"
+    end
+
+    before_should "run before the current setup" do
+      @value = "before"
     end
   end
 

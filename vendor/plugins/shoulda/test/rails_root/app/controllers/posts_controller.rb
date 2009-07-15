@@ -1,27 +1,36 @@
 class PostsController < ApplicationController
   before_filter :ensure_logged_in
   before_filter :load_user
-  
+
   def index
     @posts = @user.posts
 
     respond_to do |format|
       format.html # index.rhtml
       format.xml  { render :xml => @posts.to_xml }
+      format.rss do
+        headers['Content-Type'] = 'application/rss+xml'
+        session[:special] = '$2 off your next purchase'
+        session[:special_user_id] = @user.id
+        session[:false_var] = false
+        head :ok
+      end
     end
   end
 
   def show
     @post = @user.posts.find(params[:id])
+    @false_flag = false
 
     respond_to do |format|
-      format.html # show.rhtml
+      format.html { render :layout => 'wide' }
       format.xml  { render :xml => @post.to_xml }
     end
   end
 
   def new
     @post = @user.posts.build
+    render :layout => false
   end
 
   def edit
@@ -61,17 +70,17 @@ class PostsController < ApplicationController
   def destroy
     @post = @user.posts.find(params[:id])
     @post.destroy
-    
+
     flash[:notice] = "Post was removed"
-    
+
     respond_to do |format|
       format.html { redirect_to user_posts_url(@post.user) }
       format.xml  { head :ok }
     end
   end
-  
+
   private
-  
+
   def load_user
     @user = User.find(params[:user_id])
   end

@@ -2,22 +2,18 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class ProductTest < ActiveSupport::TestCase
   context "An intangible product" do
-    setup do
-      @product = Product.new(:tangible => false)
-    end
+    subject { Product.new(:tangible => false) }
 
-    should_require_attributes :title
+    should_validate_presence_of :title
     should_not_allow_values_for :size, "22"
     should_allow_values_for :size, "22kb"
     should_ensure_value_in_range :price, 0..99
   end
 
   context "A tangible product" do
-    setup do
-      @product = Product.new(:tangible => true)
-    end
+    subject { Product.new(:tangible => true) }
 
-    should_require_attributes :price
+    should_validate_presence_of :price
     should_ensure_value_in_range :price, 1..9999
     should_ensure_value_in_range :weight, 1..100
     should_not_allow_values_for :size, "22", "10x15"
