@@ -8,18 +8,20 @@ class ClientsControllerTest < ActionController::TestCase
     create_and_authenticate_preallowed_subject
   end
  
-  should_be_restful do |resource| 
-    resource.create.params = { :name => "random client" }
-    resource.update.params = { :name => "Changed" }
-    resource.actions    = [
-      #:index,
-      :show, 
-      :new, 
-      :edit, 
-      :update, 
-      :create, 
-      :destroy
-      ]    
-  end        
+  # TODO: This is deprecated, go and write some test
+  #----------------------------------------------------------------------------
+  # should_be_restful do |resource| 
+  #   resource.create.params = { :name => "random client" }
+  #   resource.update.params = { :name => "Changed" }
+  #   resource.actions    = [
+  #     #:index,
+  #     :show, 
+  #     :new, 
+  #     :edit, 
+  #     :update, 
+  #     :create, 
+  #     :destroy
+  #     ]    
+  # end        
 
 end

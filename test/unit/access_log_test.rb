@@ -5,6 +5,7 @@ class AccessLogTest < ActiveSupport::TestCase
     setup do
       @access_log = Factory.create(:access_log)
     end
+    subject { @access_log }
     
     should_belong_to :client
 

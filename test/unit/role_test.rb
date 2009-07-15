@@ -5,6 +5,8 @@ class RoleTest < ActiveSupport::TestCase
     setup do
       @role = Factory(:role)
     end
+    subject { @role }
+    
     should_belong_to :client
     
     should_have_db_index :name

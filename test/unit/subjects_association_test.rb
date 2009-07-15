@@ -5,6 +5,7 @@ class SubjectsAssociationTest < ActiveSupport::TestCase
      setup do
        @subjects_association = Factory(:subjects_association)
      end
+     subject { @subjects_association }
      
      should_belong_to :subject  
      should_belong_to :role

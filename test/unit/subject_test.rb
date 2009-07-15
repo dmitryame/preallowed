@@ -5,6 +5,8 @@ class SubjectTest < ActiveSupport::TestCase
     setup do
       @subject = Factory(:subject)
     end
+    subject { @subject }
+    
     should_belong_to :client
         
     should_have_db_index :client_id

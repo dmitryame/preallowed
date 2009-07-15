@@ -9,11 +9,13 @@ class ResourcesControllerTest < ActionController::TestCase
     @controller = ResourcesController.new
   end
 
-  should_be_restful do |resource| 
-    resource.parent     = [ :client ]        
-    resource.create.params = { :name => "random resource"}
-    resource.update.params = { :name => "Changed"}
-  end        
+  # TODO: This is deprecated, go and write some test
+  #----------------------------------------------------------------------------
+  # should_be_restful do |resource| 
+  #   resource.parent     = [ :client ]        
+  #   resource.create.params = { :name => "random resource"}
+  #   resource.update.params = { :name => "Changed"}
+  # end        
 
 
   context "on add role to resource" do

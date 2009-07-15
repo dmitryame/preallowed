@@ -5,6 +5,7 @@ class ResourcesAssociationTest < ActiveSupport::TestCase
      setup do
        @resources_association = Factory(:resources_association)
      end
+     subject { @resources_association }
      
      should_belong_to :resource
      should_belong_to :role

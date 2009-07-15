@@ -5,6 +5,8 @@ class ResourceTest < ActiveSupport::TestCase
     setup do
       @resource = Factory(:resource)
     end
+    subject { @resource }
+
     should_have_db_index :name
     should_have_db_index :client_id
     should_have_db_index [:client_id, :name]

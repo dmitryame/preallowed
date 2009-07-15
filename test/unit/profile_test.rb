@@ -5,6 +5,7 @@ class ProfileTest < ActiveSupport::TestCase
     setup do
       @profile = Factory.create(:profile)
     end
+    subject { @profile }
     
     should_belong_to :managed_client
     should_belong_to :administrator

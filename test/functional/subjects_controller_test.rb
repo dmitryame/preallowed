@@ -9,11 +9,13 @@ class SubjectsControllerTest < ActionController::TestCase
     @controller = SubjectsController.new
   end
 
-  should_be_restful do |resource| 
-    resource.parent     = [ :client ]        
-    resource.create.params = { :name => "random subject", :email => "qwe@qwe.com", :password => "qweqwe", :password_confirmation => "qweqwe"}
-    resource.update.params = { :name => "Changed", :email => "qwe@qwe.com", :password => "qweqwe", :password_confirmation => "qweqwe"}
-  end        
+  # TODO: This is deprecated, go and write some test
+  #----------------------------------------------------------------------------
+  # should_be_restful do |resource| 
+  #   resource.parent     = [ :client ]        
+  #   resource.create.params = { :name => "random subject", :email => "qwe@qwe.com", :password => "qweqwe", :password_confirmation => "qweqwe"}
+  #   resource.update.params = { :name => "Changed", :email => "qwe@qwe.com", :password => "qweqwe", :password_confirmation => "qweqwe"}
+  # end        
 
   context "on check if subject has access to a particuar resource -- expecting false" do
     setup do 

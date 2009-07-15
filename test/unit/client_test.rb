@@ -1,10 +1,11 @@
 require 'test_helper'
 
-class ClientTest < Test::Unit::TestCase
+class ClientTest < ActiveSupport::TestCase
   context "A Client instance" do    
     setup do
-      @client = Factory.create(:client, :preallowed => true)
+      @client = Factory.create(:client, :preallowed => false)
     end
+    subject { @client }
     
     should_have_many :subjects
     should_have_many :roles
