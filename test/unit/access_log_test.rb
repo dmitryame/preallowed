@@ -8,7 +8,7 @@ class AccessLogTest < ActiveSupport::TestCase
     
     should_belong_to :client
 
-    should_have_index :client_id
+    should_have_db_index :client_id
     
   end    
 end

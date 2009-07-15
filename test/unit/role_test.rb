@@ -7,9 +7,9 @@ class RoleTest < ActiveSupport::TestCase
     end
     should_belong_to :client
     
-    should_have_index :name
-    should_have_index :client_id
-    should_have_index [:client_id, :name]
+    should_have_db_index :name
+    should_have_db_index :client_id
+    should_have_db_index [:client_id, :name]
     
     
     should_have_many :subjects_associations
@@ -20,9 +20,9 @@ class RoleTest < ActiveSupport::TestCase
     
     should_ensure_length_in_range :name, (3..30) 
 
-    should_require_attributes :name, :client_id
+    should_validate_presence_of :name, :client_id
 
-    should_require_unique_attributes :name, :scoped_to => :client_id
+    should_validate_uniqueness_of :name, :scoped_to => :client_id
     
   end    
 end

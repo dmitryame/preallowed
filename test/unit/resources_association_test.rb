@@ -8,7 +8,7 @@ class ResourcesAssociationTest < ActiveSupport::TestCase
      
      should_belong_to :resource
      should_belong_to :role
-     should_have_indices :resource_id, :role_id, [:role_id, :resource_id]
-     should_require_attributes :resource_id, :role_id
+     should_have_db_indices :resource_id, :role_id, [:role_id, :resource_id]
+     should_validate_presence_of :resource_id, :role_id
    end
 end

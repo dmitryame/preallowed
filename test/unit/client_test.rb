@@ -13,11 +13,11 @@ class ClientTest < Test::Unit::TestCase
     should_have_many :profiles
     should_have_many :administrators, :through => :profiles
     
-    should_require_attributes :name
-    should_require_unique_attributes :name
+    should_validate_presence_of :name
+    should_validate_uniqueness_of :name
 
-    should_have_index :name
-    should_have_index :preallowed
+    should_have_db_index :name
+    should_have_db_index :preallowed
     
     # should_require_attributes :email, :password
     
