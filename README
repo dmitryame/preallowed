@@ -24,7 +24,7 @@ The source code for the service can be obtained at http://github.com/dmitryame/p
 * Run following commands
 	rake db:create:all
 	rake db:migrate
-	./scripts/populate_dev # you might have to give it exec permissions (chmod +x ./scripts/populate_dev)
+	./script/populate_dev # you might have to give it exec permissions (chmod +x ./script/populate_dev)
 * Run autotest or rake to make sure all the tests pass -- this is a good indication that the install was successful.
 
 
